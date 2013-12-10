@@ -9,6 +9,38 @@ Our goal is to make it easier for casual and competitive players and teams to fi
 	- Skill
 	- Rank
 	- What they're looking for
+* Rating System
+	- Thumbs Up / Down - Leave a rating for players you've played with 
+	- Comment - Leave a short review
+* Choose what you're looking for
+	- Competitive / League Play
+	- Casual
+	- Matchmaking
+	- Mixes / Gathers
+	- 2v2 / 3v3 / 5v5
 
 
 
+## Tables Breakdown
+* users
+	- id
+	- username
+	- email
+	- password
+	- steam
+	- esea
+	- leetway
+	- altpug
+	- region_id
+	- skill_id
+	- bio
+	- rank_id
+
+* posts
+	- id
+	- user_id
+	- title
+	- goal
+	- contact
+
+*
