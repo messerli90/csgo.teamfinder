@@ -1,9 +1,13 @@
+@extends('layouts.master')
+@section('content')
+
+<div class="well">
 <h1>Users</h1>
 
 @if ($users->isEmpty())
 	<p>Sorry, no users at this time</p>
 @else
-<table>
+<table class="table">
 	<tr>
 		<td>ID</td>
 		<td>Username</td>
@@ -20,3 +24,5 @@
 	@endforeach
 </table>
 @endif
+</div>
+@stop

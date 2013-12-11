@@ -14,7 +14,7 @@ extends DatabaseSeeder
 				'contact'	=>	'Best if reached by Steam message'
 			],
 			[
-				'user_id'	=>	'1',
+				'user_id'	=>	'2',
 				'goal'		=>	'Just some friendly people to play with.',
 				'contact'	=>	'Call me on Skype: someuser'
 			]

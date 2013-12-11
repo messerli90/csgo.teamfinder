@@ -16,7 +16,7 @@ extends Eloquent
 	 * @var array
 	 */
 	public static $postRules = array(
-		'goal'				=>	'required|alpha_num',
+		'goal'				=>	'required',
 		'contact'			=>	'required',
 		'lookingfors'		=>	'required|between:1,4',
 		'playstyles'		=>	'required|between:1,3'

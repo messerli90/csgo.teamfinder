@@ -113,6 +113,9 @@ class UserController extends \BaseController {
 			// Else, return to root
 			return Redirect::to('/');
 			}
+		} else {
+			// Else, return to root
+			return Redirect::to('/');
 		}
 	}
 
@@ -159,11 +162,14 @@ class UserController extends \BaseController {
 			$user->skill_id = Input::get('skill');
 		if (Input::has('rank')) 
 			$user->rank_id = Input::get('rank');
+		if (Input::has('bio'))
+			$user->bio = Input::get('bio');
 		$user->save();
 		if (Input::has('voip')) {
 			$voips = Input::get('voip');
 			$user->voips()->sync($voips);
 		}
+
 		return Redirect::action('UserController@index')->with('user', $user);
 
 	}
