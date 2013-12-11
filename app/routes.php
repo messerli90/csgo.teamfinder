@@ -10,9 +10,18 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+/*
+Event::listen('illuminate.query', function($sql)
+{
+  var_dump($sql."<br>");
+});
+*/
 
 Route::get('/', 'HomeController@showWelcome');
 
-
 Route::resource('users', 'UserController');
 Route::resource('posts', 'PostController');
+Route::get('/login', array('as' => 'login', 'uses' => 'UserController@getLogin'));
+Route::post('/login', 'UserController@postLogin');
+Route::get('/logout', array('as' => 'logout', 'uses' => 'UserController@getLogout'));
+

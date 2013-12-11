@@ -17,8 +17,8 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Post::all();
-		return View::make('posts/index')->with('posts', $posts);
+		$posts = Post::with('user','lookingfors','playstyles')->get();
+		return View::make('posts/index', compact('posts'));
 	}
 
 	/**
@@ -28,8 +28,21 @@ class PostController extends \BaseController {
 	 */
 	public function create()
 	{
-		// Bring to posts/create View
-		return View::make('posts/create');
+		// Check if user is authenticated
+		if (Auth::user())
+		{
+			// Get user, Lookingfors, playstyles
+			$user = Auth::user();
+			$lookingfors = Lookingfor::all();
+			$playstyles = Playstyle::all();
+
+			// Bring to posts/create View with user details
+			return View::make('posts/create', compact('user', 'lookingfors', 'playstyles'));
+		} else {
+			// If not authenticated bring to register view
+			return Redirect::action('UserController@create');
+		}
+		
 	}
 
 	/**
@@ -39,7 +52,36 @@ class PostController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// Pass all input from posts/create to validator with postRules from Post Model
+		$validator = Validator::make(Input::all(), Post::$postRules, Post::$errorMessages);
+
+		// Check if validator passes
+		if($validator->fails()) 
+		{
+			// Redirect back to users/create with errors
+			return Redirect::route('posts.create')->withErrors($validator);
+		} else {
+			// Get user
+			$user = Auth::user();
+
+			// Make new Post
+			$post = new Post;
+			
+			// Associate User to Post
+			$post = $user->posts()->save($post);
+			
+			// Get inputs
+			$post->goal = Input::get('goal');
+			$post->contact = Input::get('contact');
+			$lookingfors = Input::get('lookingfors');
+				$post->lookingfors()->sync($lookingfors);
+			$playstyles = Input::get('playstyles');
+				$post->playstyles()->sync($playstyles);
+
+			$post->save();
+
+			return Redirect::route('posts.index');
+		}
 	}
 
 	/**
@@ -50,7 +92,9 @@ class PostController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$post = Post::find($id);
+
+		return View::make('posts/show', compact('post'));
 	}
 
 	/**

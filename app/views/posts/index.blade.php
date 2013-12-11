@@ -15,8 +15,16 @@
 	<tr>
 		<td>{{ $post->id }}</td>
 		<td><a href="{{ action('PostController@show', [$post->id]) }}">{{ $post->user->username }}</a></td>
-		<td>{{ $post->goal }}</td>
-		<td>{{ $post->user->rank->name }}</td>
+		<td>
+			@foreach($post->lookingfors as $lookingfor)
+				<p>{{$lookingfor->name}}</p>
+			@endforeach
+		</td>
+		<td>
+			@if($post->user->rank)
+				{{ $post->user->rank->name }}
+			@endif
+		</td>
 		<td><a href="{{ action('PostController@edit', [$post->id]) }}">Edit</a></td>
 	</tr>
 	@endforeach

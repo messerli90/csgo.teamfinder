@@ -8,6 +8,7 @@ class UserController extends \BaseController {
 	 */
 	public function __construct() {
 		$this->beforeFilter('csrf', array('on'=>'post'));
+		$this->beforeFilter('guest', array('only'=>'getLogin'));
 	}
 
 	/**
@@ -38,8 +39,8 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		// Pass all input from users/create to validator with rules from User Model
-		$validator = Validator::make(Input::all(), User::$rules);
+		// Pass all input from users/create to validator with registrationRules from User Model
+		$validator = Validator::make(Input::all(), User::$registrationRules);
 
 		// Check if validator passes
 		if($validator->fails()) 
@@ -94,14 +95,24 @@ class UserController extends \BaseController {
 			// Get Authenticated user
 			$authUserID = Auth::user()->id;
 
+			//
+			$region_options = Region::lists('name', 'id');
+			$rank_options = Rank::lists('name', 'id');
+			$skill_options = Skill::lists('name', 'id');
+			$voips = Voip::all();
+			// Find user's current set birthday and break it into array
+			if($user->birthday)
+				$birthday = explode('-',$user->birthday);
+
+
 			// If the logged in used is the same as the user they are trying to edit, allow
 			if ($authUserID == $id) {
 				// Return Edit Page for user
-				return View::make('users/edit')->with('user', $user);
-			}
-		} else {
+				return View::make('users/edit', compact('user', 'region_options', 'rank_options', 'skill_options', 'voips', 'birthday'));
+			} else {
 			// Else, return to root
 			return Redirect::to('/');
+			}
 		}
 	}
 
@@ -113,7 +124,48 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$user = User::find(Auth::user()->id);
+		$input = Input::get();
+
+		// Pass all input from users/edit to validator with rules from User Model
+		$validator = Validator::make(Input::all(), User::$editRules);
+
+		if ($validator->fails()) {
+			return Redirect::action('UserController@edit', [$user->id])->withErrors($validator);
+		}
+
+		if (Input::hasFile('avatar')) {
+			$file            = Input::file('avatar');
+			$destinationPath = public_path().'/img/avatars';
+			$filename        = str_random(6) . '_' . $file->getClientOriginalName();
+			$uploadSuccess   = $file->move($destinationPath, $filename);
+			$user->avatar    = $destinationPath . $filename;
+		}
+		$day = Input::get('day');
+		$month = Input::get('month');
+		$year = Input::get('year');
+		$user->birthday = $year.'-'.$month.'-'.$day;
+		if (Input::has('steam')) 
+			$user->steam = Input::get('steam');
+		if (Input::has('esea')) 
+			$user->esea = Input::get('esea');
+		if (Input::has('leetway')) 
+			$user->leetway = Input::get('leetway');
+		if (Input::has('altpug')) 
+			$user->altpug = Input::get('altpug');
+		if (Input::has('region_id')) 
+			$user->region_id = Input::get('region_id');
+		if (Input::has('skill')) 
+			$user->skill_id = Input::get('skill');
+		if (Input::has('rank')) 
+			$user->rank_id = Input::get('rank');
+		$user->save();
+		if (Input::has('voip')) {
+			$voips = Input::get('voip');
+			$user->voips()->sync($voips);
+		}
+		return Redirect::action('UserController@index')->with('user', $user);
+
 	}
 
 	/**
@@ -130,5 +182,41 @@ class UserController extends \BaseController {
 		// Delete user from Database
 		$user->delete();
 	}
+	/**
+	 * Get the Login View
+	 *
+	 */
+	public function getLogin()
+	{
+		// Create the login View
+		return View::make('users/login');
+	}
 
+	/**
+	 * Logging the User in
+	 *
+	 */
+	public function postLogin()
+	{
+		// Grab input from Login Form
+		$email = Input::get('email');
+		$password = Input::get('password');
+
+		if(Auth::attempt(['email' => $email, 'password' => $password]))
+		{
+			return Redirect::action('UserController@show',[Auth::user()->id])->with('user', Auth::user());
+		} else {
+			return Redirect::action('UserController@getLogin')->with('error', 'Email/Password combination invalid')->withInput();
+		}
+	}
+	
+	/**
+	 * Logging the User out
+	 *
+	 */
+	public function getLogout()
+	{
+		Auth::logout();
+		return Redirect::action('UserController@getLogin');
+	}
 }

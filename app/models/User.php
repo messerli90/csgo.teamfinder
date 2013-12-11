@@ -6,16 +6,28 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 	
 	/**
-	 * Set rules for Validation
+	 * Set rules for Registration Validation
 	 *
 	 * @var array
 	 */
-	public static $rules = array(
-		'username'=>'required|alpha|min:5|unique:users',
-		'email'=>'required|email|unique:users',
-		'password'=>'required|alpha_num|between:6,32|confirmed',
-		'password_confirmation'=>'required|alpha_num|between:6,32'
+	public static $registrationRules = array(
+		'username'				=>'required|alpha|min:5|unique:users',
+		'email'					=>'required|email|unique:users',
+		'password'				=>'required|alpha_num|between:6,32|confirmed',
+		'password_confirmation'	=>'required|alpha_num|between:6,32',
 		);
+	/**
+	 * Set rules for Edit Validation
+	 *
+	 * @var array
+	 */
+	public static $editRules = array(
+		'avatar'				=>'image|max:2000',
+		'steam'					=>'url',
+		'esea'					=>'url',
+		'altpug'				=>'url',
+		'leetway'				=>'url'
+	);
 
 	/**
 	 * The database table used by the model.
