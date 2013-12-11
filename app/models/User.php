@@ -4,6 +4,18 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
+	
+	/**
+	 * Set rules for Validation
+	 *
+	 * @var array
+	 */
+	public static $rules = array(
+		'username'=>'required|alpha|min:5|unique:users',
+		'email'=>'required|email|unique:users',
+		'password'=>'required|alpha_num|between:6,32|confirmed',
+		'password_confirmation'=>'required|alpha_num|between:6,32'
+		);
 
 	/**
 	 * The database table used by the model.
@@ -49,4 +61,33 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
+	/**
+	 * Set Relationships
+	 *
+	 *
+	 */
+	public function region()
+	{
+		return $this->belongsTo('Region');
+	}
+
+	public function skill()
+	{
+		return $this->belongsTo('Skill');
+	}
+
+	public function rank()
+	{
+		return $this->belongsTo('Rank');
+	}
+
+	public function voips()
+	{
+		return $this->belongsToMany('Voip');
+	}
+
+	public function posts()
+	{
+		return $this->hasMany('Post');
+	}
 }
