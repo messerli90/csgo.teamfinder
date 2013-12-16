@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration {
 			$table->string('email')
 				->unique();
 
+			$table->date('birthday')
+				->nullable();
+
 			$table->string('steam')
 				->nullable();
 
@@ -35,6 +38,9 @@ class CreateUsersTable extends Migration {
 
 			$table->string('altpug')
 				->nullable();
+
+			$table->integer('rating')
+				->default(0);
 
 			$table->integer('region_id')
 				->nullable()

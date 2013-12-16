@@ -17,7 +17,7 @@ extends DatabaseSeeder
 				'esea'			=>		'http://esea.com/knifely',
 				'leetway'		=>		'http://leetway.com/knifely',
 				'altpug'		=>		'http://altpug.com/knifely',
-				'bio'			=>		"I'm kniFely, the founder of CSGO Team Finder",
+				'bio'			=>		"I'm kniFely, the founder and developer of CSGO Team Finder",
 				'region_id'		=>		6,
 				'skill_id'		=>		2,
 				'rank_id'		=>		13

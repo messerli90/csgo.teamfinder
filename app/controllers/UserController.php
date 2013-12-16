@@ -46,7 +46,7 @@ class UserController extends \BaseController {
 		if($validator->fails()) 
 		{
 			// Redirect back to users/create with errors
-			return Redirect::route('users.create')->withErrors($validator);
+			return Redirect::route('users.create')->withErrors($validator)->withInput();
 		} else {
 			// Validation has passed, save user in DB
 			$user = new User;
@@ -73,9 +73,10 @@ class UserController extends \BaseController {
 	{
 		// Pick out the user
 		$user = User::find($id);
+		$ratings = Rating::where('user_id', $id)->get();
 
 		// Return Profile Page of user
-		return View::make('users/profile')->with('user', $user);
+		return View::make('users/profile', compact('user', 'ratings'));
 	}
 
 	/**
@@ -170,7 +171,7 @@ class UserController extends \BaseController {
 			$user->voips()->sync($voips);
 		}
 
-		return Redirect::action('UserController@index')->with('user', $user);
+		return Redirect::action('UserController@show', [Auth::user()->id])->with('user', $user);
 
 	}
 
@@ -224,5 +225,55 @@ class UserController extends \BaseController {
 	{
 		Auth::logout();
 		return Redirect::action('UserController@getLogin');
+	}
+
+	/**
+	 * Get Review Page
+	 *
+	 */
+	public function getReview($id)
+	{
+		$user = User::find($id);
+		if(Auth::user() == $user)
+		{
+			return Redirect::action('UserController@show', [$user->id])->with('message', "You cannot leave a review for yourself");
+		}
+		elseif (!Auth::user()) {
+			return Redirect::route('login');
+		} 
+		return View::make('users/review')->with('user', $user);
+	}
+
+	/**
+	 * Post Review
+	 *
+	 */
+	public function postReview($id)
+	{
+		// User that is receiving review
+		$user = User::find($id);
+
+		// Pass all input from users/review to validator with rules from User Model
+		$validator = Validator::make(Input::all(), User::$reviewRules);
+
+		if ($validator->fails()) {
+			return Redirect::action('UserController@getReview', [$user->id])->withErrors($validator);
+		}
+
+
+		//User that is writing review
+		$author_id = Auth::user()->id;
+
+		$rating = new Rating;
+		$rating->score = Input::get('score');
+		$rating->review = Input::get('review');
+		$rating->user_id = $user->id;
+		$rating->author_id = $author_id;
+		$rating->save();
+
+		$user->rating = $user->rating + Input::get('score');
+		$user->save();
+
+		return Redirect::action('UserController@show', [$user->id]);
 	}
 }

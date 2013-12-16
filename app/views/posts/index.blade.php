@@ -1,11 +1,10 @@
 @extends('layouts.master')
 @section('content')
 
-<h1>Posts <a href="{{ action('PostController@create') }}" class="btn btn-primary pull-right">Add new Post</a></h1>
-
 <div class="row">
 	<div class="col-md-3">
 		<div class="well">
+		<a href="{{ action('PostController@create') }}" class="btn btn-primary">Add new Post</a>
 			<h2>Filters</h2>
 			{{ Form::open() }}
 				{{ Form::label('region', 'Region') }}
@@ -36,35 +35,48 @@
 		</div>
 	</div>
 
-	<div class="col-md-9">
+	<div class="col-md-7">
 	@if ($posts->isEmpty())
 		<div class="well"><p>Sorry, no posts at this time</p></div>
 	@else
 
 		@foreach($posts as $post)
-		<div class="col-md-6">
-			<div class="well post">
+		<div class="col-md-12">
+			<div class="well post clearfix">
 				<h2><a href="{{ action('UserController@show', [$post->id]) }}">{{ $post->user->username }}</a></h2>
-				<hr />
-				<div>
+				<div class="well well-sm">
 					<img src="{{ $post->user->rank->img }}" class="rank">
 				</div>
-				<div class="clearfix">
+				<div class=" col-md-6">
 					<h4>Looking for</h4>
-					<ul>
-					@foreach($post->lookingfors as $lookingfor)
-						<li>{{$lookingfor->name}}</li>
-					@endforeach
-					</ul>
-					<h4>Goal</h4>
-					<p>{{ $post->goal }}</p>
+						<ul>
+						@foreach($post->lookingfors as $lookingfor)
+							<li>{{$lookingfor->name}}</li>
+						@endforeach
+						</ul>
 
-					<a href="#" class="btn btn-primary pull-right">Read More...</a>
+				</div>
+				<div class="col-md-6">
+					<h4>Goal</h4>
+						<p>{{ $post->goal }}</p>
+					<h4>Contact me</h4>
+						<p>{{ $post->contact }}</p>
+					
+				</div>
+				<div class="clearfix">
+					<a href="{{ action('PostController@show', [$post->id]) }}" class="btn btn-primary pull-right">Read More...</a>
 				</div>
 			</div>
 		</div>
 		@endforeach
-		{{ $posts->links() }}
+	</div>
+	<div class="col-md-2">
+		<div class="well">
+			<h4>Sponsors</h4>
+		</div>
+	</div>
+	<div class="clearfix">
+		{{ $posts->links() }}			
 	</div>
 	@endif
 </div> <!-- ./row -->

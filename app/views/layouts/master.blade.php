@@ -1,10 +1,13 @@
 @include('layouts.head')
-<div class="container">
-	
-	@include('layouts.navigation')
+<div id="wrap">
+	<div class="container">
+		
+		@include('layouts.navigation')
 
-	@yield('content')
+		@yield('content')
+
+	</div>
 
 </div>
-
-@include('layouts.footer')
+	@include('layouts.footer')
+@include('layouts.foot')

@@ -18,10 +18,15 @@ Event::listen('illuminate.query', function($sql)
 */
 
 Route::get('/', 'HomeController@showWelcome');
+Route::get('/comingsoon', function(){
+	return View::make('comingsoon');
+});
 
 Route::resource('users', 'UserController');
 Route::resource('posts', 'PostController');
 Route::get('/login', array('as' => 'login', 'uses' => 'UserController@getLogin'));
 Route::post('/login', 'UserController@postLogin');
 Route::get('/logout', array('as' => 'logout', 'uses' => 'UserController@getLogout'));
+Route::get('/review/{id}', array('as' => 'review', 'uses' => 'UserController@getReview'));
+Route::post('review/{id}', 'UserController@postReview');
 

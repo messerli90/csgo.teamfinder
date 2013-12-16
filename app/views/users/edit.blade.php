@@ -91,7 +91,7 @@
 </div>
 
 <div class="form-group">
-	{{ Form::label('voips[]', 'VoiP', ['class' => 'col-sm-2 control-label']) }}
+	{{ Form::label('Voips', 'VoiP', ['class' => 'col-sm-2 control-label']) }}
 	<div class="col-sm-10">
 		@foreach($voips as $voip)
 		<div class="checkbox">

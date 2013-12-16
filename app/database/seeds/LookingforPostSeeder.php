@@ -15,6 +15,14 @@ extends DatabaseSeeder
 			[
 				'lookingfor_id'	=>	'4',
 				'post_id'		=>	'1'
+			],
+			[
+				'lookingfor_id'	=>	'2',
+				'post_id'		=>	'5'
+			],
+			[
+				'lookingfor_id'	=>	'4',
+				'post_id'		=>	'1'
 			]
 		];
 

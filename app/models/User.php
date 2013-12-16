@@ -14,7 +14,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'username'				=>'required|alpha|min:5|unique:users',
 		'email'					=>'required|email|unique:users',
 		'password'				=>'required|alpha_num|between:6,32|confirmed',
-		'password_confirmation'	=>'required|alpha_num|between:6,32',
+		'password_confirmation'	=>'required',
 		);
 	/**
 	 * Set rules for Edit Validation
@@ -27,7 +27,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'esea'					=>'url',
 		'altpug'				=>'url',
 		'leetway'				=>'url'
-	);
+		);
+	/**
+	 * Set rules for Edit Validation
+	 *
+	 * @var array
+	 */
+	public static $reviewRules = array(
+		'score'					=>'required',
+		'review'				=>'required'
+		);
 
 	/**
 	 * The database table used by the model.
@@ -101,5 +110,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function posts()
 	{
 		return $this->hasMany('Post');
+	}
+
+	public function rating()
+	{
+		return $this->belongsTo('Rating');
 	}
 }
