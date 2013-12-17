@@ -67,7 +67,14 @@
 				</div>
 				<div class="col-md-12 clearfix">
 					<a href="{{ action('PostController@show', [$post->id]) }}" class="btn btn-primary pull-right">Read More...</a>
-					<a href="#" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-flag"></span> Report</a>
+					<a href="#" class="btn btn-sm btn-default pull-left"><span class="glyphicon glyphicon-flag"></span> Report</a>
+					@if(Auth::check())
+					@if(Auth::user()->id == $post->user->id)
+					{{ Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'DELETE']) }}
+						{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm pull-left']) }}
+					{{ Form::close() }}
+					@endif
+					@endif
 				</div>
 			</div>
 		</div>

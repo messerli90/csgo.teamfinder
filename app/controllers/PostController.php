@@ -127,7 +127,9 @@ class PostController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Post::destroy($id);
+
+		return Redirect::action('PostController@index');
 	}
 
 }
