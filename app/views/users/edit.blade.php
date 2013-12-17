@@ -95,8 +95,10 @@
 	<div class="col-sm-10">
 		@foreach($voips as $voip)
 		<div class="checkbox">
-			{{ Form::checkbox('voips[]', $voip->id) }}
-			{{ Form::label('voips[]', $voip->name, ['class' => 'col-sm-2']) }}
+			<label class="col-sm-12">
+				{{ Form::checkbox('voips[]', $voip->id) }}
+				<span class="col-sm-2">{{ $voip->name }}</span>
+			</label>
 		</div>
 		@endforeach
 	</div>

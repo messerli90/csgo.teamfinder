@@ -101,6 +101,7 @@ class UserController extends \BaseController {
 			$rank_options = Rank::lists('name', 'id');
 			$skill_options = Skill::lists('name', 'id');
 			$voips = Voip::all();
+
 			// Find user's current set birthday and break it into array
 			if($user->birthday)
 				$birthday = explode('-',$user->birthday);
@@ -166,11 +167,11 @@ class UserController extends \BaseController {
 		if (Input::has('bio'))
 			$user->bio = Input::get('bio');
 		$user->save();
-		if (Input::has('voip')) {
-			$voips = Input::get('voip');
+		if (Input::has('voips')) {
+			$voips = Input::get('voips');
 			$user->voips()->sync($voips);
 		}
-
+		$user->save();
 		return Redirect::action('UserController@show', [Auth::user()->id])->with('user', $user);
 
 	}

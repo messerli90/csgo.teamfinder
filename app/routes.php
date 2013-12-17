@@ -21,6 +21,9 @@ Route::get('/', 'HomeController@showWelcome');
 Route::get('/comingsoon', function(){
 	return View::make('comingsoon');
 });
+Route::get('/about', function(){
+	return View::make('about/index');
+});
 
 Route::resource('users', 'UserController');
 Route::resource('posts', 'PostController');
@@ -29,4 +32,6 @@ Route::post('/login', 'UserController@postLogin');
 Route::get('/logout', array('as' => 'logout', 'uses' => 'UserController@getLogout'));
 Route::get('/review/{id}', array('as' => 'review', 'uses' => 'UserController@getReview'));
 Route::post('review/{id}', 'UserController@postReview');
+
+
 

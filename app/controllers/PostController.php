@@ -17,7 +17,7 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Post::with('user','lookingfors','playstyles')->paginate(10);
+		$posts = Post::with('user','lookingfors','playstyles')->orderBy('id', 'DESC')->paginate(10);
 		return View::make('posts/index', compact('posts'));
 	}
 

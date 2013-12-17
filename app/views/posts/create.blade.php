@@ -5,12 +5,11 @@
 	<h1>Create new Post</h1>
 
 	@if(Session::has('errors'))
-		<ul>
-			@foreach($errors->all() as $error)
-				<li>{{ $error }}</li>
-			@endforeach
-		</ul>
-		</div>
+	<div class="alert alert-warning">
+		@foreach($errors->all() as $error)
+			<p>{{ $error }}</p>
+		@endforeach
+	</div>
 	@endif
 
 	{{ Form::open(['action' => 'PostController@store', 'class' => 'form-horizontal']) }}
@@ -33,8 +32,10 @@
 			<div class="col-sm-6">
 				@foreach($lookingfors as $lookingfor)
 				<div class="checkbox">
-					{{ Form::checkbox('lookingfors[]', $lookingfor->id) }}
-					{{ Form::label('lookingfors[]', $lookingfor->name, ['class' => 'col-sm-12']) }}
+					<label>
+						{{ Form::checkbox('lookingfors[]', $lookingfor->id) }}
+						<span class="col-sm-12">{{ $lookingfor->name }}</span>
+					</label>
 				</div>
 				@endforeach
 			</div>
@@ -45,8 +46,10 @@
 			<div class="col-sm-6">
 				@foreach($playstyles as $playstyle)
 				<div class="checkbox">
-					{{ Form::checkbox('playstyles[]', $playstyle->id) }}
-					{{ Form::label('playstyles[]', $playstyle->name, ['class' => 'col-sm-12']) }}
+					<label>
+						{{ Form::checkbox('playstyles[]', $playstyle->id) }}
+						<span class="col-sm-12">{{ $playstyle->name }}</span>
+					</label>
 				</div>
 				@endforeach
 			</div>

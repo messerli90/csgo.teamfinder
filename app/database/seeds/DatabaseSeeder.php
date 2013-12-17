@@ -16,13 +16,13 @@ class DatabaseSeeder extends Seeder {
 		$this->call('SkillSeeder');
 		$this->call('RankSeeder');
 		$this->call('VoipSeeder');
-		$this->call('UserVoipSeeder');
+		//$this->call('UserVoipSeeder');
 		$this->call('PlaystyleSeeder');
-		$this->call('PlaystylePostSeeder');
+		//$this->call('PlaystylePostSeeder');
 		$this->call('LookingforSeeder');
-		$this->call('LookingforPostSeeder');
-		$this->call('PostSeeder');
-		$this->call('UsersSeeder');
+		//$this->call('LookingforPostSeeder');
+		//$this->call('PostSeeder');
+		//$this->call('UsersSeeder');
 	}
 
 }
