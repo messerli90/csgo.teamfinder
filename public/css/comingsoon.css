@@ -1,0 +1,24 @@
+html, body {
+	background-color: #1a1a1a;
+	color: #ccc;
+}
+
+
+h2 {
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+	font-size: 65px;
+}
+
+
+
+
+.container {
+	width: 50%;
+	margin: 0 auto;
+}

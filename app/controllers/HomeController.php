@@ -17,7 +17,8 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		return View::make('hello');
+		$count = User::count();
+		return View::make('index', compact('count'));
 	}
 
 }

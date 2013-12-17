@@ -1,0 +1,100 @@
+body {
+    background-image: url('http://cdn4.steampowered.com/v/gfx/apps/730/ss_ccc4ce6edd4c454b6ce7b0757e633b63aa93921d.1920x1080.jpg?t=1385511625');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.alpha {
+	color: red;
+	font-variant: small-caps;
+	font-size: 13px; 
+	font-style: italic;
+}
+
+.good {
+  color: green;
+}
+
+.bad {
+  color: red;
+}
+
+img.rank {
+  height: 40px;
+  margin: 0;
+}
+img.rank-sm {
+  height: 35px;
+  margin: 0 0 5px 10px;
+  padding: 5px 0;
+}
+
+.vote_thumbs {
+  margin: 0 10px;
+  position: relative;
+  bottom: 30px; 
+}
+
+p.post {
+  margin-left: 10px;
+}
+
+.jumbotron h1 {
+  text-align: center;
+}
+.jumbotron p {
+  text-align: center;
+}
+
+.navbar-btn {
+  margin-right: 5px;
+}
+
+img.serviceLink {
+  height: 30px;
+}
+
+.post {
+}
+
+.post h2 {
+  text-align: center;
+  margin: 0;
+  font-size: 40px;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -39px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 40px 0px;
+  background-color: #1a1a1a;
+  font-size: 12px;
+  color: #ccc;
+}
+
+.container {
+  width: auto;
+  max-width: 1200px;
+  padding: 0 15px;
+}
+.container .credit {
+  margin:11px auto;
+  font-variant: small-caps;
+}
