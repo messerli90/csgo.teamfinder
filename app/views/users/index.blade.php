@@ -20,5 +20,6 @@
 	@endforeach
 </table>
 @endif
+{{ $users->links() }}
 </div>
 @stop
