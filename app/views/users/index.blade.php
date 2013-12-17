@@ -11,15 +11,11 @@
 	<tr>
 		<td>ID</td>
 		<td>Username</td>
-		<td>Email</td>
-		<td>Action</td>
 	</tr>
 	@foreach($users as $user)
 	<tr>
 		<td>{{ $user->id }}</td>
 		<td><a href="{{ action('UserController@show', [$user->id]) }}">{{ $user->username }}</a></td>
-		<td>{{ $user->email }}</td>
-		<td><a href="{{ action('UserController@edit', [$user->id]) }}">Edit</a></td>
 	</tr>
 	@endforeach
 </table>

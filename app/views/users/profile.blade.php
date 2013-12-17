@@ -5,7 +5,7 @@
 	<div class="jumbotron col-md-6 col-md-offset-3">
 		<h1>{{ $user->username }}</h1>
 			@if($user->bio)
-				<p>{{ $user->bio }}</p>
+				<p>{{{ $user->bio }}}</p>
 			@endif
 	</div>
 	<div class="well col-md-6 col-md-offset-3">
@@ -106,7 +106,7 @@
 						@foreach ($ratings as $rating)
 						<tr>
 							<td>{{ User::find($rating->author_id)->username }}</td>
-							<td>{{ $rating->review }}</td>
+							<td>{{{ $rating->review }}}</td>
 							<td>
 								@if ($rating->score == 1)
 								<span class="glyphicon glyphicon-thumbs-up good"></span>

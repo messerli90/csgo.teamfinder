@@ -53,19 +53,19 @@
 				<div class="col-md-6">
 					<h4>Goal</h4>
 						@if(strlen($post->goal) > 120)
-							<p>{{ substr($post->goal, 0, 120) }} ...</p>
+							<p>{{{ substr($post->goal, 0, 120) }}} ...</p>
 						@else
-							{{ $post->goal }}
+							{{{ $post->goal }}}
 						@endif
 					<h4>Contact me</h4>
 						@if(strlen($post->contact) > 120)
-							<p>{{ substr($post->contact, 0, 120) }} ...</p>
+							<p>{{{ substr($post->contact, 0, 120) }}} ...</p>
 						@else
-							{{ $post->contact }}
+							{{{ $post->contact }}}
 						@endif
 					
 				</div>
-				<div class="clearfix">
+				<div class="col-md-12 clearfix">
 					<a href="{{ action('PostController@show', [$post->id]) }}" class="btn btn-primary pull-right">Read More...</a>
 					<a href="#" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-flag"></span> Report</a>
 				</div>

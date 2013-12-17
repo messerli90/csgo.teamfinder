@@ -16,14 +16,14 @@
 		<div class="form-group">
 			{{ Form::label('goal', 'Goal', ['class' => 'col-sm-2 control-label']) }}
 			<div class="col-sm-10">
-				{{ Form::textarea('goal', null, ['class' => 'form-control']) }}
+				{{ Form::textarea('goal', null, ['class' => 'form-control', 'placeholder' => "I'm looking for a team to join a league with... I just want some friendly people to play MM with..."]) }}
 			</div>
 		</div>
 
 		<div class="form-group">
 			{{ Form::label('contact', 'Contact', ['class' => 'col-sm-2 control-label']) }}
 			<div class="col-sm-10">
-				{{ Form::textarea('contact', null, ['class' => 'form-control']) }}
+				{{ Form::textarea('contact', null, ['class' => 'form-control', 'placeholder' => "You should get a hold of me through steam... Call me on skype at xxx... I'm usually home from 5-9PM...."]) }}
 			</div>
 		</div>
 		

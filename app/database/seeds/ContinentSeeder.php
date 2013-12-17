@@ -6,7 +6,6 @@ extends DatabaseSeeder
 	public function run()
 	{
 		Continent::truncate();
-		
 		$continents = [
 			[
 				'id'	=>	'1',

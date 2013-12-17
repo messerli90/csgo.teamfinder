@@ -5,14 +5,14 @@
 	<div class="jumbotron col-md-6 col-md-offset-3">
 		<h1>{{ $post->user->username }}</h1>
 			@if($post->user->bio)
-				<p>{{ $post->user->bio }}</p>
+				<p>{{{ $post->user->bio }}}</p>
 			@endif
 	</div>
 	<div class="well col-md-6 col-md-offset-3">
 		<h3>Goal:</h3>
-		<p>{{ $post->goal }}</p>
+		<p>{{{ $post->goal }}}</p>
 		<h3>Contact:</h3>
-		<p>{{ $post->contact }}</p>
+		<p>{{{ $post->contact }}}</p>
 		<div class="col-md-6">
 			<h3>Looking for</h3>
 			<ul>
@@ -23,10 +23,10 @@
 
 		</div>
 		<div class="col-md-6">
-			<h3>Looking for</h3>
+			<h3>Playstyle</h3>
 			<ul>
-			@foreach($post->lookingfors as $lookingfor)
-				<li>{{$lookingfor->name}}</li>
+			@foreach($post->playstyles as $playstyle)
+				<li>{{$playstyle->name}}</li>
 			@endforeach
 			</ul>
 
@@ -132,7 +132,7 @@
 						@foreach ($post->user->ratings as $rating)
 						<tr>
 							<td>{{ User::find($rating->author_id)->username }}</td>
-							<td>{{ $rating->review }}</td>
+							<td>{{{ $rating->review }}}</td>
 							<td>
 								@if ($rating->score == 1)
 								<span class="glyphicon glyphicon-thumbs-up good"></span>
