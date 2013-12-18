@@ -4,3 +4,4 @@ changelog.txt
 
 + Added Experience to Profile, Post, Edit
 + Added experience to user table
++ Added ability to edit posts

@@ -55,7 +55,7 @@
 				@if($user->birthday)
 				<tr>
 					<td>Age</td>
-					<td>{{ date("Y-m-d")-date($user->birthday) }}</td>
+					<td>{{ date("m/d/y g:i A", strtotime($user->birthday)) }}</td>
 				</tr>
 				@endif
 				@if($user->region)

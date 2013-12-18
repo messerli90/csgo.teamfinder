@@ -54,18 +54,7 @@ img.serviceLink {
   height: 30px;
 }
 
-.post {
-}
 
-.btn-post{
-  margin-right: 5px;
-}
-
-.post h2 {
-  text-align: center;
-  margin: 0;
-  font-size: 40px;
-}
 /* Sticky footer styles
 -------------------------------------------------- */
 
@@ -101,4 +90,63 @@ body {
 .container .credit {
   margin:11px auto;
   font-variant: small-caps;
+}
+
+
+
+/****************************
+****** Posts 
+*****************************/
+.well {
+  color: #ccc;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+          box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+}
+.jumbotron {
+  color: #ccc;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+          box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+}
+
+
+.post {
+  padding: 19px 5px;
+}
+
+.btn-post{
+  margin-right: 5px;
+}
+
+.post h2 {
+  text-align: left;
+  margin: 0;
+  font-size: 30px;  
+  color: #fff;
+}
+.post h3 {
+  margin: 30px 0 0 0;
+  font-size: 12px;
+  font-weight: bold;
+}
+.post .rating {
+  font-size: 20px;
+}
+
+.post .rank {
+  margin: 10px 0px;
+  transform:rotate(-30deg);
+  -ms-transform:rotate(-30deg); /* IE 9 */
+  -webkit-transform:rotate(-30deg); /* Safari and Chrome */
+}
+
+.post .playstyle {
+  margin: 2px 3px;
+}
+
+.post li {
+  font-size: 12px;
 }
