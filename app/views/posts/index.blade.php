@@ -67,13 +67,15 @@
 				</div>
 				<div class="col-md-12 clearfix">
 					<a href="{{ action('PostController@show', [$post->id]) }}" class="btn btn-primary pull-right">Read More...</a>
-					<a href="#" class="btn btn-sm btn-default pull-left"><span class="glyphicon glyphicon-flag"></span> Report</a>
 					@if(Auth::check())
-					@if(Auth::user()->id == $post->user->id)
-					{{ Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'DELETE']) }}
-						{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm pull-left']) }}
-					{{ Form::close() }}
-					@endif
+						@if(Auth::user()->id == $post->user->id)
+							{{ Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'DELETE']) }}
+								{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm pull-left btn-post']) }}
+							{{ Form::close() }}
+							<a href="{{ action('PostController@edit', [$post->id]) }}" class="btn btn-sm btn-default pull-left btn-post">Edit</a>
+						@else
+							<a href="#" class="btn btn-sm btn-default pull-left btn-post"><span class="glyphicon glyphicon-flag"></span> Report</a>
+						@endif
 					@endif
 				</div>
 			</div>

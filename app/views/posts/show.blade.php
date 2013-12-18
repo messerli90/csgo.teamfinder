@@ -7,8 +7,19 @@
 			@if($post->user->bio)
 				<p>{{{ $post->user->bio }}}</p>
 			@endif
+
 	</div>
 	<div class="well col-md-6 col-md-offset-3">
+		@if(Auth::check())
+			@if(Auth::user()->id == $post->user->id)
+				{{ Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'DELETE']) }}
+					{{ Form::submit('Delete Post', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
+				{{ Form::close() }}
+				<a href="{{ action('PostController@edit', [$post->id]) }}" class="btn btn-sm btn-default pull-right btn-post">Edit Post</a>
+			@else
+				<a href="#" class="btn btn-sm btn-default pull-right btn-post"><span class="glyphicon glyphicon-flag"></span> Report Post</a>
+			@endif
+		@endif
 		<h3>Goal:</h3>
 		<p>{{{ $post->goal }}}</p>
 		<h3>Contact:</h3>

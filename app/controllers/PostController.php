@@ -105,7 +105,20 @@ class PostController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		// Get authenticated user
+		$user = Auth::user();
+
+		// Get post
+		$post = Post::find($id);
+		$lookingfors = Lookingfor::all();
+		$playstyles = Playstyle::all();
+
+		if (Auth::user()) {
+			if ($user->id == $post->user->id) {
+				return View::make('posts/edit', compact('user', 'post', 'lookingfors', 'playstyles'));
+			}
+		}
+		return Redirect::to('posts/');
 	}
 
 	/**
@@ -116,7 +129,36 @@ class PostController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		// Pass all input from posts/create to validator with postRules from Post Model
+		$validator = Validator::make(Input::all(), Post::$postRules, Post::$errorMessages);
+
+		// Check if validator passes
+		if($validator->fails()) 
+		{
+			// Redirect back to users/create with errors
+			return Redirect::route('posts.edit', [$id])->withErrors($validator);
+		} else {
+			// Get user
+			$user = Auth::user();
+
+			// Get Post
+			$post = Post::find($id);
+			
+			// Associate User to Post
+			$post = $user->posts()->save($post);
+			
+			// Get inputs
+			$post->goal = Input::get('goal');
+			$post->contact = Input::get('contact');
+			$lookingfors = Input::get('lookingfors');
+				$post->lookingfors()->sync($lookingfors);
+			$playstyles = Input::get('playstyles');
+				$post->playstyles()->sync($playstyles);
+
+			$post->save();
+
+			return Redirect::route('posts.show', [$id]);
+		}
 	}
 
 	/**

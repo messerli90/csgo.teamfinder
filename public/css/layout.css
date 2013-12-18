@@ -57,6 +57,10 @@ img.serviceLink {
 .post {
 }
 
+.btn-post{
+  margin-right: 5px;
+}
+
 .post h2 {
   text-align: center;
   margin: 0;
