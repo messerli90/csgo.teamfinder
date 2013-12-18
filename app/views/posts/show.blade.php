@@ -64,6 +64,7 @@
 				<p>This user doesn't use any third-party services.</p>
 			@endif
 		</div>
+
 		<div class="col-md-6">
 			<h3>Info:</h3>
 			<table class="table table-condensed">
@@ -115,6 +116,12 @@
 		</div>
 	</div>
 
+	@if($post->user->experience)
+		<div class="col-md-6 well col-md-offset-3">
+			<h3>Experience</h3>
+			<p>{{{ $post->user->experience }}}</p>
+		</div>
+	@endif
 
 	<div class="well col-md-6 col-md-offset-3">
 		<div class="col-md-12">

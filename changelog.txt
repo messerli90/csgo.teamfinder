@@ -1,0 +1,6 @@
+changelog.txt
+
+### 2013-12-18
+
++ Added Experience to Profile, Post, Edit
++ Added experience to user table

@@ -107,7 +107,14 @@
 <div class="form-group">
 	{{ Form::label('bio', 'Short Bio', ['class' => 'col-sm-2 control-label']) }}
 	<div class="col-sm-10">
-		{{ Form::textarea('bio', null, ['class' => 'form-control', 'placeholder' => 'I like to shoot things in the head and plant bombs.']) }}
+		{{ Form::textarea('bio', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'I like to shoot things in the head and plant bombs.']) }}
+	</div>
+</div>
+
+<div class="form-group">
+	{{ Form::label('experience', 'Experience', ['class' => 'col-sm-2 control-label']) }}
+	<div class="col-sm-10">
+		{{ Form::textarea('experience', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => "I used to play CAL with Team X... "]) }}
 	</div>
 </div>
 

@@ -90,6 +90,14 @@
 		</div>
 	</div>
 
+	@if($user->experience)
+		<div class="col-md-6 well col-md-offset-3">
+			<h3>Experience</h3>
+			<p>{{{ $user->experience }}}</p>
+		</div>
+	@endif
+
+
 	<div class="well col-md-6 col-md-offset-3">
 		<div class="col-md-12">
 			<h3>Reviews <a href="{{ action('UserController@getReview', [$user->id]) }}" class="btn btn-default pull-right">Leave a Review</a></h3>

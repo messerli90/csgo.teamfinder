@@ -166,6 +166,8 @@ class UserController extends \BaseController {
 			$user->rank_id = Input::get('rank');
 		if (Input::has('bio'))
 			$user->bio = Input::get('bio');
+		if (Input::has('experience'))
+			$user->experience = Input::get('experience');
 		$user->save();
 		if (Input::has('voips')) {
 			$voips = Input::get('voips');

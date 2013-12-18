@@ -9,6 +9,10 @@ extends DatabaseSeeder
 		
 		$ranks = [
 			[
+				'id'	=>	'19',
+				'name'	=>	'No Rank'
+			],
+			[
 				'id'	=>	'1',
 				'name'	=>	'Silver I',
 				'img'	=>	'img/ranks/elo1.png'
