@@ -56,7 +56,7 @@
 				@if($user->birthday)
 				<tr>
 					<td>Age</td>
-					<td>{{ date("m/d/y g:i A", strtotime($user->birthday)) }}</td>
+					<td>{{ date("Y-m-d")-date($user->birthday) }}</td>
 				</tr>
 				@endif
 				@if($user->region)
@@ -102,7 +102,7 @@
 
 
 	<div class="well col-md-8 col-md-offset-2">
-		<div class="col-md-12">
+		<div class="col-md-12" id="ratings">
 			<h3>Reviews <a href="{{ action('UserController@getReview', [$user->id]) }}" class="btn btn-default pull-right">Leave a Review</a></h3>
 			@if($ratings)
 				<table class="table">
