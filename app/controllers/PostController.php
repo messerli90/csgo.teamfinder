@@ -94,7 +94,13 @@ class PostController extends \BaseController {
 	{
 		$post = Post::find($id);
 
-		return View::make('posts/show', compact('post'));
+		// Get users
+		$user = $post->user;
+		
+		// Get users ratings
+		$ratings = Rating::where('user_id', $id)->get();
+
+		return View::make('posts/show', compact('post','user', 'ratings'));
 	}
 
 	/**

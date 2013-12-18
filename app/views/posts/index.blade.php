@@ -38,7 +38,7 @@
 				<div class="col-md-10">
 					<div class="row">
 						<div class="col-md-9">
-							<h2><a href="{{ action('UserController@show', [$post->user->id]) }}">{{ $post->user->username }}</a></h2>
+							<h2><a href="{{ action('PostController@show', [$post->id]) }}">{{ $post->user->username }}</a></h2>
 							<p class="region">{{{ $post->user->region->name }}} - {{{ date("m/d/y g:i A", strtotime($post->created_at)) }}}</p>
 						</div>
 						<div class="col-md-3 text-right rating">

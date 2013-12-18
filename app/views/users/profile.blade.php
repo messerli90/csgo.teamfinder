@@ -2,12 +2,13 @@
 @section('content')
 <div class="row">
 
-	<div class="jumbotron col-md-6 col-md-offset-3">
+	<div class="jumbotron col-md-8 col-md-offset-2">
 		<h1>{{ $user->username }}</h1>
 			@if($user->bio)
 				<p>{{{ $user->bio }}}</p>
 			@endif
 	</div>
+
 	<div class="well col-md-6 col-md-offset-3">
 
 		<div class="col-md-6">
@@ -90,15 +91,17 @@
 		</div>
 	</div>
 
+	@yield('post')
+
 	@if($user->experience)
-		<div class="col-md-6 well col-md-offset-3">
+		<div class="col-md-8 well col-md-offset-2">
 			<h3>Experience</h3>
 			<p>{{{ $user->experience }}}</p>
 		</div>
 	@endif
 
 
-	<div class="well col-md-6 col-md-offset-3">
+	<div class="well col-md-8 col-md-offset-2">
 		<div class="col-md-12">
 			<h3>Reviews <a href="{{ action('UserController@getReview', [$user->id]) }}" class="btn btn-default pull-right">Leave a Review</a></h3>
 			@if($ratings)
@@ -113,7 +116,7 @@
 					<tbody>
 						@foreach ($ratings as $rating)
 						<tr>
-							<td>{{ User::find($rating->author_id)->username }}</td>
+							<td><a href="{{ action('UserController@show', [User::find($rating->author_id)->id]) }}">{{ User::find($rating->author_id)->username }}</a> </td>
 							<td>{{{ $rating->review }}}</td>
 							<td>
 								@if ($rating->score == 1)
