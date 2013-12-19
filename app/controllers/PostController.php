@@ -17,7 +17,7 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Post::with('user','lookingfors','playstyles')->orderBy('id', 'DESC')->paginate(10);
+		$posts = Post::with('user','lookingfors','playstyles', 'postcomments')->orderBy('id', 'DESC')->paginate(10);
 		return View::make('posts/index', compact('posts'));
 	}
 
@@ -180,4 +180,29 @@ class PostController extends \BaseController {
 		return Redirect::action('PostController@index');
 	}
 
+	public function postComment($id)
+	{
+		// Check if user leaving comment is logged int
+		if(Auth::check()) {
+			// Get post
+			$post = Post::find($id);
+
+			// Get inputs and users
+
+			$comment = new PostComment;
+			$comment->post_id 	= $id;
+			$comment->author_id = Auth::user()->id;
+			$comment->comment 	= Input::get('comment');
+			$comment->save();
+
+			return Redirect::route('posts.show', [$id]);
+
+			// Store Inputs
+
+			// Return to post
+
+		} else {
+			return Redirect::to_route('login');
+		}
+	}
 }

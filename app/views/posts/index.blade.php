@@ -42,6 +42,7 @@
 							<p class="region">{{{ $post->user->region->name }}} - {{{ date("m/d/y g:i A", strtotime($post->created_at)) }}}</p>
 						</div>
 						<div class="col-md-3 text-right rating">
+							<span>{{{ $post->postcomments->count() }}} <span class="glyphicon glyphicon-comment"></span></span>
 							@if($post->user->rating > 0)
 								<span class="good">{{ $post->user->rating }} <span class="glyphicon glyphicon-thumbs-up"></span></span>
 							@elseif($post->user->rating == 0)

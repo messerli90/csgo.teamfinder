@@ -32,6 +32,7 @@ Route::post('/login', 'UserController@postLogin');
 Route::get('/logout', array('as' => 'logout', 'uses' => 'UserController@getLogout'));
 Route::get('/review/{id}', array('as' => 'review', 'uses' => 'UserController@getReview'));
 Route::post('review/{id}', 'UserController@postReview');
+Route::post('/posts/{id}', 'PostController@postComment');
 
 
 

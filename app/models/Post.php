@@ -40,5 +40,8 @@ extends Eloquent
 	{
 		return $this->belongsToMany('Lookingfor');
 	}
-
+	public function postcomments()
+	{
+		return $this->hasMany('PostComment');
+	}
 }
