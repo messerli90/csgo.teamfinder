@@ -3,6 +3,7 @@ changelog.txt
 ### 2013-12-20
 
 + Fix - Usernames now allow alpha-numeric characters
++ Update - About us page (Created Steam group)
 
 ### 2013-12-19
 

@@ -32,17 +32,23 @@
 			<ul>
 				<li>Filter - Filter through posts by region, playstyle, etc.</li>
 				<li>Team Posts - Represent a team looking for players</li>
-				<li>Post Comments - Leave a comment on a post</li>
+				<li><span class="done">Post Comments - Leave a comment on a post</span> - done</li>
 			</ul>
+			<a href="{{ url('about/changelog') }}">Changelog</a>
 		</div>
 		<div class="well">
 			<h4>Contact</h4>
 			<p>We look forward to any and all concerns you may have, here's how to get in touch with me for now:</p>
-			<p><a href="http://steamcommunity.com/id/knifely">kniFely on Steam</a></p>
-			<p><a href="mailto:knifelych@gmail.com">knifelych@gmail.com</a></p>
+			<p><a href="http://steamcommunity.com/groups/csgoteamfinder">Steam</a></p>
+			<p><a href="mailto:knifelych@gmail.com">Email</a></p>
 			<p><a href="https://twitter.com/kniFelyCH">Twitter</a></p>
 		</div>
+		<div class="well">
+			<h4>Help with development</h4>
+			<p>Get involved and make your opinion matter through our GitHub repo <a href="https://github.com/messerli90/csgo.teamfinder">messerli90/csgo.teamfinder</a></p>
+		</div>
 	</div>
+
 	
 </div>
 

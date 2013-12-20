@@ -24,6 +24,9 @@ Route::get('/comingsoon', function(){
 Route::get('/about', function(){
 	return View::make('about/index');
 });
+Route::get('/about/changelog', function(){
+	return View::make('about/changelog');
+});
 
 Route::resource('users', 'UserController');
 Route::resource('posts', 'PostController');

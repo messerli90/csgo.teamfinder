@@ -16,12 +16,15 @@
 			<h2>Get started now!</h2>
 			<p><a href="{{ action('UserController@create') }}">Create an account</a> or <a href="{{ route('login') }}">Login</a> to start finding teammates now!</p>
 		</div>
-		<!--
 		<div class="well">
-			<p>Registered Users: {{ $count }}</p>
+			<h4>Help with development</h4>
+			<p>Get involved and make your opinion matter through our GitHub repo <a href="https://github.com/messerli90/csgo.teamfinder">messerli90/csgo.teamfinder</a></p>
+		</div>
+		<div class="well">
+			<p>Active Posts: {{ Post::all()->count() }}</p>
+			<p>Registered Users: {{ User::all()->count() }}</p>
 				
 		</div>
-		-->
 	</div>
 </div>
 

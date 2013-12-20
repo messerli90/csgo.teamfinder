@@ -19,6 +19,10 @@ body {
   color: red;
 }
 
+.done {
+  text-decoration: line-through;
+}
+
 img.rank {
   height: 40px;
   margin: 0;
