@@ -114,7 +114,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($ratings as $rating)
+						@foreach ($user->ratings as $rating)
 						<tr>
 							<td><a href="{{ action('UserController@show', [User::find($rating->author_id)->id]) }}">{{ User::find($rating->author_id)->username }}</a> </td>
 							<td>{{{ $rating->review }}}</td>

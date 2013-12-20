@@ -10,9 +10,9 @@ extends Eloquent
 	 */
 	protected $table = 'ratings';
 
-	public function users()
+	public function user()
 	{
-		return $this->hasMany('User');
+		return $this->belongsTo('User');
 	}
 
 }
