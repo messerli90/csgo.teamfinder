@@ -1,5 +1,13 @@
 changelog.txt
 
+### 2013-12-20
+
++ Fix - Usernames now allow alpha-numeric characters
+
+### 2013-12-19
+
++ Added comments to Posts
+
 ### 2013-12-18
 
 + Added Experience to Profile, Post, Edit

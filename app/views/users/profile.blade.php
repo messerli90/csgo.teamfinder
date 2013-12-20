@@ -104,13 +104,13 @@
 	<div class="well col-md-8 col-md-offset-2">
 		<div class="col-md-12" id="ratings">
 			<h3>Reviews <a href="{{ action('UserController@getReview', [$user->id]) }}" class="btn btn-default pull-right">Leave a Review</a></h3>
-			@if($ratings)
+			@if($user->ratings)
 				<table class="table">
 					<thead>
 						<tr>
 							<td>Author</td>
 							<td>Review</td>
-							<td>Rating</td>
+							<td>Rating</td>	
 						</tr>
 					</thead>
 					<tbody>

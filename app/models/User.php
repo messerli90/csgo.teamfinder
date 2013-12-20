@@ -11,7 +11,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	public static $registrationRules = array(
-		'username'				=>'required|alpha|min:5|unique:users',
+		'username'				=>'required|alpha_num|min:5|unique:users',
 		'email'					=>'required|email|unique:users',
 		'password'				=>'required|between:6,32|confirmed',
 		'password_confirmation'	=>'required',
