@@ -6,6 +6,11 @@
 		<div class="well">
 			<h2>Changelog</h2>
 
+			<h4>2013-12-24</h4>
+			<ul class="list-unstyled">
+				<li>+ Added - Favicon</li>
+				<li>+ Update - Rank Icons are no longer rotated</li>
+			</ul>
 
 			<h4>2013-12-20</h4>
 			<ul class="list-unstyled">

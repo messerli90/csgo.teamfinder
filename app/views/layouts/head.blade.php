@@ -7,6 +7,7 @@
 	
 	<meta name="description" content="Our goal is to make it easier for casual and competitive players and teams to find each other. Whether it's a temporary replacement because a teammate is MIA or a permanent addition to your team, we'll have you covered.">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
     
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
