@@ -26,7 +26,7 @@
 						<img src="{{ $post->user->rank->img }}" class="rank ">	
 					</div>
 					<div class="col-sm-12">
-						<h3>Looking for</h3>
+						<p class="lookingfor"><strong>Looking for</strong></p>
 						<ul class="list-unstyled">
 							@foreach($post->lookingfors as $lookingfor)
 							<li>{{$lookingfor->name}}</li>
@@ -65,11 +65,21 @@
 						</div>
 						<div class="col-md-5 text-center">
 							<p><strong>Playstyle</strong></p>
+							<!--
 							<ul class="list-unstyled">
 								@foreach($post->playstyles as $playstyle)
-									<li>{{ $playstyle->name }}</li>
+									<li><img src="{{ asset($playstyle->img) }}" class="role-icons"> {{ $playstyle->name }}</li>
 								@endforeach
 							</ul>
+							-->
+							@foreach($post->playstyles as $playstyle)
+								<div class="roles">
+								<img src="{{ asset($playstyle->img) }}"  class="role-icons" alt="...">
+									<div class="caption">
+										<small>{{ $playstyle->name }}</small>
+									</div>
+								</div>
+							@endforeach
 
 						</div>
 					</div>
@@ -102,3 +112,4 @@
 </div> <!-- ./row -->
 
 @stop
+

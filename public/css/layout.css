@@ -131,20 +131,15 @@ body {
   font-size: 30px;  
   color: #fff;
 }
-.post h3 {
-  margin: 30px 0 0 0;
-  font-size: 12px;
-  font-weight: bold;
+.post .lookingfor {
+  margin: 24px 0 10px 0;
 }
 .post .rating {
   font-size: 20px;
 }
 
 .post .rank {
-  margin: 10px 0px;
-  transform:rotate(-30deg);
-  -ms-transform:rotate(-30deg); /* IE 9 */
-  -webkit-transform:rotate(-30deg); /* Safari and Chrome */
+  margin: 0px 0px;
 }
 
 .post .playstyle {
@@ -157,4 +152,13 @@ body {
 
 .comment:nth-child(odd) {
   padding: 10px 0;
+}
+
+.post .roles {
+  float: right;
+  margin: 0 5px;
+}
+
+.post img.role-icons {
+  width: 50px;
 }
