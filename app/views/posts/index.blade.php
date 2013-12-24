@@ -41,7 +41,10 @@
 					<div class="row">
 						<div class="col-md-9">
 							<h2><a href="{{ action('PostController@show', [$post->id]) }}">{{ $post->user->username }}</a></h2>
-							<p class="region">{{{ $post->user->region->name }}} - {{{ date("m/d/y g:i A", strtotime($post->created_at)) }}}</p>
+							@if($post->user->region)
+							<p class="region">{{{ $post->user->region->name }}}
+							@endif
+							 - {{{ date("m/d/y g:i A", strtotime($post->created_at)) }}}</p>
 						</div>
 						<div class="col-md-3 text-right rating">
 							<span>{{{ $post->postcomments->count() }}} <span class="glyphicon glyphicon-comment"></span></span>
