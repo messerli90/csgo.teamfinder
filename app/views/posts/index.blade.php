@@ -23,7 +23,9 @@
 				<div class="col-md-2">
 				<div class="row">
 					<div class="col-sm-12">
+						@if($post->user->rank)
 						<img src="{{ $post->user->rank->img }}" class="rank ">	
+						@endif
 					</div>
 					<div class="col-sm-12">
 						<p class="lookingfor"><strong>Looking for</strong></p>
