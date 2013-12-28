@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
-
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="/csgo/teamfinder/public/js/isotype.min.js" type="text/javascript"></script>
 <div class="row">
 	<div class="col-md-3">
 		<div class="well">
@@ -8,17 +9,25 @@
 		</div>
 		<div class="well">
 			<h2>Filters</h2>
-			<p>Coming soon...</p>
+			<ul id="filters">
+			  <li><a href="#" data-filter="*">show all</a></li>
+			  <li><a href="#" data-filter=".awp">AWP</a></li>
+			  <li><a href="#" data-filter=".entryfragger">Entry Fragger</a></li>
+			  <li><a href="#" data-filter=".support">Support</a></li>
+			  <li><a href="#" data-filter=".flankerlurker">Flanker/ Lurker</a></li>
+			  <li><a href="#" data-filter=".callerigl">Caller / IGL</a></li>
+			  <li><a href="#" data-filter=".rifler">Rifler</a></li>
+			</ul>
 		</div>
 	</div>
-
-	<div class="col-md-9">
+	<div class="col-md-9" id="container">
 	@if ($posts->isEmpty())
 		<div class="well"><p>Sorry, no posts at this time</p></div>
 	@else
 
 		@foreach($posts as $post)
-		<div class="col-md-12">
+		<div class="col-md-12 @foreach($post->playstyles as $playstyle){{ strtolower(str_replace("/","",str_replace(" ","",$playstyle->name))) }} @endforeach">
+
 			<div class="well post clearfix">
 				<div class="col-md-2">
 				<div class="row">
@@ -116,5 +125,21 @@
 	@endif
 </div> <!-- ./row -->
 
+	<script type="text/javascript">
+		var $container = $('#container');
+		$(window).load(function(){
+			// cache container
+			// initialize isotope
+			$container.isotope({
+			  // options...
+			});
+			// filter items when filter link is clicked
+			$('#filters a').click(function(){
+			  var selector = $(this).attr('data-filter');
+			  $container.isotope({ filter: selector });
+			  return false;
+			});
+		});
+	</script>
 @stop
 
