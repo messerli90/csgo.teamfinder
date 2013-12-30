@@ -36,6 +36,4 @@ Route::get('/logout', array('as' => 'logout', 'uses' => 'UserController@getLogou
 Route::get('/review/{id}', array('as' => 'review', 'uses' => 'UserController@getReview'));
 Route::post('review/{id}', 'UserController@postReview');
 Route::post('/posts/{id}', 'PostController@postComment');
-
-
-
+Route::get('/steamlogin/{action?}','SteamController@login');

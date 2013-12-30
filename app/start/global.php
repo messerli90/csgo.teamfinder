@@ -81,3 +81,17 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+App::bind('Hybrid_Auth', function() {
+    return new Hybrid_Auth(array(
+            "base_url"   => "http://www.ejanuszewski.com/csgo/teamfinder/public/steamlogin/auth",
+            "providers" => array (
+                "OpenID" => array (
+                        "enabled" => true
+                ),
+                "Steam"  => array (
+                    "enabled" => true
+                )
+            )
+        ));
+});

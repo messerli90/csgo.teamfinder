@@ -13,10 +13,10 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li class=""><a href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-      <li class="active"><a href="{{ action('PostController@index') }}">Browse Players</a></li>
+      <li {{(Request::is('/') ? 'class="active"' : '')}}><a href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span></a></li>
+      <li {{(Request::is('posts') ? 'class="active"' : '')}}><a href="{{ action('PostController@index') }}">Browse Players</a></li>
       <!--<li><a href="#">Find Team</a></li>-->
-      <li><a href="{{ url('/about/') }}">About</a></li>
+      <li {{(Request::is('about') ? 'class="active"' : '')}}><a href="{{ url('/about/') }}">About</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       @if (!Auth::check())
