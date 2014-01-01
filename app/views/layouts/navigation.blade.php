@@ -19,11 +19,12 @@
       <li {{(Request::is('about') ? 'class="active"' : '')}}><a href="{{ url('/about/') }}">About</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      @if (!Auth::check())
+      @if (!Auth::check() )
+        <a href="steamlogin" style="margin-right:5px;"><img src="http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_small.png" /></a>
         <a href="{{ action('UserController@getLogin') }}" class="btn btn-default navbar-btn">Login</a>
         <a href="{{ action('UserController@create') }}" class="btn btn-default navbar-btn">Register</a>
       @else
-        <p class="navbar-text">Signed in as <a href="{{ action('UserController@show', [Auth::user()->id]) }}" class="navbar-link">{{ Auth::user()->username }}</a></p>
+        <p class="navbar-text">Signed in as <a href="{{ action('UserController@show', [Auth::user()->id]) }}" class="navbar-link">@if (Auth::user()->steamdisplay != ''){{Auth::user()->steamdisplay}}  @else {{ Auth::user()->username }}@endif</a></p>
         <a href="{{ action('UserController@getLogout') }}" class="btn btn-default navbar-btn pull-right">Logout</a>
         <a href="{{ action('UserController@edit', [Auth::user()->id]) }}" class="btn btn-default navbar-btn pull-right">Edit Profile</a>
       @endif

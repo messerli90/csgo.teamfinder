@@ -213,7 +213,7 @@ class UserController extends \BaseController {
 		$password = Input::get('password');
 
 		if(Auth::attempt(['email' => $email, 'password' => $password]))
-		{
+		{			
 			return Redirect::action('UserController@show',[Auth::user()->id])->with('user', Auth::user());
 		} else {
 			return Redirect::action('UserController@getLogin')->with('error', 'Email/Password combination invalid')->withInput();
