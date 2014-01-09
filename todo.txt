@@ -1,11 +1,63 @@
 
+=============================================
+=== To-Do List ===
+=============================================
+
+***************
+* Priority (Highest - Lowest)
+***************
+
+Features
+=========
+	- Steam Login (Highest)
+		* Logout doesn't kill session completely
+		* Create new User table for Steam users
+		* Turn off regular registration
+		* Button on old accounts to migrate to new table with Steam (save profile data)
+		* Notification on index, posts & profile page that all users will be deleted in 1 month
+		* IF checks on profile page to accomodate Steam and non-Steam profiles
+		* API usage optimization
+			Save display-name, avatar, etc in DB every time user logs in
+			cURL?
+
+	- Posts Filter (High)
+		* Filter by 
+			region, 
+			lookingfor, 
+			playstyle
+		* 'Any' as default, and selectable
+		* With AJAX / don't require page to reload for filter to take effect
+
+	- Team Posts (Low)
+		* Posts for Teams
 
 
-Filter
+JavaScript/ JQuery Features
+============================
+	- User Deletion notice (High)
+		* "All non-Steam users will be deleted on Feb. X. Be sure to link your Profile to Steam to keep all your data. Get Started."
+		* Small bar from top with notice, dismissable
+		* 
+	- Module Popup for extended Post details (Lowest)
+		* On 'Read more...' pop-up module 
+	- Loading alert when pulling a user's profile (High)
+		* loading bar, circle, etc.
+
+Design
+=======
+	- New background image (Medium)
+	- Browse Players Page (Low)
+		* new 'Add new Post' button/ position
+		* center Playstyle icons (When only 1 or 2 are selected they float left)
+
+	- About page
+		* Donate button (Lowest)
 
 
+
+Legal
+======
 Terms & Conditions
 Privacy Policy
-About Page
-Google Analytics
+
 

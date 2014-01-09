@@ -74,9 +74,23 @@ class UserController extends \BaseController {
 		// Pick out the user
 		$user = User::find($id);
 		$ratings = Rating::where('user_id', $id)->get();
+		$api = '165D8028998190216552CABB266E9A50';
+		$steamid = $user->steamid;
+
+		// Get Steam Data
+		$steam_user_json = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=$api&steamids=$steamid");
+		$steam_game_json = file_get_contents("http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=$api&steamid=$steamid");
+
+		// Decode JSON string from Steam to Array
+		$steam_user_data = json_decode($steam_user_json, true);
+		$steam_game_data = json_decode($steam_game_json, true);
+
+		// The start of the array (Append 'personaname, avatar, etc like: $steam_user['personaname'] )
+		$steam_user = $steam_user_data['response']['players'][0];
+		$steam_game = $steam_game_data['playerstats']['stats'][0];
 
 		// Return Profile Page of user
-		return View::make('users/profile', compact('user', 'ratings'));
+		return View::make('users/profile', compact('user', 'ratings', 'steam_user', 'steam_game'));
 	}
 
 	/**

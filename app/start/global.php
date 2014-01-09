@@ -84,7 +84,7 @@ require app_path().'/filters.php';
 
 App::bind('Hybrid_Auth', function() {
     return new Hybrid_Auth(array(
-            "base_url"   => "http://www.ejanuszewski.com/csgo/teamfinder/public/steamlogin/auth",
+            "base_url"   => "http://localhost/steamlogin/auth",
             "providers" => array (
                 "OpenID" => array (
                         "enabled" => true

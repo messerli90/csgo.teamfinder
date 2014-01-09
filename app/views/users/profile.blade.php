@@ -3,35 +3,26 @@
 <div class="row">
 
 	<div class="jumbotron col-md-8 col-md-offset-2">
-		<h1>{{ $user->username }}</h1>
-			@if($user->bio)
-				<p>{{{ $user->bio }}}</p>
-			@endif
+	<div class="row">
+		<div class="col-md-4">
+			<img src="{{ $steam_user['avatarfull'] }}">
+		</div>
+		<div class="col-md-8">
+			<h1>
+				@if (isset($steam_user))
+					{{ $steam_user['personaname'] }}
+				@else
+					{{{ $user->username }}}
+				@endif				
+			</h1>
+				@if($user->bio)
+					<p>{{{ $user->bio }}}</p>
+				@endif			
+		</div>
 	</div>
-	<?php
-$statsBuilder = "";
-$steamId = "76561197974137714";
-$json = file_get_contents("http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=165D8028998190216552CABB266E9A50&steamid=$steamId");
+	</div>
 
-$jsonIterator = new RecursiveIteratorIterator(
-    new RecursiveArrayIterator(json_decode($json, TRUE)),
-    RecursiveIteratorIterator::SELF_FIRST);
-$i = 1;
-
-
-
-foreach ($jsonIterator as $key => $val) {
-	if($i==2) $i=1; else $i=$i+1;
-    $statsBuilder .= (($i==1) ?"<tr>\n" : "");
-    if(!is_array($val)) {
-        $statsBuilder .= "<td>".str_replace("_", " ", ucfirst($val))."</td>\n";
-    }
-    $statsBuilder .= (($i==2 && $key!='') ?"</tr>\n" : "");
-}
-
-?>
-
-	<div class="well col-md-6 col-md-offset-3">
+	<div class="well col-md-8 col-md-offset-2">
 
 		<div class="col-md-6">
 			<h3>Services:</h3>
@@ -109,6 +100,15 @@ foreach ($jsonIterator as $key => $val) {
 					</td>
 				</tr>
 				@endif
+
+				<tr>
+					<td>Kills</td>
+					<td>
+						{{{ $steam_game['total_kills'] }}}
+					</td>
+				</tr>
+
+
 			</table>
 		</div>
 	</div>
@@ -123,16 +123,6 @@ foreach ($jsonIterator as $key => $val) {
 	@endif
 
 
-	<div class="well col-md-8 col-md-offset-2">
-		<div class="col-md-12" id="ratings">
-			<h3>Stats <a href="{{ action('UserController@getReview', [$user->id]) }}" class="btn btn-default pull-right">Leave a Review</a></h3>
-				<table class="table">
-					<tbody>
-						<?php echo $statsBuilder ?>
-					</tbody>
-				</table>
-		</div>
-	</div>
 	<div class="well col-md-8 col-md-offset-2">
 		<div class="col-md-12" id="ratings">
 			<h3>Reviews <a href="{{ action('UserController@getReview', [$user->id]) }}" class="btn btn-default pull-right">Leave a Review</a></h3>

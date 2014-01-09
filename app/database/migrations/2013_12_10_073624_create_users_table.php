@@ -57,13 +57,6 @@ class CreateUsersTable extends Migration {
 			$table->text('bio')
 				->nullable();
 
-			$table->text('steamid')
-				->nullable();
-
-			$table->text('steamdisplay')
-				->nullable();
-
-
 			$table->timestamps();
 		});
 	}

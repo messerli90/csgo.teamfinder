@@ -28,6 +28,10 @@ Route::get('/about/changelog', function(){
 	return View::make('about/changelog');
 });
 
+Route::get('/users/test', function(){
+	return View::make('users/test');
+});
+
 Route::resource('users', 'UserController');
 Route::resource('posts', 'PostController');
 Route::get('/login', array('as' => 'login', 'uses' => 'UserController@getLogin'));

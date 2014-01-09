@@ -33,7 +33,7 @@ class SteamController extends \BaseController {
 		if($steamCommunityId != 0 && $user != null) {
 			//If they are still authenticated just send them straight back to the edit Page
 			Auth::loginUsingId($user->id);
-			return Redirect::action('UserController@edit', [$user->id])->with('message', 'You are still authenticated with steam, sending you to the edit page');
+			return Redirect::action('UserController@show', [$user->id])->with('message', 'You are still authenticated with steam, sending you to the edit page');
 		} else {
 			//Create a new user with their steam id
 			$user = new User;
