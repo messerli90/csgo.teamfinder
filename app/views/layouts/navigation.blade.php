@@ -44,3 +44,7 @@
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
+<div class="alert alert-warning alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong>Warning!</strong> We are implementing Steam Login at this end of this month. To do this cleanly and efficiently, <strong>all existing data will be wiped</strong>. We feel this is necessary and apologize for any inconvenience.
+</div>

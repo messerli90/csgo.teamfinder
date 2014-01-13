@@ -70,11 +70,11 @@ class Steamuser extends Eloquent {
 
 	public function posts()
 	{
-		return $this->hasMany('Post');
+		return $this->hasMany('Post', 'id');
 	}
 
 	public function ratings()
 	{
-		return $this->hasMany('Rating');
+		return $this->hasMany('Rating', 'id');
 	}
 }
