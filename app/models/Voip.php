@@ -15,4 +15,9 @@ extends Eloquent
 		return $this->belongsToMany('User');
 	}
 
+	public function steamusers()
+	{
+		return $this->belongsToMany('Steamuser');
+	}
+
 }

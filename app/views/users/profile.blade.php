@@ -4,13 +4,10 @@
 
 	<div class="jumbotron col-md-8 col-md-offset-2">
 	<div class="row">
-		<div class="col-md-4">
-			<img src="{{ $steam_user['avatarfull'] }}">
-		</div>
-		<div class="col-md-8">
+		<div class="col-md-12">
 			<h1>
 				@if (isset($steam_user))
-					{{ $steam_user['personaname'] }}
+					{{ $steam_user }}
 				@else
 					{{{ $user->username }}}
 				@endif				
@@ -100,15 +97,6 @@
 					</td>
 				</tr>
 				@endif
-
-				<tr>
-					<td>Kills</td>
-					<td>
-						{{{ $steam_game['total_kills'] }}}
-					</td>
-				</tr>
-
-
 			</table>
 		</div>
 	</div>

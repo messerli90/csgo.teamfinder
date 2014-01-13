@@ -31,6 +31,11 @@ extends Eloquent
 		return $this->belongsTo('User');
 	}
 
+	public function steamuser()
+	{
+		return $this->belongsTo('Steamuser');
+	}
+
 	public function playstyles()
 	{
 		return $this->belongsToMany('Playstyle');

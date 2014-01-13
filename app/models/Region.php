@@ -14,6 +14,11 @@ extends Eloquent
 	{
 		return $this->hasMany('User');
 	}
+	
+	public function steamusers()
+	{
+		return $this->hasMany('Steamuser');
+	}
 
 	public function continent()
 	{

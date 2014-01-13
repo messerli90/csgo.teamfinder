@@ -15,4 +15,9 @@ extends Eloquent
 		return $this->hasMany('User');
 	}
 
+	public function steamuser()
+	{
+		return $this->hasMany('SteamUser');
+	}
+
 }

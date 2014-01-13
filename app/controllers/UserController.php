@@ -71,26 +71,31 @@ class UserController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		// Pick out the user
-		$user = User::find($id);
-		$ratings = Rating::where('user_id', $id)->get();
-		$api = '165D8028998190216552CABB266E9A50';
-		$steamid = $user->steamid;
 
-		// Get Steam Data
-		$steam_user_json = file_get_contents("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=$api&steamids=$steamid");
-		$steam_game_json = file_get_contents("http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=$api&steamid=$steamid");
+		// Check if regular user or steam user
+		if (User::find($id)) {
+			// Pick out the user
+			$user = User::find($id);
 
-		// Decode JSON string from Steam to Array
-		$steam_user_data = json_decode($steam_user_json, true);
-		$steam_game_data = json_decode($steam_game_json, true);
+			$ratings = Rating::where('user_id', $id)->get();
 
-		// The start of the array (Append 'personaname, avatar, etc like: $steam_user['personaname'] )
-		$steam_user = $steam_user_data['response']['players'][0];
-		$steam_game = $steam_game_data['playerstats']['stats'][0];
+			return View::make('users/profile', compact('user', 'ratings'));
 
-		// Return Profile Page of user
-		return View::make('users/profile', compact('user', 'ratings', 'steam_user', 'steam_game'));
+		} elseif (Steamuser::find($id)) {
+			// Pick out the user
+			$user = Steamuser::find($id);
+
+			$ratings = Rating::where('user_id', $id)->get();
+
+			// Create SteamId Object
+			$steamIdObject = new SteamId( "$id" );
+
+			$steam_user = $steamIdObject->getNickname();
+			$steam_avatar = $steamIdObject->getIconAvatarUrl();
+
+			// Return Profile Page of user
+			return View::make('users/profile', compact('user', 'ratings', 'steam_user', 'steam_avatar'));
+		}
 	}
 
 	/**
@@ -101,36 +106,69 @@ class UserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		// Pick out the user
-		$user = User::find($id);
+		// Check if user is logged in and if steamuser or regular user
+		if (Auth::user()) {
+			// Regular User
+			
+			// Pick out the user
+			$user = User::find($id);
 
-		// Check if user is logged in
-		if (Auth::user())
-		{
-			// Get Authenticated user
+			// Get Authenticated User
 			$authUserID = Auth::user()->id;
-
-			//
-			$region_options = Region::lists('name', 'id');
-			$rank_options = Rank::lists('name', 'id');
-			$skill_options = Skill::lists('name', 'id');
-			$voips = Voip::all();
 
 			// Find user's current set birthday and break it into array
 			if($user->birthday)
 				$birthday = explode('-',$user->birthday);
 
+			// Generate lists
+			$region_options = Region::lists('name', 'id');
+			$rank_options = Rank::lists('name', 'id');
+			$skill_options = Skill::lists('name', 'id');
+			$voips = Voip::all();
 
-			// If the logged in used is the same as the user they are trying to edit, allow
+			// If the logged in user is the same as the user they are trying to edit, allow
 			if ($authUserID == $id) {
 				// Return Edit Page for user
 				return View::make('users/edit', compact('user', 'region_options', 'rank_options', 'skill_options', 'voips', 'birthday'));
 			} else {
-			// Else, return to root
-			return Redirect::to('/');
+				// Else, return to root
+				return Redirect::to('/');
+			}
+
+		} elseif (Session::has('steam_session')) {
+			// Steam User
+
+			// Get Auth key
+			$authkey = Session::get('steam_session');
+
+			// Pick out the user
+			$user = Steamuser::find($authkey);
+
+			// Get Authenticated User
+			$authUserID = $authkey;
+
+			// Find user's current set birthday and break it into array
+			if(isset($user->birthday))
+				$birthday = explode('-',$user->birthday);
+
+			// Generate lists
+			$region_options = Region::lists('name', 'id');
+			$rank_options = Rank::lists('name', 'id');
+			$skill_options = Skill::lists('name', 'id');
+			$voips = Voip::all();
+
+			// If the logged in user is the same as the user they are trying to edit, allow
+			if ($authUserID == $id) {
+				// Return Edit Page for user
+				return View::make('users/edit', compact('user', 'region_options', 'rank_options', 'skill_options', 'voips', 'birthday'));
+			} else {
+				// Else, return to root
+				//return Redirect::to('/');
+				echo "$authUserID";
+				echo "$id";
 			}
 		} else {
-			// Else, return to root
+			// Not logged in
 			return Redirect::to('/');
 		}
 	}
@@ -143,7 +181,13 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$user = User::find(Auth::user()->id);
+		// Check if regular user or steam user
+		if (Auth::user()) {
+			$user = User::find(Auth::user()->id);
+		} elseif (Session::has('steam_session')) {
+			$user = Steamuser::find($id);
+		}
+		
 		$input = Input::get();
 
 		// Pass all input from users/edit to validator with rules from User Model
@@ -188,7 +232,7 @@ class UserController extends \BaseController {
 			$user->voips()->sync($voips);
 		}
 		$user->save();
-		return Redirect::action('UserController@show', [Auth::user()->id])->with('user', $user);
+		return Redirect::action('UserController@show', [$id])->with('user', $user);
 
 	}
 

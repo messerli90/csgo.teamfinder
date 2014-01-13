@@ -18,9 +18,6 @@ Event::listen('illuminate.query', function($sql)
 */
 
 Route::get('/', 'HomeController@showWelcome');
-Route::get('/comingsoon', function(){
-	return View::make('comingsoon');
-});
 Route::get('/about', function(){
 	return View::make('about/index');
 });
@@ -28,9 +25,9 @@ Route::get('/about/changelog', function(){
 	return View::make('about/changelog');
 });
 
-Route::get('/users/test', function(){
-	return View::make('users/test');
-});
+
+Route::get('/steamlogin/{action?}','SteamController@login');
+Route::get('/steamlogout', 'SteamController@logout');
 
 Route::resource('users', 'UserController');
 Route::resource('posts', 'PostController');
@@ -40,4 +37,3 @@ Route::get('/logout', array('as' => 'logout', 'uses' => 'UserController@getLogou
 Route::get('/review/{id}', array('as' => 'review', 'uses' => 'UserController@getReview'));
 Route::post('review/{id}', 'UserController@postReview');
 Route::post('/posts/{id}', 'PostController@postComment');
-Route::get('/steamlogin/{action?}','SteamController@login');
