@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSteamuserVoipTable extends Migration {
+class CreatePostcommentsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,14 @@ class CreateSteamuserVoipTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('steamuser_voip', function(Blueprint $table)
+		Schema::create('postcomments', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('steamuser_id')
-				->unsigned();
-			$table->integer('voip_id')
-				->unsigned();
+
+			$table->bigInteger('post_id');
+			$table->bigInteger('author_id');
+			$table->text('comment');
+
 			$table->timestamps();
 		});
 	}
@@ -30,7 +31,7 @@ class CreateSteamuserVoipTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('steamuser_voip');
+		Schema::drop('postcomments');
 	}
 
 }

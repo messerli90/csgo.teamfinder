@@ -15,7 +15,7 @@ class CreateUserVoipTable extends Migration {
 		Schema::create('user_voip', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')
+			$table->bigInteger('user_id')
 				->unsigned();
 			$table->integer('voip_id')
 				->unsigned();

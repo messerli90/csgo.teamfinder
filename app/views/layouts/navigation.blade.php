@@ -19,32 +19,25 @@
       <li {{(Request::is('about') ? 'class="active"' : '')}}><a href="{{ url('/about/') }}">About</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      @if (!Auth::check() && !Session::has('steam_session') )
-        <a href="/steamlogin" style="margin-right:5px;"><img src="http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_small.png" /></a>
-        <a href="{{ action('UserController@getLogin') }}" class="btn btn-default navbar-btn">Login</a>
+      @if (!Auth::check())
+        <li><a href="{{ action('UserController@login') }}"><img src="http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_small.png" /></a></li>
       @else
-        @if (Auth::check())
-
-          <p class="navbar-text">Signed in as <a href="{{ action('UserController@show', [Auth::user()->id]) }}" class="navbar-link">@if (Auth::user()->steamdisplay != ''){{Auth::user()->steamdisplay}}  @else {{ Auth::user()->username }}@endif</a></p>
-          <a href="{{ action('UserController@getLogout') }}" class="btn btn-default navbar-btn pull-right">Logout</a>
-          <a href="{{ action('UserController@edit', [Auth::user()->id]) }}" class="btn btn-default navbar-btn pull-right">Edit Profile</a>
-        @elseif (Session::has('steam_session'))
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Steamuser::find(Session::get('steam_session'))->username }} <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="{{ action('UserController@show', [Session::get('steam_session')]) }}">Profile</a></li>
-              <li><a href="{{ action('UserController@edit', [Session::get('steam_session')]) }}">Edit Profile</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li><a href="{{ action('SteamController@logout') }}">Logout</a></li>
-            </ul>
-          </li>
-        @endif
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->username }} <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="{{ action('UserController@show', [Auth::user()->id]) }}">Profile</a>
+            </li>
+            <li>
+              <a href="{{ action('UserController@edit', [Auth::user()->id]) }}">Edit Profile</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="{{ action('UserController@logout') }}">Logout</a>
+            </li>
+          </ul>
+        </li>
       @endif
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
-<div class="alert alert-warning alert-dismissable">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-  <strong>Warning!</strong> We are implementing Steam Login at this end of this month. To do this cleanly and efficiently, <strong>all existing data will be wiped</strong>. We feel this is necessary and apologize for any inconvenience.
-</div>

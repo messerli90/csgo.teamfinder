@@ -18,8 +18,8 @@ class CreateRatingsTable extends Migration {
 
 			$table->integer('score');
 			$table->text('review');
-			$table->integer('user_id');
-			$table->integer('author_id');
+			$table->bigInteger('user_id');
+			$table->bigInteger('author_id');
 
 			$table->timestamps();
 		});

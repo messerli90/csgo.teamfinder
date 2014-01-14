@@ -26,14 +26,10 @@ Route::get('/about/changelog', function(){
 });
 
 
-Route::get('/steamlogin/{action?}','SteamController@login');
-Route::get('/steamlogout', 'SteamController@logout');
-
 Route::resource('users', 'UserController');
 Route::resource('posts', 'PostController');
-Route::get('/login', array('as' => 'login', 'uses' => 'UserController@getLogin'));
-Route::post('/login', 'UserController@postLogin');
-Route::get('/logout', array('as' => 'logout', 'uses' => 'UserController@getLogout'));
+Route::get('/steamlogin/{action?}', array('as' => 'login', 'uses' => 'UserController@login'));
+Route::get('/steamlogout', array('as' => 'logout', 'uses' => 'UserController@logout'));
 Route::get('/review/{id}', array('as' => 'review', 'uses' => 'UserController@getReview'));
 Route::post('review/{id}', 'UserController@postReview');
 Route::post('/posts/{id}', 'PostController@postComment');

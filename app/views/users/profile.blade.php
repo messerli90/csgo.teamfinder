@@ -1,10 +1,20 @@
 @extends('layouts.master')
 @section('content')
 <div class="row">
-
+	@if (Session::has('message'))
+		<div class="col-md-10 col-md-offset-1">
+			<div class="alert alert-success alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				{{ Session::get('message') }}
+			</div>
+		</div>
+	@endif
 	<div class="jumbotron col-md-8 col-md-offset-2">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-3">
+			<img src="{{ $steam_avatar }}" class="img-circle">
+		</div>
+		<div class="col-md-9">
 			<h1>
 				@if (isset($steam_user))
 					{{ $steam_user }}
@@ -23,13 +33,14 @@
 
 		<div class="col-md-6">
 			<h3>Services:</h3>
-			@if($user->steam || $user->esea || $user->leetway || $user->altpug)
+				<p>
+					<a href="{{ "http://csgo-stats.com/" . $user->id }}" target="_blank"><img src="{{ asset('/img/ext_services/csgo-stats_logo.png') }}" class="serviceLink"></a>
+				</p>
+				<p>
+					<a href="{{ "http://steamcommunity.com/profiles/" . $user->id }}" target="_blank"><img src="{{ asset('/img/ext_services/steam_logo_150.png') }}" class="serviceLink img-thumbnail"></a>
+				</p>
+			@if($user->esea || $user->leetway || $user->altpug)
 			<table class="table table-condensed">
-				@if($user->steam)
-					<p>
-						<a href="{{ $user->steam }}"><img src="{{ asset('/img/ext_services/steam_logo_150.png') }}" class="serviceLink img-thumbnail"></a>
-					</p>
-				@endif
 				@if($user->esea)
 					<p>
 						<a href="{{ $user->esea }}"><img src="{{ asset('/img/ext_services/esea_logo_150.png') }}" class="serviceLink img-thumbnail"></a>
@@ -46,8 +57,6 @@
 					</p>
 				@endif
 			</table>
-			@else
-				<p>This user doesn't use any third-party services.</p>
 			@endif
 		</div>
 		<div class="col-md-6">

@@ -17,7 +17,7 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Post::with('user','steamuser','lookingfors','playstyles', 'postcomments')->orderBy('id', 'DESC')->paginate(10);
+		$posts = Post::with('user','lookingfors','playstyles', 'postcomments')->orderBy('id', 'DESC')->paginate(10);
 		return View::make('posts/index', compact('posts'));
 	}
 
@@ -39,14 +39,6 @@ class PostController extends \BaseController {
 			// Bring to posts/create View with user details
 			return View::make('posts/create', compact('user', 'lookingfors', 'playstyles'));
 
-		} elseif (Session::has('steam_session')) {
-			// Get user, Lookingfors, playstyles
-			$user = Steamuser::find(Session::get('steam_session'));
-			$lookingfors = Lookingfor::all();
-			$playstyles = Playstyle::all();
-
-			// Bring to posts/create View with user details
-			return View::make('posts/create', compact('user', 'lookingfors', 'playstyles'));
 		} else {
 			// If not authenticated bring to register view
 			return Redirect::action('HomeController@showWelcome');
@@ -71,10 +63,8 @@ class PostController extends \BaseController {
 			return Redirect::route('posts.create')->withErrors($validator);
 		} else {
 			// Get user
-			if (Auth::user()) {
+			if (Auth::check()) {
 				$user = Auth::user();
-			} elseif (Session::has('steam_session')) {
-				$user = Steamuser::find(Session::get('steam_session'));
 			}
 
 			// Make new Post
