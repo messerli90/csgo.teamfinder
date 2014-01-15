@@ -100,10 +100,14 @@ class PostController extends \BaseController {
 		// Get users
 		$user = $post->user;
 		
+		// Get username and avatar
+		$steam_user = $user->username;
+		$steam_avatar = $user->avatar;
+
 		// Get users ratings
 		$ratings = Rating::where('user_id', $id)->get();
 
-		return View::make('posts/show', compact('post','user', 'ratings'));
+		return View::make('posts/show', compact('post','user', 'steam_avatar', 'steam_user', 'ratings'));
 	}
 
 	/**

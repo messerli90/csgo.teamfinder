@@ -39,9 +39,7 @@ img.rank-sm {
   bottom: 30px; 
 }
 
-p.post {
-  margin-left: 10px;
-}
+
 
 .jumbotron h1 {
   text-align: center;
@@ -118,9 +116,13 @@ body {
           box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
 }
 
+.filter h2 {
+  margin: 5px;
+  margin-top: 0;
+}
 
 .post {
-  padding: 19px 5px;
+  color: #ccc;
 }
 
 .btn-post{
@@ -134,7 +136,6 @@ body {
   color: #fff;
 }
 .post .lookingfor {
-  margin: 24px 0 10px 0;
 }
 .post .rating {
   font-size: 20px;
@@ -142,6 +143,12 @@ body {
 
 .post .rank {
   margin: 0px 0px;
+  margin-top: 10px; 
+  vertical-align: bottom;
+}
+
+.post img.rank {
+  width: 100px;
 }
 
 .post .playstyle {
@@ -153,7 +160,6 @@ body {
 }
 
 .comment:nth-child(odd) {
-  padding: 10px 0;
 }
 
 .post .roles {
@@ -162,31 +168,38 @@ body {
 }
 
 .post img.role-icons {
-  width: 50px;
+  width: 40px;
 }
 
-.isotope,
-.isotope .isotope-item {
-  /* change duration value to whatever you like */
-  -webkit-transition-duration: 0.8s;
-     -moz-transition-duration: 0.8s;
-      -ms-transition-duration: 0.8s;
-       -o-transition-duration: 0.8s;
-          transition-duration: 0.8s;
+.post img.avatar {
+  width: 85px;
+}
+.modal-header img.avatar {
+  width: 65px;
 }
 
-.isotope {
-  -webkit-transition-property: height, width;
-     -moz-transition-property: height, width;
-      -ms-transition-property: height, width;
-       -o-transition-property: height, width;
-          transition-property: height, width;
+.comments {
+  background-color: #222;
 }
 
-.isotope .isotope-item {
-  -webkit-transition-property: -webkit-transform, opacity;
-     -moz-transition-property:    -moz-transform, opacity;
-      -ms-transition-property:     -ms-transform, opacity;
-       -o-transition-property:      -o-transform, opacity;
-          transition-property:         transform, opacity;
+.modal-content {
+  background-color: #1a1a1a;
+}
+.modal-body {
+  background-color: #1a1a1a;
+}
+.modal-header, .modal-footer {
+  background-color: #111;
+}
+.modal-header {
+  padding-bottom: 2px;
+}
+.modal-header h4 {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+.modal-header p {
+  margin: 0;
+  padding: 0;
 }

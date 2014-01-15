@@ -54,6 +54,10 @@ class CreateUsersTable extends Migration {
 				->nullable()
 				->unsigned();
 
+			$table->integer('status_id')
+				->nullable()
+				->unsigned();
+
 			$table->text('bio')
 				->nullable();
 

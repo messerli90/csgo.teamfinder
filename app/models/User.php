@@ -101,6 +101,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->belongsTo('Rank');
 	}
+	
+	public function status()
+	{
+		return $this->belongsTo('Status');
+	}
 
 	public function voips()
 	{

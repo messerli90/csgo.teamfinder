@@ -7,7 +7,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="{{ url('/') }}">CS:GO Team Finder <sup class="alpha">Alpha</sup></a>
+    <a class="navbar-brand" href="{{ url('/') }}">CS:GO Team Finder <sup class="alpha">Beta</sup></a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->

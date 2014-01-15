@@ -28,6 +28,12 @@
 		</div>
 	</div>
 	</div>
+	<div class="panel panel-default col-md-8 col-md-offset-2">
+		<div class="panel-body">
+			<a href="{{ action('UserController@edit', [$user->id]) }}" class="btn btn-default">Edit Profile</a>
+			<a href="{{ action('UserController@edit', [$user->id]) }}" class="btn btn-default">Edit Profile</a>
+		</div>
+	</div>
 
 	<div class="well col-md-8 col-md-offset-2">
 
