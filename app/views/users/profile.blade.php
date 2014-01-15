@@ -28,6 +28,12 @@
 		</div>
 	</div>
 	</div>
+	<div class="panel panel-default col-md-8 col-md-offset-2">
+		<div class="panel-body">
+			<a href="{{ action('UserController@edit', [$user->id]) }}" class="btn btn-default">Edit Profile</a>
+			<a href="{{ action('UserController@edit', [$user->id]) }}" class="btn btn-default">Edit Profile</a>
+		</div>
+	</div>
 
 	<div class="well col-md-8 col-md-offset-2">
 
@@ -39,6 +45,10 @@
 				<p>
 					<a href="{{ "http://steamcommunity.com/profiles/" . $user->id }}" target="_blank"><img src="{{ asset('/img/ext_services/steam_logo_150.png') }}" class="serviceLink img-thumbnail"></a>
 				</p>
+<<<<<<< HEAD
+=======
+			@if($user->esea || $user->leetway || $user->altpug)
+>>>>>>> cleanup
 			<table class="table table-condensed">
 				@if($user->esea)
 					<p>
@@ -56,6 +66,10 @@
 					</p>
 				@endif
 			</table>
+<<<<<<< HEAD
+=======
+			@endif
+>>>>>>> cleanup
 		</div>
 		<div class="col-md-6">
 			<h3>Info:</h3>

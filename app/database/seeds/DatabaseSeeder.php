@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder {
 		//$this->call('LookingforPostSeeder');
 		//$this->call('PostSeeder');
 		//$this->call('UsersSeeder');
+		$this->call('StatusSeeder');
 	}
 
 }

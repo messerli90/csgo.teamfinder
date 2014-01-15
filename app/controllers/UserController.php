@@ -67,7 +67,11 @@ class UserController extends \BaseController {
 			Auth::login($user);
 
 			// If the user exists in the DB sign in and return to profile
+<<<<<<< HEAD
 			return Redirect::action('UserController@show', [$steamCommunityId])->with('message', 'You have successfully logged in');
+=======
+			return Redirect::action('UserController@show', [$steamCommunityId])->with('message', "You have successfully logged in. Be sure to complete your Profile");
+>>>>>>> cleanup
 
 		} else {
 			// Create a new user
@@ -249,6 +253,19 @@ class UserController extends \BaseController {
 		// Delete user from Database
 		$user->delete();
 	}
+<<<<<<< HEAD
+=======
+
+	public function postStatus($id)
+	{
+		// Get User and Inputs		
+		$user = User::find($id);
+		$input = Input::get();
+
+		
+	}
+>>>>>>> cleanup
+
 
 	/**
 	 * Get Review Page

@@ -50,7 +50,11 @@ extends DatabaseSeeder
 			[
 				'id'	=>	'8',
 				'name'	=>	'Gold Nova II',
+<<<<<<< HEAD
 				'img'	=>	'/img/ranks/elo8png'
+=======
+				'img'	=>	'img/ranks/elo8.png'
+>>>>>>> cleanup
 			],
 			[
 				'id'	=>	'9',

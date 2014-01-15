@@ -25,7 +25,11 @@ extends DatabaseSeeder
 			],
 			[
 				'id'	=>	'4',
+<<<<<<< HEAD
 				'name'	=>	'Flanker/ Lurker',
+=======
+				'name'	=>	'Flanker / Lurker',
+>>>>>>> cleanup
 				'img'	=>	'/img/roles/flanker-icon.png'
 			],
 			[

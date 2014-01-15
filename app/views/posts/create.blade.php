@@ -26,34 +26,39 @@
 				{{ Form::textarea('contact', null, ['class' => 'form-control', 'placeholder' => "You should get a hold of me through steam... Call me on skype at xxx... I'm usually home from 5-9PM...."]) }}
 			</div>
 		</div>
-		
-		<div class="form-group">
-			{{ Form::label('lookingfor[]', 'What are you looking for?', ['class' => 'col-sm-2 control-label']) }}
-			<div class="col-sm-6">
-				@foreach($lookingfors as $lookingfor)
-				<div class="checkbox">
-					<label>
-						{{ Form::checkbox('lookingfors[]', $lookingfor->id) }}
-						<span class="col-sm-12">{{ $lookingfor->name }}</span>
-					</label>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-2">
+				<div class="form-group">
+					{{ Form::label('lookingfor[]', 'What are you looking for?', ['class' => 'col-sm-4 control-label']) }}
+					<div class="col-sm-6">
+						@foreach($lookingfors as $lookingfor)
+						<div class="checkbox">
+							<label>
+								{{ Form::checkbox('lookingfors[]', $lookingfor->id) }}
+								<span class="col-sm-12">{{ $lookingfor->name }}</span>
+							</label>
+						</div>
+						@endforeach
+					</div>
 				</div>
-				@endforeach
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					{{ Form::label('playstyles[]', 'Playstyle', ['class' => 'col-sm-3 control-label']) }}
+					<div class="col-sm-6">
+						@foreach($playstyles as $playstyle)
+						<div class="checkbox">
+							<label>
+								{{ Form::checkbox('playstyles[]', $playstyle->id) }}
+								<span class="col-sm-12">{{ $playstyle->name }}</span>
+							</label>
+						</div>
+						@endforeach
+					</div>
+				</div>
 			</div>
 		</div>
 		
-		<div class="form-group">
-			{{ Form::label('playstyles[]', 'Playstyle', ['class' => 'col-sm-2 control-label']) }}
-			<div class="col-sm-6">
-				@foreach($playstyles as $playstyle)
-				<div class="checkbox">
-					<label>
-						{{ Form::checkbox('playstyles[]', $playstyle->id) }}
-						<span class="col-sm-12">{{ $playstyle->name }}</span>
-					</label>
-				</div>
-				@endforeach
-			</div>
-		</div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
