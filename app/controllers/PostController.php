@@ -38,9 +38,10 @@ class PostController extends \BaseController {
 
 			// Bring to posts/create View with user details
 			return View::make('posts/create', compact('user', 'lookingfors', 'playstyles'));
+
 		} else {
 			// If not authenticated bring to register view
-			return Redirect::action('UserController@create');
+			return Redirect::action('HomeController@showWelcome');
 		}
 		
 	}
@@ -62,7 +63,9 @@ class PostController extends \BaseController {
 			return Redirect::route('posts.create')->withErrors($validator);
 		} else {
 			// Get user
-			$user = Auth::user();
+			if (Auth::check()) {
+				$user = Auth::user();
+			}
 
 			// Make new Post
 			$post = new Post;

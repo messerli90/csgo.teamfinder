@@ -6,10 +6,12 @@ class UserController extends \BaseController {
 	 * Set constructor to pass CSRF Token through all post submissions
 	 *
 	 */
-	public function __construct() {
+	public function __construct(Hybrid_Auth $hybridAuth)
+    {
+        $this->hybridAuth = $hybridAuth;
 		$this->beforeFilter('csrf', array('on'=>'post'));
 		$this->beforeFilter('guest', array('only'=>'getLogin'));
-	}
+    }
 
 	/**
 	 * Display a listing of the resource.
@@ -18,9 +20,89 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		$users = User::paginate(25);
+		$users = User::paginate(100);
 		return View::make('users/index')->with('users', $users);
 	}
+
+	/**
+	 * HybridAuth Steam Login
+	 *
+	 *
+	 */
+	public function login($action='')
+	{
+		if ( $action == "auth" ) {
+			try {
+			 Hybrid_Endpoint::process();
+			}
+			catch ( Exception $e ) {
+			 echo "Error at Hybrid_Endpoint process (UserController@login): $e";
+			}
+			return;
+		}
+
+		// Authenticate with Steam (using the details from our IoC Container).
+		$hybridAuthProvider = $this->hybridAuth->authenticate( "Steam" );
+
+		// Get user profile information
+		$hybridAuthUserProfile = $hybridAuthProvider->getUserProfile();
+
+		// Get Community ID
+		$steamCommunityId = str_replace( "http://steamcommunity.com/openid/id/", "", $hybridAuthUserProfile->identifier );
+
+		//See if user exists
+		$user = User::find($steamCommunityId);
+
+		// Create SteamId Object
+		$steamIdObject = new SteamId( "$steamCommunityId" );
+
+		// Check DB 
+		if($user != null) {
+			// Update Info
+			$user = User::find($steamCommunityId);
+			$user->username 	= $steamIdObject->getNickname();
+			$user->avatar 		= $steamIdObject->getFullAvatarUrl();
+			$user->save();
+
+			Auth::login($user);
+
+			// If the user exists in the DB sign in and return to profile
+			return Redirect::action('UserController@show', [$steamCommunityId])->with('message', 'You have successfully logged in');
+
+		} else {
+			// Create a new user
+			$user = new User;
+			$user->id 			= $steamCommunityId;
+			$user->username 	= $steamIdObject->getNickname();
+			$user->avatar 		= $steamIdObject->getFullAvatarUrl();
+			$user->save();
+
+			Auth::login($user);
+
+			// Log user in manually and redirect to Edit page
+			// Loop back to login 
+			return Redirect::action('UserController@login')->with('message', 'Thank you for registering. <strong>Be sure to complete your profile</strong>.');
+
+		}
+	}
+
+	/**
+	 * HybridAuth Steam Logout
+	 *
+	 *
+	 */
+	public function logout()
+	{
+		// Logout
+		$this->hybridAuth->logoutAllProviders();
+		Auth::logout();
+
+		// Flush Session
+		Session::flush();
+
+		return Redirect::action('HomeController@showWelcome');
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -29,7 +111,7 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('users/create');
+		//
 	}
 
 	/**
@@ -39,28 +121,7 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		// Pass all input from users/create to validator with registrationRules from User Model
-		$validator = Validator::make(Input::all(), User::$registrationRules);
-
-		// Check if validator passes
-		if($validator->fails()) 
-		{
-			// Redirect back to users/create with errors
-			return Redirect::route('users.create')->withErrors($validator)->withInput();
-		} else {
-			// Validation has passed, save user in DB
-			$user = new User;
-			$user->username = Input::get('username');
-			$user->email = Input::get('email');
-			$user->password = Hash::make(Input::get('password'));
-			$user->save();
-
-			// Manually log in user
-			Auth::login($user);
-
-			// Redirect user to Edit Profile Page
-			return Redirect::action('UserController@edit', [$user->id])->with('message', 'Thank you for registering! Be sure to complete your profile.');
-		}
+		//
 	}
 
 	/**
@@ -71,31 +132,19 @@ class UserController extends \BaseController {
 	 */
 	public function show($id)
 	{
+		// Pick out the user
+		$user = User::find($id);
 
-		// Check if regular user or steam user
-		if (User::find($id)) {
-			// Pick out the user
-			$user = User::find($id);
+		// Get all user's ratings
+		$ratings = Rating::where('user_id', $id)->get();
 
-			$ratings = Rating::where('user_id', $id)->get();
+		// Get username and avatar
+		$steam_user = $user->username;
+		$steam_avatar = $user->avatar;
 
-			return View::make('users/profile', compact('user', 'ratings'));
+		// Return Profile Page of user
+		return View::make('users/profile', compact('user', 'ratings', 'steam_user', 'steam_avatar'));
 
-		} elseif (Steamuser::find($id)) {
-			// Pick out the user
-			$user = Steamuser::find($id);
-
-			$ratings = Rating::where('user_id', $id)->get();
-
-			// Create SteamId Object
-			$steamIdObject = new SteamId( "$id" );
-
-			$steam_user = $steamIdObject->getNickname();
-			$steam_avatar = $steamIdObject->getIconAvatarUrl();
-
-			// Return Profile Page of user
-			return View::make('users/profile', compact('user', 'ratings', 'steam_user', 'steam_avatar'));
-		}
 	}
 
 	/**
@@ -106,10 +155,8 @@ class UserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		// Check if user is logged in and if steamuser or regular user
-		if (Auth::user()) {
-			// Regular User
-			
+		// Check if user is logged in
+		if (Auth::user()) {			
 			// Pick out the user
 			$user = User::find($id);
 
@@ -134,42 +181,6 @@ class UserController extends \BaseController {
 				// Else, return to root
 				return Redirect::to('/');
 			}
-
-		} elseif (Session::has('steam_session')) {
-			// Steam User
-
-			// Get Auth key
-			$authkey = Session::get('steam_session');
-
-			// Pick out the user
-			$user = Steamuser::find($authkey);
-
-			// Get Authenticated User
-			$authUserID = $authkey;
-
-			// Find user's current set birthday and break it into array
-			if(isset($user->birthday))
-				$birthday = explode('-',$user->birthday);
-
-			// Generate lists
-			$region_options = Region::lists('name', 'id');
-			$rank_options = Rank::lists('name', 'id');
-			$skill_options = Skill::lists('name', 'id');
-			$voips = Voip::all();
-
-			// If the logged in user is the same as the user they are trying to edit, allow
-			if ($authUserID == $id) {
-				// Return Edit Page for user
-				return View::make('users/edit', compact('user', 'region_options', 'rank_options', 'skill_options', 'voips', 'birthday'));
-			} else {
-				// Else, return to root
-				//return Redirect::to('/');
-				echo "$authUserID";
-				echo "$id";
-			}
-		} else {
-			// Not logged in
-			return Redirect::to('/');
 		}
 	}
 
@@ -181,13 +192,8 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		// Check if regular user or steam user
-		if (Auth::user()) {
-			$user = User::find(Auth::user()->id);
-		} elseif (Session::has('steam_session')) {
-			$user = Steamuser::find($id);
-		}
-		
+		// Get User and Inputs		
+		$user = User::find($id);
 		$input = Input::get();
 
 		// Pass all input from users/edit to validator with rules from User Model
@@ -197,13 +203,6 @@ class UserController extends \BaseController {
 			return Redirect::action('UserController@edit', [$user->id])->withErrors($validator);
 		}
 
-		if (Input::hasFile('avatar')) {
-			$file            = Input::file('avatar');
-			$destinationPath = public_path().'/img/avatars';
-			$filename        = str_random(6) . '_' . $file->getClientOriginalName();
-			$uploadSuccess   = $file->move($destinationPath, $filename);
-			$user->avatar    = $destinationPath . $filename;
-		}
 		$day = Input::get('day');
 		$month = Input::get('month');
 		$year = Input::get('year');
@@ -249,43 +248,6 @@ class UserController extends \BaseController {
 
 		// Delete user from Database
 		$user->delete();
-	}
-	/**
-	 * Get the Login View
-	 *
-	 */
-	public function getLogin()
-	{
-		// Create the login View
-		return View::make('users/login');
-	}
-
-	/**
-	 * Logging the User in
-	 *
-	 */
-	public function postLogin()
-	{
-		// Grab input from Login Form
-		$email = Input::get('email');
-		$password = Input::get('password');
-
-		if(Auth::attempt(['email' => $email, 'password' => $password]))
-		{			
-			return Redirect::action('UserController@show',[Auth::user()->id])->with('user', Auth::user());
-		} else {
-			return Redirect::action('UserController@getLogin')->with('error', 'Email/Password combination invalid')->withInput();
-		}
-	}
-	
-	/**
-	 * Logging the User out
-	 *
-	 */
-	public function getLogout()
-	{
-		Auth::logout();
-		return Redirect::action('UserController@getLogin');
 	}
 
 	/**
