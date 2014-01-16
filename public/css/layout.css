@@ -1,6 +1,5 @@
 body {
-    background-image: url('../img/bg.jpg');
-    background-repeat: no-repeat;
+    background-image: url('../img/bg/wg_dark_subtle_backgrounds_2.jpg');
     background-attachment: fixed;
 }
 
@@ -96,13 +95,23 @@ body {
   font-variant: small-caps;
 }
 
+/****************************
+****** Profile 
+*****************************/
 
+.panel {
+  background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
+  border: 1px solid #333;
+  -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+          box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+}
 
 /****************************
 ****** Posts 
 *****************************/
 .well {
   color: #ccc;
+  background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
   background-color: #1a1a1a;
   border: 1px solid #333;
   -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
@@ -123,6 +132,10 @@ body {
 
 .post {
   color: #ccc;
+}
+
+.post a {
+  text-decoration: none;
 }
 
 .btn-post{
@@ -189,6 +202,7 @@ body {
   background-color: #1a1a1a;
 }
 .modal-header, .modal-footer {
+  background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
   background-color: #111;
 }
 .modal-header {

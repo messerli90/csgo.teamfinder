@@ -28,6 +28,7 @@ Route::get('/about/changelog', function(){
 
 Route::resource('users', 'UserController');
 Route::resource('posts', 'PostController');
+Route::resource('shortlist', 'ShortlistController');
 Route::get('/steamlogin/{action?}', array('as' => 'login', 'uses' => 'UserController@login'));
 Route::get('/steamlogout', array('as' => 'logout', 'uses' => 'UserController@logout'));
 Route::get('/review/{id}', array('as' => 'review', 'uses' => 'UserController@getReview'));

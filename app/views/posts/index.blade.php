@@ -2,6 +2,15 @@
 @section('content')
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script src="/csgo/teamfinder/public/js/isotype.min.js" type="text/javascript"></script>
+	@if (Session::has('message'))
+		<div class="col-md-12">
+			<div class="alert alert-success alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				{{ Session::get('message') }}
+			</div>
+		</div>
+	@endif
+
 <div class="row">
 	<div class="col-md-3">
 		<div class="well">
@@ -17,7 +26,7 @@
 	@else
 
 		@foreach($posts as $post)
-		<div class="col-md-12">
+		<div class="col-md-12" id="{{ $post->id.'id' }}">
 			<div class="well post clearfix">
 				<div class="col-md-2">
 						<img src="{{ $post->user->avatar }}" class="img-rounded avatar">	
@@ -54,9 +63,11 @@
 					</div><!-- ./top-row -->
 					<!-- Button trigger modal -->
 					<button class="btn btn-default btn-sm btn-post pull-right" data-toggle="modal" data-target="#{{{ $post->id.'modal' }}}">Open Card</button> 
-					@if(Auth::check())
+			        @if(Auth::check())
 				        @if(Auth::user()->id != $post->user->id)
-							<a href="#" class="btn btn-info btn-sm btn-post pull-right">Add to Shortlist</a>
+							{{ Form::open(['action' => ['ShortlistController@update', $post->user->id], 'method' => 'put']) }}
+							{{ Form::submit('Add to Shortlist', ['class' => 'btn btn-info btn-sm btn-post pull-right']) }}
+							{{ Form::close() }}
 						@endif
 					@endif
 				</div>
@@ -173,10 +184,12 @@
 			@endif
 		@endif
 
-        <a type="button" class="btn btn-sm btn-primary btn-post" href="{{ action('UserController@show', [$post->user->id]) }}">User's Profile</a>
+        <a type="button" class="btn btn-sm btn-primary btn-post pull-right" href="{{ action('UserController@show', [$post->user->id]) }}">User's Profile</a>
         @if(Auth::check())
 	        @if(Auth::user()->id != $post->user->id)
-				<a href="#" class="btn btn-info btn-sm btn-post pull-right">Add to Shortlist</a>
+				{{ Form::open(['action' => ['ShortlistController@update', $post->user->id], 'method' => 'put']) }}
+				{{ Form::submit('Add to Shortlist', ['class' => 'btn btn-info btn-sm btn-post pull-right']) }}
+				{{ Form::close() }}
 			@endif
 		@endif
 		

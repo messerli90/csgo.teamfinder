@@ -28,17 +28,19 @@
 		</div>
 	</div>
 	</div>
-	<div class="panel panel-default col-md-8 col-md-offset-2">
-		<div class="panel-body">
-			<a href="{{ action('UserController@edit', [$user->id]) }}" class="btn btn-default">Edit Profile</a>
-			<a href="{{ action('UserController@edit', [$user->id]) }}" class="btn btn-default">Edit Profile</a>
+	@if (Auth::user()->id == $user->id)
+		<div class="panel panel-default col-md-8 col-md-offset-2">
+			<div class="panel-body">
+				<a href="{{ action('UserController@edit', [$user->id]) }}" class="btn btn-default">Edit Profile</a>
+				<a href="{{ route('shortlist.index') }}" class="btn btn-default">View Shortlist</a>
+			</div>
 		</div>
-	</div>
+	@endif
 
 	<div class="well col-md-8 col-md-offset-2">
 
 		<div class="col-md-6">
-			<h3>Services:</h3>
+			<h3>Services</h3>
 				<p>
 					<a href="{{ "http://csgo-stats.com/" . $user->id }}" target="_blank"><img src="{{ asset('/img/ext_services/csgo-stats_logo.png') }}" class="serviceLink"></a>
 				</p>
@@ -66,7 +68,7 @@
 			@endif
 		</div>
 		<div class="col-md-6">
-			<h3>Info:</h3>
+			<h3>Info</h3>
 			<table class="table table-condensed">
 				<tr>
 					<td>Rating</td>

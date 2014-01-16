@@ -202,7 +202,7 @@ class PostController extends \BaseController {
 			$comment->comment 	= Input::get('comment');
 			$comment->save();
 
-			return Redirect::route('posts.show', [$id]);
+			return Redirect::to(route('posts.index').'#'.$post->id.'id)');
 
 			// Store Inputs
 
