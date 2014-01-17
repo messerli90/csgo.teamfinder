@@ -33,6 +33,11 @@
 			<div class="panel-body">
 				<a href="{{ action('UserController@edit', [$user->id]) }}" class="btn btn-default">Edit Profile</a>
 				<a href="{{ route('shortlist.index') }}" class="btn btn-default">View Shortlist</a>
+			{{ Form::open(['action' => ['UserController@postStatus', $user->id], 'method' => 'post', 'class' => 'col-md-3']) }}
+				{{ Form::select('status', $status_options, $user->status_id, ['class' => 'form-control pull-right status_select']) }}
+				{{ Form::submit('Change Status', ['class' => 'btn btn-default btn-sm btn-post']) }}
+
+			{{ Form::close() }}
 			</div>
 		</div>
 	@endif

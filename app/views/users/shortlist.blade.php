@@ -18,16 +18,32 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<td>Author</td>
-								<td>User</td>
-								<td>Action</td>	
+								<td><strong>User</strong></td>
+								<td><strong>Rank</strong></td>
+								<td><strong>Status</strong></td>
+								<td><strong>Action</strong></td>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($users as $user)
 							<tr>
-								<td><a href="{{ action('UserController@show', [Auth::user()->id]) }}">{{ User::find($user->author_id)->username }}</a> </td>
-								<td>{{{ User::find($user->user_id)->username }}}</td>
+								<td>
+									{{{ User::find($user->user_id)->username }}}
+								</td>
+								<td>
+									@if(User::find($user->user_id)->rank->id < 19)
+										<img src="{{ User::find($user->user_id)->rank->img }}" class="serviceLink">
+									@else
+										No Rank
+									@endif
+								</td>
+								<td>
+									@if (User::find($user->user_id)->status)
+										{{{ User::find($user->user_id)->status->name }}}
+									@else 
+										No Status
+									@endif
+								</td>
 								<td>
 									@if(Auth::check())
 										@if(Auth::user()->id == $author->id)

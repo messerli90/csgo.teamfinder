@@ -51,12 +51,12 @@ class CreateUsersTable extends Migration {
 				->unsigned();
 
 			$table->integer('rank_id')
-				->nullable()
+				->default(19)
 				->unsigned();
 
 			$table->integer('status_id')
-				->nullable()
-				->unsigned();
+				->default(1);
+				->unsigned()
 
 			$table->text('bio')
 				->nullable();

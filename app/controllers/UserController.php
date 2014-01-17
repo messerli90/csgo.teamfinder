@@ -138,12 +138,15 @@ class UserController extends \BaseController {
 		// Get all user's ratings
 		$ratings = Rating::where('user_id', $id)->get();
 
+		// Pass statuses
+		$status_options = Status::lists('name', 'id');
+
 		// Get username and avatar
 		$steam_user = $user->username;
 		$steam_avatar = $user->avatar;
 
 		// Return Profile Page of user
-		return View::make('users/profile', compact('user', 'ratings', 'steam_user', 'steam_avatar'));
+		return View::make('users/profile', compact('user', 'ratings', 'steam_user', 'steam_avatar', 'status_options'));
 
 	}
 
@@ -250,13 +253,20 @@ class UserController extends \BaseController {
 		$user->delete();
 	}
 
+	/**
+	 * Post Status
+	 *
+	 */
 	public function postStatus($id)
 	{
 		// Get User and Inputs		
 		$user = User::find($id);
 		$input = Input::get();
 
-		
+		$user->status_id = Input::get('status');
+		$user->save();
+
+		return Redirect::action('UserController@show', [$user->id])->with('message', 'successfully changed your status');
 	}
 
 
@@ -309,4 +319,5 @@ class UserController extends \BaseController {
 
 		return Redirect::action('UserController@show', [$user->id]);
 	}
+
 }
