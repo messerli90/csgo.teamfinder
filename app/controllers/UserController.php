@@ -266,7 +266,7 @@ class UserController extends \BaseController {
 		$user->status_id = Input::get('status');
 		$user->save();
 
-		return Redirect::action('UserController@show', [$user->id])->with('message', 'successfully changed your status');
+		return Redirect::action('UserController@show', [$user->id])->with('message', 'You have successfully changed your status');
 	}
 
 

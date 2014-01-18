@@ -16,8 +16,13 @@
 		<div class="well">
 			<a href="{{ action('PostController@create') }}" class="btn btn-primary">Add new Post</a>
 		</div>
+		<!-- 
 		<div class="well filter">
 			<h2>Filters</h2>
+		</div>
+		-->
+		<div class="well">
+			<p><strong>Looking for older posts?</strong> Check out the <a href="http://archive.csgoteamfinder.com">archive</a> to see posts from before the new update.</p>
 		</div>
 	</div>
 	<div class="col-md-9" id="container">
@@ -154,7 +159,7 @@
 					@else
 						<p>This post has no Comments</p>
 					@endif
-					<div class="col-md-12">
+					<div class="col-md-12 comments">
 					@if(Auth::check())
 						{{ Form::open(['action' => ['PostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
 							<div class="form-group col-md-12">

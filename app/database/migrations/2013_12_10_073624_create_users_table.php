@@ -55,10 +55,13 @@ class CreateUsersTable extends Migration {
 				->unsigned();
 
 			$table->integer('status_id')
-				->default(1);
-				->unsigned()
+				->default(1)
+				->unsigned();
 
 			$table->text('bio')
+				->nullable();
+
+			$table->text('experience')
 				->nullable();
 
 			$table->timestamps();

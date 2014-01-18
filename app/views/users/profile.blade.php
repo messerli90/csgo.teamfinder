@@ -28,23 +28,27 @@
 		</div>
 	</div>
 	</div>
-	@if (Auth::user()->id == $user->id)
-		<div class="panel panel-default col-md-8 col-md-offset-2">
-			<div class="panel-body">
-				<a href="{{ action('UserController@edit', [$user->id]) }}" class="btn btn-default">Edit Profile</a>
-				<a href="{{ route('shortlist.index') }}" class="btn btn-default">View Shortlist</a>
-			{{ Form::open(['action' => ['UserController@postStatus', $user->id], 'method' => 'post', 'class' => 'col-md-3']) }}
-				{{ Form::select('status', $status_options, $user->status_id, ['class' => 'form-control pull-right status_select']) }}
-				{{ Form::submit('Change Status', ['class' => 'btn btn-default btn-sm btn-post']) }}
+	@if (Auth::check())
+		@if (Auth::user()->id == $user->id)
+			<div class="panel panel-default col-md-8 col-md-offset-2">
+				<div class="panel-body">
+					<a href="{{ action('UserController@edit', [$user->id]) }}" class="btn btn-success">Edit Profile</a>
+					<a href="{{ route('shortlist.index') }}" class="btn btn-default">View Shortlist</a>
+				{{ Form::open(['action' => ['UserController@postStatus', $user->id], 'method' => 'post', 'class' => 'form-inline pull-right']) }}
+					<div class="form-group">
+						{{ Form::select('status', $status_options, $user->status_id, ['class' => 'form-control ']) }}				
+					</div>
+					{{ Form::submit('Change Status', ['class' => 'btn btn-default btn-sm btn-post']) }}
 
-			{{ Form::close() }}
+				{{ Form::close() }}
+				</div>
 			</div>
-		</div>
+		@endif
 	@endif
 
 	<div class="well col-md-8 col-md-offset-2">
 
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<h3>Services</h3>
 				<p>
 					<a href="{{ "http://csgo-stats.com/" . $user->id }}" target="_blank"><img src="{{ asset('/img/ext_services/csgo-stats_logo.png') }}" class="serviceLink"></a>
@@ -72,9 +76,13 @@
 			</table>
 			@endif
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-8">
 			<h3>Info</h3>
-			<table class="table table-condensed">
+			<table class="table">
+				<tr>
+					<td>Status</td>
+					<td>{{{ $user->status->name }}}</td>
+				</tr>
 				<tr>
 					<td>Rating</td>
 					<td>
