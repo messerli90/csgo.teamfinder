@@ -170,7 +170,7 @@ class PostController extends \BaseController {
 
 			$post->save();
 
-			return Redirect::route('posts.show', [$id]);
+			return Redirect::to(route('posts.index').'#'.$post->id.'id');
 		}
 	}
 

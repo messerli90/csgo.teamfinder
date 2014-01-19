@@ -18,7 +18,7 @@
 			</ul>
 		</div>
 		<div class="well">
-			<h3 class="alpha text-center">Bravo Notice</h3>
+			<h3 class="alpha text-center">Beta Notice</h3>
 			<p>This site is <em><u>early</u></em> in development and there will be bugs. Bear with us while we continue our work on fixing everything and adding new features. In the mean time we appreciate any and all concerns, feedback, feature requests, etc.</p>
 		</div>
 	</div>
