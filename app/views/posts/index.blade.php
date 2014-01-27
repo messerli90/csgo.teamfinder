@@ -25,7 +25,7 @@
 			<p><strong>Looking for older posts?</strong> Check out the <a href="http://archive.csgoteamfinder.com">archive</a> to see posts from before the new update.</p>
 		</div>
 	</div>
-	<div class="col-md-9" id="container">
+	<div class="col-md-7" id="container">
 	@if ($posts->isEmpty())
 		<div class="well"><p>Sorry, no posts at this time</p></div>
 	@else
@@ -206,6 +206,21 @@
 
 
 		@endforeach
+	</div>
+	<div class="col-md-1 col-md-offset-1">
+		<div class="well  pull-right">
+			<h5>Advertisement</h5>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- Sidebar -->
+			<ins class="adsbygoogle"
+	     style="display:inline-block;width:120px;height:600px"
+	     data-ad-client="ca-pub-0223519100876576"
+	     data-ad-slot="3658565739"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			
+		</div>
 	</div>
 	<div class="col-md-12 clearfix">
 		{{ $posts->links() }}			

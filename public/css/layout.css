@@ -1,7 +1,25 @@
+/*****************
+******************
+**
+** Project: CSGOTeamFinder.com
+** Author : Michael Messerli
+** Version: 2
+**
+******************
+*****************/
+
+
+
+
+html,
 body {
-    background-image: url('../img/bg/wg_dark_subtle_backgrounds_2.jpg');
-    background-attachment: fixed;
+  height: 100%;
+  background-image: url('../img/bg/wg_dark_subtle_backgrounds_2.jpg');
+  background-attachment: fixed;
 }
+
+
+
 
 .alpha {
 	color: red;
@@ -58,69 +76,26 @@ img.serviceLink {
 }
 
 
-/* Sticky footer styles
--------------------------------------------------- */
-
-html,
-body {
-  height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
-}
-
-/* Wrapper for page content to push down footer */
-#wrap {
-  min-height: 100%;
-  height: auto;
-  /* Negative indent footer by its height */
-  margin: 0 auto -39px;
-  /* Pad bottom by footer height */
-  padding: 0 0 60px;
-}
-
-/* Set the fixed height of the footer here */
-#footer {
-  height: 40px 0px;
-  background-color: #1a1a1a;
-  font-size: 12px;
-  color: #ccc;
-}
-
-.container {
-  width: auto;
-  max-width: 1200px;
-  padding: 0 15px;
-}
-.container .credit {
-  margin:11px auto;
-  font-variant: small-caps;
-}
 
 /****************************
 ****** Profile 
 *****************************/
 
-.panel {
+.panel, .jumbotron {
   background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
   border: 1px solid #333;
   -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
           box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
 }
 
-
 .status_select {
 }
+
+
 /****************************
 ****** Posts 
 *****************************/
 .well {
-  color: #ccc;
-  background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
-  background-color: #1a1a1a;
-  border: 1px solid #333;
-  -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
-          box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
-}
-.jumbotron {
   color: #ccc;
   background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
   background-color: #1a1a1a;
@@ -152,8 +127,10 @@ body {
   font-size: 30px;  
   color: #fff;
 }
+
 .post .lookingfor {
 }
+
 .post .rating {
   font-size: 20px;
 }
@@ -200,12 +177,10 @@ body {
   margin-top: 30px;
 }
 
-.modal-content {
+.modal-content, .modal-body {
   background-color: #1a1a1a;
 }
-.modal-body {
-  background-color: #1a1a1a;
-}
+
 .modal-header, .modal-footer {
   background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
   background-color: #111;
@@ -221,4 +196,42 @@ body {
 .modal-header p {
   margin: 0;
   padding: 0;
+}
+
+/****************************
+****** Footer 
+*****************************/
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -39px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 40px 0px;
+  background-color: #1a1a1a;
+  font-size: 12px;
+  color: #ccc;
+}
+
+.container {
+  width: auto;
+  max-width: 1200px;
+  padding: 0 15px;
+}
+.container .credit {
+  margin:11px auto;
+  font-variant: small-caps;
 }
