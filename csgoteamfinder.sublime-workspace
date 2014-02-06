@@ -1,0 +1,670 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"reg",
+				"region_id"
+			],
+			[
+				"ord",
+				"orderBy"
+			],
+			[
+				"play",
+				"playstyles"
+			],
+			[
+				"pu",
+				"pull-right"
+			],
+			[
+				"col-md",
+				"col-md-3"
+			],
+			[
+				"te",
+				"text-decoration"
+			],
+			[
+				"Au",
+				"Auth	Laravel: Auth::check()"
+			],
+			[
+				"A",
+				"Auth	Laravel: Auth::check()"
+			],
+			[
+				"Auth",
+				"Auth	Laravel: Auth::check()"
+			],
+			[
+				"au",
+				"author"
+			],
+			[
+				"autho",
+				"author"
+			],
+			[
+				"short",
+				"shortlist"
+			],
+			[
+				"auth",
+				"author_id"
+			],
+			[
+				"View",
+				"View	Laravel: View::make()"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"posts",
+				"postcomments"
+			],
+			[
+				"postco",
+				"postcomments"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"va",
+				"var_dump"
+			],
+			[
+				"region",
+				"region_options"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"b",
+				"bottom"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"steam",
+				"steam_user"
+			],
+			[
+				"post",
+				"postcomments"
+			],
+			[
+				"steam_",
+				"steam_avatar"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"Steam",
+				"Steamuser"
+			],
+			[
+				"bir",
+				"birthday"
+			],
+			[
+				"steam_game_",
+				"steam_game_json"
+			],
+			[
+				"json",
+				"json_decode"
+			],
+			[
+				"tool",
+				"tooltip"
+			],
+			[
+				"Redirect",
+				"Redirect	Laravel: Redirect::to()"
+			],
+			[
+				"Input",
+				"Input	Laravel: Input::get()"
+			],
+			[
+				"Redire",
+				"Redirect	Laravel: Redirect::to_route()"
+			],
+			[
+				"playst",
+				"playstyles"
+			],
+			[
+				"Post",
+				"PostController"
+			],
+			[
+				"Redirec",
+				"Redirect	Laravel: Redirect::to()"
+			],
+			[
+				"Get",
+				"get"
+			],
+			[
+				"contr",
+				"control-label"
+			],
+			[
+				"loofo",
+				"lookingfor_id"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"form",
+				"form-control"
+			],
+			[
+				"el",
+				"else"
+			],
+			[
+				"selec",
+				"selectRange"
+			],
+			[
+				"playe",
+				"playstyles"
+			],
+			[
+				"con",
+				"continent"
+			],
+			[
+				"lookin",
+				"lookingfor"
+			],
+			[
+				"mess",
+				"message"
+			],
+			[
+				"bac",
+				"background-clip"
+			],
+			[
+				"backgr",
+				"background-position"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"User",
+				"UserController"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"game",
+				"gameid"
+			],
+			[
+				"publi",
+				"publisher"
+			],
+			[
+				"publ",
+				"publisher"
+			],
+			[
+				"conut",
+				"countries"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 306.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: t",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Laravel: Auth::user()"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/var/www/CSGO_TF/.gitignore",
+		"/var/www/CSGO_TF/app/config/app.php",
+		"/var/www/CSGO_TF/app/views/posts/index.blade.php",
+		"/var/www/CSGO_TF/app/start/global.php",
+		"/home/michael/.config/sublime-text-3/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/home/michael/.config/sublime-text-3/Packages/Git/Git.sublime-settings",
+		"/var/www/CSGO_TF/app/controllers/PostController.php",
+		"/var/www/CSGO_TF/app/views/index.blade.php",
+		"/home/michael/Downloads/config.cfg",
+		"/var/www/CSGO_TF/app/views/layouts/master.blade.php",
+		"/var/www/CSGO_TF/public/css/layout.css",
+		"/home/michael/Downloads/autoexec.cfg",
+		"/home/michael/Downloads/GeT RiGhT.cfg",
+		"/var/www/CSGO_TF/public/phpmyadmin/js/get_image.js.php",
+		"/var/www/CSGO_TF/vendor/koraktor/steam-condenser/lib/steam/community/GameItem.php",
+		"/home/michael/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/michael/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/var/www/CSGO_TF/app/filters.php",
+		"/var/www/CSGO_TF/vendor/koraktor/steam-condenser/lib/steam/packets/A2S_PLAYER_Packet.php",
+		"/var/www/CSGO_TF/vendor/composer/autoload_psr4.php",
+		"/var/www/CSGO_TF/artisan",
+		"/var/www/CSGO_TF/CONTRIBUTING.md",
+		"/var/www/CSGO_TF/vendor/monolog/monolog/src/Monolog/Handler/CouchDBHandler.php",
+		"/var/www/CSGO_TF/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/counting_frameset.html",
+		"/var/www/CSGO_TF/vendor/swiftmailer/swiftmailer/test-suite/lib/simpletest/test/site/cookie_based_counter.php",
+		"/var/www/CSGO_TF/vendor/doctrine/common/tests/Doctrine/Tests/Common/Persistence/Mapping/RuntimeReflectionServiceTest.php",
+		"/var/www/CSGO_TF/vendor/symfony/console/Symfony/Component/Console/Formatter/OutputFormatterStyleInterface.php",
+		"/var/www/CSGO_TF/vendor/symfony/http-foundation/Symfony/Component/HttpFoundation/RequestMatcherInterface.php",
+		"/var/www/CSGO_TF/vendor/predis/predis/bin/create-single-file",
+		"/var/www/CSGO_TF/vendor/symfony/css-selector/Symfony/Component/CssSelector/CssSelector.php",
+		"/var/www/CSGO_TF/vendor/koraktor/steam-condenser/lib/steam/community/tf2/TF2Sniper.php",
+		"/var/www/CSGO_TF/vendor/koraktor/steam-condenser/lib/steam/packets/S2A_INFO2_Packet.php",
+		"/var/www/CSGO_TF/vendor/predis/predis/tests/Predis/Command/StringAppendTest.php",
+		"/var/www/CSGO_TF/vendor/symfony/http-foundation/Symfony/Component/HttpFoundation/Session/SessionInterface.php",
+		"/var/www/CSGO_TF/public/phpmyadmin/libraries/string_native.lib.php",
+		"/var/www/CSGO_TF/app/lang/en/reminders.php",
+		"/var/www/CSGO_TF/app/lang/en/pagination.php",
+		"/var/www/CSGO_TF/app/database/seeds/VoipSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/UsersSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/UserVoipSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/StatusSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/SkillSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/RegionSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/RankSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/PostSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/PlaystyleSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/PlaystylePostSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/LookingforSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/LookingforPostSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/DatabaseSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/ContinentSeeder.php",
+		"/var/www/CSGO_TF/app/database/seeds/.gitkeep",
+		"/var/www/CSGO_TF/app/database/migrations/2014_01_16_060618_create_shortlists_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2014_01_14_134323_create_statuses_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2014_01_13_151211_create_postcomments_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_13_064651_create_ratings_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_215015_create_continents_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_214221_create_lookingfor_post_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_214045_create_playstyle_post_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_172147_create_posts_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_172051_create_lookingfors_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_171747_create_playstyles_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_171649_create_user_voip_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_171208_create_voips_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_171130_create_ranks_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_171053_create_skills_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_170643_create_regions_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_073624_create_users_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/2013_12_10_073153_create_session_table.php",
+		"/var/www/CSGO_TF/app/database/migrations/.gitkeep",
+		"/var/www/CSGO_TF/app/database/production.sqlite",
+		"/var/www/CSGO_TF/app/controllers/UserController.php",
+		"/var/www/CSGO_TF/app/controllers/SteamController.php",
+		"/var/www/CSGO_TF/app/controllers/ShortlistController.php",
+		"/var/www/CSGO_TF/app/controllers/HomeController.php",
+		"/var/www/CSGO_TF/app/controllers/BaseController.php",
+		"/var/www/CSGO_TF/app/controllers/.gitkeep",
+		"/var/www/CSGO_TF/app/config/testing/session.php",
+		"/var/www/CSGO_TF/app/config/testing/cache.php",
+		"/var/www/CSGO_TF/app/config/packages/.gitkeep",
+		"/var/www/CSGO_TF/app/config/workbench.php",
+		"/var/www/CSGO_TF/app/config/view.php",
+		"/var/www/CSGO_TF/app/config/session.php",
+		"/var/www/CSGO_TF/app/config/remote.php",
+		"/var/www/CSGO_TF/app/config/queue.php",
+		"/var/www/CSGO_TF/app/config/mail.php",
+		"/var/www/CSGO_TF/app/config/database.php",
+		"/var/www/CSGO_TF/app/config/compile.php",
+		"/var/www/CSGO_TF/app/config/cache.php",
+		"/var/www/CSGO_TF/app/config/auth.php",
+		"/var/www/CSGO_TF/app/commands/.gitkeep",
+		"/var/www/CSGO_TF/app/routes.php",
+		"/var/www/CSGO_TF/upgrade.md",
+		"/var/www/CSGO_TF/todo.txt",
+		"/var/www/CSGO_TF/server.php",
+		"/var/www/CSGO_TF/phpunit.xml",
+		"/var/www/CSGO_TF/extract.php",
+		"/var/www/CSGO_TF/composer.lock",
+		"/var/www/CSGO_TF/composer.json",
+		"/var/www/CSGO_TF/changelog.txt",
+		"/var/www/CSGO_TF/README.md",
+		"/var/www/CSGO_TF/.gitattributes",
+		"/var/www/CSGO_TF/public/index.php",
+		"/var/www/CSGO_TF/vendor/swiftmailer/swiftmailer/doc/including-the-files.rst",
+		"/var/www/CSGO_TF/app/views/users/profile.blade.php",
+		"/var/www/CSGO_TF/app/views/users/shortlist.blade.php",
+		"/var/www/CSGO_TF/app/views/posts/edit.blade.php",
+		"/var/www/CSGO_TF/app/views/layouts/navigation.blade.php",
+		"/var/www/CSGO_TF/app/models/User.php",
+		"/var/www/CSGO_TF/app/models/Shortlist.php",
+		"/home/michael/Documents/database.php",
+		"/var/www/CSGO_TF/app/views/users/edit.blade.php",
+		"/var/www/CSGO_TF/vendor/hybridauth/hybridauth/hybridauth/Hybrid/Providers/Steam.php",
+		"/var/www/CSGO_TF/vendor/hybridauth/hybridauth/hybridauth/install.php",
+		"/var/www/CSGO_TF/app/views/posts/create.blade.php",
+		"/var/www/CSGO_TF/public/dist/css/bootstrap.css",
+		"/var/www/CSGO_TF/app/models/Status.php",
+		"/var/www/CSGO_TF/app/views/layouts/footer.blade.php",
+		"/var/www/CSGO_TF/app/models/Steamuser.php",
+		"/var/www/CSGO_TF/app/database/migrations/2014_01_13_122321_add_steamuser_to_rating_table.php",
+		"/var/www/CSGO_TF/app/models/Rank.php",
+		"/var/www/CSGO_TF/app/models/Rating.php",
+		"/var/www/CSGO_TF/app/models/Region.php",
+		"/var/www/CSGO_TF/app/models/Voip.php",
+		"/var/www/CSGO_TF/app/models/Post.php",
+		"/var/www/CSGO_TF/app/models/SteamuserVoip.php",
+		"/var/www/CSGO_TF/app/database/migrations/2014_01_13_121708_create_steamuser_voip_table.php",
+		"/var/www/CSGO_TF/app/models/Skill.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"h3",
+			"show",
+			"rout",
+			"post",
+			"posts",
+			"user",
+			"shortlist",
+			"Shortlist",
+			"shortlist",
+			"btn-post",
+			"user",
+			"function",
+			"join",
+			"user",
+			"contacts",
+			"'",
+			"users",
+			"contacts",
+			"user",
+			"auth",
+			"'img'",
+			"pull-right",
+			"''",
+			"'name",
+			"close",
+			"<button",
+			"</a>",
+			"$post->id",
+			"postModal",
+			"myModal",
+			"'img'	=>",
+			"'name'	=>",
+			"getIconAvatarUrl",
+			"steamid",
+			"SteamUser",
+			"steamlogin",
+			"SteamUser",
+			"steamuser",
+			"SteamUser",
+			"login",
+			"steam_data",
+			"steam_json",
+			"partial",
+			"($))\n",
+			"($))",
+			"username",
+			"decoded",
+			"$json",
+			"json",
+			"xml",
+			"json",
+			");\n",
+			"p>",
+			"p",
+			"h3",
+			"Added",
+			"<ul>",
+			"</h4>",
+			"\n				",
+			"\n+",
+			"### ",
+			"2013",
+			"1",
+			"unstyled",
+			"h3",
+			"45deg",
+			"7deg",
+			"well",
+			"left",
+			"<a",
+			"h3",
+			"span",
+			"small",
+			"h1",
+			"h5",
+			"h3",
+			"$user",
+			"p",
+			"goal",
+			"p",
+			"date",
+			"5",
+			"rating",
+			"Rating",
+			"rating",
+			"Input",
+			"li",
+			"h2",
+			"h1",
+			"h2",
+			"sm-6",
+			"3",
+			"10",
+			"li",
+			"ul",
+			"birthday[",
+			"li",
+			"{{ Form::label",
+			"Form::text",
+			"Form::label",
+			"</p>",
+			"<p>",
+			"p",
+			"h3",
+			"h1",
+			"md-3",
+			"  ",
+			"serviceLink",
+			"			<p>\n",
+			"<a href=\"",
+			"td",
+			"tr",
+			"td",
+			"HomeController",
+			"knifely",
+			"login",
+			"HomeController",
+			"{{ Form::label",
+			"	<tr>\n",
+			"<td></td>",
+			"image",
+			"rank",
+			"Rank",
+			"rank",
+			"region_id",
+			"voip",
+			"voips",
+			"voip"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"post",
+			"'",
+			"`countries`"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "csgoteamfinder.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"app/fil",
+				"app/filters.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 217.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
