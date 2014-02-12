@@ -14,7 +14,7 @@
 		<div class="col-md-3">
 			<img src="{{ $steam_avatar }}" class="img-circle">
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-8 col-md-offset-1">
 			<h1>
 				@if (isset($steam_user))
 					{{ $steam_user }}
@@ -38,7 +38,7 @@
 					<div class="form-group">
 						{{ Form::select('status', $status_options, $user->status_id, ['class' => 'form-control ']) }}				
 					</div>
-					{{ Form::submit('Change Status', ['class' => 'btn btn-default btn-sm btn-post']) }}
+					{{ Form::submit('Change Status', ['class' => 'btn btn-default btn-post']) }}
 
 				{{ Form::close() }}
 				</div>
@@ -143,7 +143,7 @@
 
 	<div class="well col-md-8 col-md-offset-2">
 		<div class="col-md-12" id="ratings">
-			<h3>Reviews <a href="{{ action('UserController@getReview', [$user->id]) }}" class="btn btn-default pull-right">Leave a Review</a></h3>
+			<h3>Reviews <a href="{{ action('UserController@getReview', [$user->id]) }}" class="btn btn-default btn-sm pull-right">Leave a Review</a></h3>
 			@if($user->ratings)
 				<table class="table">
 					<thead>

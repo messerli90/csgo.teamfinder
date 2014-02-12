@@ -61,7 +61,6 @@ img.rank-sm {
 .jumbotron h1 {
   text-align: center;
   font-size: 45px;
-  text-align: right;
 }
 .jumbotron p {
   text-align: center;
@@ -84,6 +83,7 @@ img.serviceLink {
 .panel, .jumbotron {
   background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
   border: 1px solid #333;
+  color: #ccc;
   -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
           box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
 }
