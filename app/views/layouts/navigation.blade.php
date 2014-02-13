@@ -15,7 +15,7 @@
     <ul class="nav navbar-nav">
       <li {{(Request::is('/') ? 'class="active"' : '')}}><a href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span></a></li>
       <li {{(Request::is('posts') ? 'class="active"' : '')}}><a href="{{ action('PostController@index') }}">Browse Players</a></li>
-      <!--<li><a href="#">Find Team</a></li>-->
+      <li {{(Request::is('teamposts') ? 'class="active"' : '')}}><a href="{{ action('TeampostController@index') }}">Find Team</a></li>
       <li {{(Request::is('about') ? 'class="active"' : '')}}><a href="{{ url('/about/') }}">About</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
