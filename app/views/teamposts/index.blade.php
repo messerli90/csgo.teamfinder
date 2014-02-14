@@ -11,41 +11,69 @@
   @endif
 
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-2">
     <div class="well">
       <a href="{{ action('TeampostController@create') }}" class="btn btn-primary">Add new Team</a>
     </div>
   </div>
-  <div class="col-md-7" id="container">
-    @if ($teamposts->count() == 0)
+  <div class="col-md-8" id="container">
+    @if (is_null($teamposts))
       <div class="well">Sorry. no teams at this time</div>
     @else
     @foreach($teamposts as $post)
       <div class="col-md-12" id="{{ $post->id.'id' }}">
         <div class="well post clearfix">
           <div class="col-md-2">
-            <img src="{{ $post->owner->avatar }}" alt="avatar" class="img-rounded avatar">
+            <img src="{{ $post->avatar }}" alt="avatar" class="img-rounded avatar">
+            <button class="btn btn-default btn-sm btn-post pull-" data-toggle="modal" data-target="#{{{ $post->id.'modal' }}}">Open Team</button>
+
           </div>
           <div class="col-md-10">
             <div class="row">
               <div class="col-md-9">
-                <h2><a href="#" data-toggle="modal" data-target="#{{{ $post->id.'modal' }}}">{{ $post->owner->username }}</a></h2>
+                <h2><a href="#" data-toggle="modal" data-target="#{{{ $post->id.'modal' }}}">{{ $post->name }}</a></h2>
                 @if( $post->region )
-                <p class="region">{{{ $post->region->name }}}</p> - 
+                <p class="region">{{{ $post->region->name }}} - 
                 @endif
                 @if( strtotime($post->created_at) < strtotime('yesterday') )
                   {{{ date("m/d/y", strtotime( $post->created_at )) }}}
                 @else
-                  {{{ "Today at " . date("g:i A", strtotime( $post->created_at )) }}}
+                  {{{ "Today at " . date("g:i A", strtotime( $post->created_at )) }}}</p>
                 @endif
               </div>
               <div class="col-md-3 text-right rating">
-                @if ( $post->postcomments->count() != 0 )
-                  <span>{{{ $post->postcomments->count() }}}</span><span class="glyphicon glyphicon-comment"></span>
+                @if ( count($post->postcomments) != 0 )
+                  <span>{{{ count($post->postcomments). " " }}}</span><span class="glyphicon glyphicon-comment"></span>
                 @endif
               </div>
             </div><!-- ./top-row -->
-            <button class="btn btn-default btn-sm btn-post pull-right" data-toggle="modal" data-target="#{{{ $post->id.'modal' }}}">Open Team</button>
+            <div class="row">
+              <div class="col-md-5">
+                <p><strong>Type of Team</strong></p>
+                @if( $post->lookingfors )
+                  <ul>
+                    @foreach ($post->lookingfors as $lookingfor)
+                      <li>{{ $lookingfor->name }}</li>
+                    @endforeach
+                  </ul>
+                @endif
+              </div>
+              <div class="col-md-7">
+                <p class="text-center"><strong>Looking for</strong></p>
+                @if( $post->playstyles )
+                  @foreach($post->playstyles as $playstyle)
+                    <div class="roles text-center">
+                    <img src="{{ asset($playstyle->img) }}"  class="role-icons" alt="...">
+                      <div class="caption">
+                        <small>{{ $playstyle->name }}</small>
+                      </div>
+                    </div>
+                  @endforeach
+                @endif
+              </div>
+            </div><!-- ./mid row -->
+            <div class="row">
+            </div><!-- ./bottom row -->
           </div>
         </div>
       </div>

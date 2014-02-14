@@ -16,19 +16,21 @@ extends Eloquent
    * @var array
    */
   public static $teampostRules = array(
-    'region'        =>  'required',
+    'teamname'      =>  'required',
+    'teamwebsite'   =>  'url',
+    'steamgroup'    =>  'url',
+    'teamavatar'    =>  'url',
+    'region'        =>  '',
     'info'          =>  'required',
     'lookingfors'   =>  'required|between:1,4',
-    'playstyles'    =>  'required|between:1,3',
-    'website'       =>  'url',
-    'steamgroup'    =>  'url'
+    'playstyles'    =>  'required|between:1,3'
   );
   public static $errorMessages = array(
     'between'     =>  'You must choose between :min - :max choices for :attribute'
   );
 
 
-  public function owner()
+  public function user()
   {
     return $this->belongsTo('User');
   }
@@ -47,8 +49,9 @@ extends Eloquent
   {
     return $this->belongsToMany('Lookingfor');
   }
-  public function postcomments()
+  
+  public function teampostcomments()
   {
-    return $this->hasMany('PostComment');
+    return $this->hasMany('Teampostcomment');
   }
 }

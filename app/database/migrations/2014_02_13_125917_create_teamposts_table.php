@@ -20,7 +20,7 @@ class CreateTeampostsTable extends Migration {
 				->index();
 			$table->string('avatar')
 				->default('/img/teamposts/default.png');
-			$table->bigInteger('owner_id')
+			$table->bigInteger('user_id')
 				->unsigned();
 			$table->integer('region_id')
 				->unsigned();

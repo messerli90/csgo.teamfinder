@@ -17,7 +17,7 @@ class TeampostController extends \BaseController {
 	 */
 	public function index()
 	{
-		$teamposts = Teampost::with('owner', 'region', 'playstyles', 'lookingfors', 'postcomments')->orderBy('id', 'DESC')->paginate(10);
+		$teamposts = Teampost::with('user', 'region', 'playstyles', 'lookingfors', 'teampostcomments')->orderBy('id', 'DESC')->paginate(10);
 		return View::make('teamposts/index', compact('teamposts'));
 	}
 
@@ -27,8 +27,24 @@ class TeampostController extends \BaseController {
 	 * @return Response
 	 */
 	public function create()
-	{
-		//
+	{		
+		// Check if user is authenticated
+		if (Auth::user())
+		{
+			// Get info
+			$user = Auth::user();
+			$lookingfors = Lookingfor::all();
+			$playstyles = Playstyle::all();
+			$region_options = Region::lists('name', 'id');
+			$skill_options = Skill::lists('name', 'id');
+			
+			// Bring to posts/create View with user details
+			return View::make('teamposts/create', compact('user', 'lookingfors', 'playstyles', 'region_options', 'skill_options'));
+
+		} else {
+			// If not authenticated bring to register view
+			return Redirect::action('TeampostController@index')->with('message', 'You must be logged in to make a post');
+		}
 	}
 
 	/**
@@ -38,7 +54,44 @@ class TeampostController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// Pass all input from posts/create to validator with postRules from Post Model
+		$validator = Validator::make(Input::all(), Teampost::$teampostRules, Post::$errorMessages);
+
+		// Check if validator passes
+		if($validator->fails()) 
+		{
+			// Redirect back to users/create with errors
+			return Redirect::route('teamposts.create')->withErrors($validator)->withInput();
+		} else {
+			if (Auth::check()) {
+				// Get user
+				$user = Auth::user();
+			}
+
+			// Make new Teampost
+			$teampost = new Teampost;
+
+			// Associate User to Post
+			$teampost = $user->teamposts()->save($teampost);
+
+			// Get inputs
+			$teampost->name 				= Input::get('teamname');
+			$teampost->avatar 			= Input::get('teamavatar');
+			$teampost->language 		= Input::get('language');
+			$teampost->website			= Input::get('teamwebsite');
+			$teampost->steamgroup		= Input::get('steamgroup');
+			$teampost->region_id		= Input::get('region_id');
+			$teampost->skill_id			= Input::get('skill_id');
+			$teampost->league				= Input::get('league');
+			$playstyles					= Input::get('playstyles');
+				$teampost->playstyles()->sync($playstyles);
+			$lookingfors				= Input::get('lookingfors');
+				$teampost->lookingfors()->sync($lookingfors);
+
+			$teampost->save();
+
+			return Redirect::to_route('teamposts.index')->with('message', 'Post added');
+		}
 	}
 
 	/**
