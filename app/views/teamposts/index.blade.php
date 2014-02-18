@@ -22,11 +22,9 @@
     @else
     @foreach($teamposts as $post)
       <div class="col-md-12" id="{{ $post->id.'id' }}">
-        <div class="well post clearfix">
+        <div class="well post clearfix row">
           <div class="col-md-2">
             <img src="{{ $post->avatar }}" alt="avatar" class="img-rounded avatar">
-            <button class="btn btn-default btn-sm btn-post pull-" data-toggle="modal" data-target="#{{{ $post->id.'modal' }}}">Open Team</button>
-
           </div>
           <div class="col-md-10">
             <div class="row">
@@ -72,12 +70,18 @@
                 @endif
               </div>
             </div><!-- ./mid row -->
-            <div class="row">
-            </div><!-- ./bottom row -->
           </div>
+          <div class="col-md-12">
+            <button class="btn btn-default btn-sm btn-post pull-left" data-toggle="modal" data-target="#{{{ $post->id.'modal' }}}">Open Team</button>
+          </div><!-- ./bottom row -->
         </div>
       </div>
     @endforeach
+
+    <!-- Pagination -->
+    <div class="col-md-6 col-md-offset-4 clearfix">
+      {{ $teamposts->links() }}     
+    </div>
     @endif
   </div>
 </div>

@@ -59,12 +59,11 @@ img.rank-sm {
 
 
 .jumbotron h1 {
-  text-align: center;
   font-size: 45px;
   text-align: right;
 }
 .jumbotron p {
-  text-align: center;
+  text-align: right;
 }
 
 .navbar-btn {
@@ -76,13 +75,13 @@ img.serviceLink {
 }
 
 
-
 /****************************
 ****** Profile 
 *****************************/
 
 .panel, .jumbotron {
   background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
+  color: #ccc;
   border: 1px solid #333;
   -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
           box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
@@ -198,6 +197,13 @@ img.serviceLink {
   padding: 0;
 }
 
+.pagination>.active>span {
+  background-color: #1a1a1a;
+  border-color: #111;
+}
+.pagination a {
+  color: #1a1a1a;
+}
 /****************************
 ****** Footer 
 *****************************/

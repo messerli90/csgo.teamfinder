@@ -67,9 +67,9 @@
           {{ Form::label('lookingfor[]', 'What does your team play? *', ['class' => 'col-sm-4 control-label']) }}
           <div class="col-sm-6">
             @foreach($lookingfors as $lookingfor)
-            <div class="radio">
+            <div class="checkbox">
               <label>
-                {{ Form::radio('lookingfors[]', $lookingfor->id) }}
+                {{ Form::checkbox('lookingfors[]', $lookingfor->id) }}
                 <span class="col-sm-12">{{ $lookingfor->name }}</span>
               </label>
             </div>
