@@ -7,7 +7,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="{{ url('/') }}">CS:GO Team Finder <sup class="alpha">Beta</sup></a>
+    <a class="navbar-brand" href="{{ url('/') }}">CS:GO Team Finder</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -15,7 +15,7 @@
     <ul class="nav navbar-nav">
       <li {{(Request::is('/') ? 'class="active"' : '')}}><a href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span></a></li>
       <li {{(Request::is('posts') ? 'class="active"' : '')}}><a href="{{ action('PostController@index') }}">Browse Players</a></li>
-      <!--<li><a href="#">Find Team</a></li>-->
+      <li {{(Request::is('teamposts') ? 'class="active"' : '')}}><a href="{{ action('TeampostController@index') }}">Find Team <sup class="alpha">Beta</sup></a></li>
       <li {{(Request::is('about') ? 'class="active"' : '')}}><a href="{{ url('/about/') }}">About</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

@@ -222,7 +222,7 @@
 			
 		</div>
 	</div>
-	<div class="col-md-12 clearfix">
+	<div class="col-md-6 col-md-offset-4 clearfix">
 		{{ $posts->links() }}			
 	</div>
 	@endif
