@@ -77,20 +77,21 @@ class TeampostController extends \BaseController {
 			// Get inputs
 			$teampost->name 				= Input::get('teamname');
 			$teampost->avatar 			= Input::get('teamavatar');
-			$teampost->language 		= Input::get('language');
 			$teampost->website			= Input::get('teamwebsite');
 			$teampost->steamgroup		= Input::get('steamgroup');
 			$teampost->region_id		= Input::get('region_id');
 			$teampost->skill_id			= Input::get('skill_id');
+			$teampost->language 		= Input::get('language');
 			$teampost->league				= Input::get('league');
-			$playstyles					= Input::get('playstyles');
+			$teampost->info 				= Input::get('info');
+			$playstyles							= Input::get('playstyles');
 				$teampost->playstyles()->sync($playstyles);
-			$lookingfors				= Input::get('lookingfors');
+			$lookingfors						= Input::get('lookingfors');
 				$teampost->lookingfors()->sync($lookingfors);
 
 			$teampost->save();
 
-			return Redirect::to_route('teamposts.index')->with('message', 'Post added');
+			return Redirect::route('teamposts.index')->with('message', 'Post added');
 		}
 	}
 
@@ -113,7 +114,23 @@ class TeampostController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		// Get authenticated user
+		$user = Auth::user();
+
+		// Get post
+		$post = Teampost::find($id);
+		$lookingfors = Lookingfor::all();
+		$playstyles = Playstyle::all();
+		$region_options = Region::lists('name', 'id');
+		$skill_options = Skill::lists('name', 'id');
+
+
+		if (Auth::user()) {
+			if ($user->id == $post->user->id) {
+				return View::make('teamposts/edit', compact('user', 'post', 'lookingfors', 'playstyles', 'region_options', 'skill_options'));
+			}
+		} return Redirect::route('teamposts.index')->with('message', 'You can only edit your own post');
+		return Redirect::route('teamposts.index')->with('message', 'You must be logged in to edit a post');
 	}
 
 	/**
@@ -124,7 +141,42 @@ class TeampostController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$validator = Validator::make(Input::all(), Teampost::$teampostRules, Teampost::$errorMessages);
+
+		// Check if validator passes
+		if($validator->fails()) 
+		{
+			// Redirect back to users/create with errors
+			return Redirect::route('teamposts.edit', [$id])->withErrors($validator)->withInput();
+		} else {
+			// Get user
+			$user = Auth::user();
+
+			// Get Post
+			$post = Teampost::find($id);
+			
+			// Associate User to Post
+			$post = $user->teamposts()->save($post);
+			
+			// Get inputs
+			$post->name 				= Input::get('teamname');
+			$post->avatar 			= Input::get('teamavatar');
+			$post->website			= Input::get('teamwebsite');
+			$post->steamgroup		= Input::get('steamgroup');
+			$post->region_id		= Input::get('region_id');
+			$post->skill_id			= Input::get('skill_id');
+			$post->language 		= Input::get('language');
+			$post->league				= Input::get('league');
+			$post->info 				= Input::get('info');
+			$playstyles							= Input::get('playstyles');
+				$post->playstyles()->sync($playstyles);
+			$lookingfors						= Input::get('lookingfors');
+				$post->lookingfors()->sync($lookingfors);
+
+			$post->save();
+
+			return Redirect::to(route('teamposts.index').'#'.$post->id.'id');
+		}
 	}
 
 	/**
@@ -135,7 +187,9 @@ class TeampostController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Teampost::destroy($id);
+
+		return Redirect::route('teamposts.index')->with('message', 'Successfully deleted post');
 	}
 
 }

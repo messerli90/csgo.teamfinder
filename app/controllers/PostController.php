@@ -149,7 +149,7 @@ class PostController extends \BaseController {
 		if($validator->fails()) 
 		{
 			// Redirect back to users/create with errors
-			return Redirect::route('posts.edit', [$id])->withErrors($validator);
+			return Redirect::route('posts.edit', [$id])->withErrors($validator)->withInput();
 		} else {
 			// Get user
 			$user = Auth::user();

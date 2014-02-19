@@ -72,6 +72,14 @@
             </div><!-- ./mid row -->
           </div>
           <div class="col-md-12">
+            @if(Auth::check())
+              @if(Auth::user()->id == $post->user->id)
+                {{ Form::open(['action' => ['TeampostController@destroy', $post->id], 'method' => 'DELETE']) }}
+                {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm btn-post pull-right']) }}
+                {{ Form::close() }}
+                <a type="button" href="{{ action('TeampostController@edit', [$post->id]) }}" class="btn btn-sm btn-default btn-post pull-right">Edit</a>
+              @endif
+            @endif
             <button class="btn btn-default btn-sm btn-post pull-left" data-toggle="modal" data-target="#{{{ $post->id.'modal' }}}">Open Team</button>
           </div><!-- ./bottom row -->
         </div>
