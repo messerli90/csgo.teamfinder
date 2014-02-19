@@ -17,6 +17,7 @@
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('dist/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/layout.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/custstrap.css') }}">
 
 	<!-- Google -->
 	<script>

@@ -18,7 +18,7 @@
       <li {{(Request::is('teamposts') ? 'class="active"' : '')}}><a href="{{ action('TeampostController@index') }}">Find Team <sup class="alpha">Beta</sup></a></li>
       <li {{(Request::is('about') ? 'class="active"' : '')}}><a href="{{ url('/about/') }}">About</a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right steamlogin">
       @if (!Auth::check())
         <li><a href="{{ action('UserController@login') }}"><img src="http://cdn.steamcommunity.com/public/images/signinthroughsteam/sits_small.png" /></a></li>
       @else

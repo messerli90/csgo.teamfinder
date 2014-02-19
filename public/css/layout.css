@@ -1,31 +1,59 @@
-/*****************
-******************
+/**********************************************************
+***********************************************************
 **
-** Project: CSGOTeamFinder.com
-** Author : Michael Messerli
-** Version: 2
+** Project      : CSGOTeamFinder.com
+** File         : layout.css
+** Description  : Custom Stylesheet for overall design
+** Author       : Michael Messerli
+** Version      : 2
+** Website      : http://csgoteamfinder.com
 **
-******************
-*****************/
+***********************************************************
+
+Color Scheme:
+1A2B3C - Blue
+7D0CE8 - Purple
+FF0000 - Red
+E8850C - Orange
+FFF10D - Yellow
+353535 - Gray
+0C0C0C - Dark Gray
+
+**********************************************************/
 
 
-
+/**********************************************************
+***** Basics **********************************************
+**********************************************************/
 
 html,
 body {
   height: 100%;
-  background-image: url('../img/bg/wg_dark_subtle_backgrounds_2.jpg');
+  background-color: #1A2B3C;
   background-attachment: fixed;
+  color: #ccc;
+
 }
 
 
-
-
 .alpha {
-	color: red;
-	font-variant: small-caps;
-	font-size: 13px; 
-	font-style: italic;
+  color: red;
+  font-variant: small-caps;
+  font-size: 13px; 
+  font-style: italic;
+}
+
+/**********************************************************
+***** Typography ******************************************
+**********************************************************/
+
+a {
+  color: #E8850C;
+}
+
+a:hover{
+  color: #1A2B3C;
+  text-decoration: none;
 }
 
 .good {
@@ -40,14 +68,40 @@ body {
   text-decoration: line-through;
 }
 
-img.rank {
-  height: 40px;
-  margin: 0;
+.small-caps {
+  font-variant: small-caps;
 }
-img.rank-sm {
-  height: 35px;
-  margin: 0 0 5px 10px;
-  padding: 5px 0;
+
+.filter h2 {
+  margin: 5px;
+  margin-top: 0;
+}
+
+/**********************************************************
+***** Bootstrap Components ********************************
+**********************************************************/
+.well, .panel, .jumbotron {
+  background-color: #353535;
+  border: 0px solid #333;
+  -webkit-box-shadow  : inset -1px -1px 1px rgba(24, 24, 24, .5);
+          box-shadow  : inset -1px -1px 1px rgba(24, 24, 24, .5);
+}
+
+.jumbotron h1 {
+  text-align: center;
+  font-size: 45px;
+}
+.jumbotron p {
+  text-align: center;
+}
+
+.navbar-btn {
+  margin-right: 5px;
+}
+
+
+.steamlogin {
+  margin: -2px;
 }
 
 .vote_thumbs {
@@ -56,154 +110,57 @@ img.rank-sm {
   bottom: 30px; 
 }
 
-
-
-.jumbotron h1 {
-  font-size: 45px;
-}
-.jumbotron p {
-  text-align: right;
-}
-
-.navbar-btn {
-  margin-right: 5px;
-}
-
 img.serviceLink {
   height: 30px;
 }
 
-
-/****************************
-****** Profile 
-*****************************/
-
-.panel, .jumbotron {
-  background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
-  color: #ccc;
-  border: 1px solid #333;
-  color: #ccc;
-  -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
-          box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+.ads {
+  height: 600px;
 }
+
+/**********************************************************
+***** Profiles ********************************************
+**********************************************************/
+
 
 .status_select {
 }
 
 
-/****************************
-****** Posts 
-*****************************/
-.well {
-  color: #ccc;
-  background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
-  background-color: #1a1a1a;
-  border: 1px solid #333;
-  -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
-          box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+/**********************************************************
+***** Posts ***********************************************
+**********************************************************/
+.post.well {
+  -webkit-box-shadow  : inset 0 -35px 0px rgba(12, 12, 12, .5);
+          box-shadow  : inset 0 -35px 0px rgba(12, 12, 12, .5);
 }
 
-.filter h2 {
-  margin: 5px;
-  margin-top: 0;
+.post .bottom {
+  margin-top: -10px;
+  margin-bottom: -10px;
 }
 
-.post {
-  color: #ccc;
+.post .comments {
+  margin-left: 10px;
 }
 
-.post a {
-  text-decoration: none;
+.post a.comments:hover {
+  color: #E8850C;
+  text-decoration: underline;
 }
 
-.btn-post{
-  margin-right: 5px;
+.post .region {
+  font-variant: small-caps;
+  margin-left: 20px;
 }
 
-.post h2 {
-  text-align: left;
+.post h2{
   margin: 0;
-  font-size: 30px;  
-  color: #fff;
+  color: #E8850C;
+
 }
 
-.post .lookingfor {
-}
 
-.post .rating {
-  font-size: 20px;
-}
-
-.post .rank {
-  margin: 0px 0px;
-  margin-top: 10px; 
-  vertical-align: bottom;
-}
-
-.post img.rank {
-  width: 100px;
-}
-
-.post .playstyle {
-  margin: 2px 3px;
-}
-
-.post li {
-  font-size: 12px;
-}
-
-.comment:nth-child(odd) {
-}
-
-.post .roles {
-  float: right;
-  margin: 0 10px;
-}
-
-.post img.role-icons {
-  width: 40px;
-}
-
-.post img.avatar {
-  width: 85px;
-}
-.modal-header img.avatar {
-  width: 65px;
-}
-
-.comments {
-  background-color: #222;
-  margin-top: 30px;
-}
-
-.modal-content, .modal-body {
-  background-color: #1a1a1a;
-}
-
-.modal-header, .modal-footer {
-  background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
-  background-color: #111;
-}
-.modal-header {
-  padding-bottom: 2px;
-}
-.modal-header h4 {
-  font-size: 24px;
-  margin: 0;
-  padding: 0;
-}
-.modal-header p {
-  margin: 0;
-  padding: 0;
-}
-
-.pagination>.active>span {
-  background-color: #1a1a1a;
-  border-color: #111;
-}
-.pagination a {
-  color: #1a1a1a;
-}
 /****************************
 ****** Footer 
 *****************************/

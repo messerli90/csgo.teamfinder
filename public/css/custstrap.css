@@ -1,0 +1,113 @@
+/**********************************************************
+***********************************************************
+**
+** Project      : CSGOTeamFinder.com
+** File         : custstrap.css
+** Description  : Twitter Bootstrap changes for design
+** Author       : Michael Messerli
+** Version      : 2
+** Website      : http://csgoteamfinder.com
+**
+***********************************************************
+
+Color Scheme:
+1A2B3C - Blue
+7D0CE8 - Purple
+FF0000 - Red
+E8850C - Orange
+FFF10D - Yellow
+656565 - Gray
+404040 - Dark Gray
+
+**********************************************************/
+
+
+/**********************************************************
+***** Navbar **********************************************
+**********************************************************/
+.navbar-inverse {
+  background-color: #353535;
+  border-color: #303030;
+}
+.navbar-inverse .navbar-brand {
+  color: #fff;
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: #fff;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-text {
+  color: #fff;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #0C0C0C;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #fff;
+  background-color: #0C0C0C;
+}
+.navbar-inverse .navbar-nav > .disabled > a,
+.navbar-inverse .navbar-nav > .disabled > a:hover,
+.navbar-inverse .navbar-nav > .disabled > a:focus {
+  color: #444;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-toggle {
+  border-color: #333;
+}
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: #333;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border-color: #101010;
+}
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  color: #fff;
+  background-color: #080808;
+}
+
+
+/**********************************************************
+***** Pagination ******************************************
+**********************************************************/
+.pagination>.active>span {
+  background-color: #353535;
+  border-color: #303030;
+}
+
+.pagination a {
+  color: #333;
+}
+
+
+
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #1A2B3C;
+  border-color: #0A1B2C;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #0A1B2C;
+  border-color: #0A1B2C;
+}

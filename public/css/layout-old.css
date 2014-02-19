@@ -1,0 +1,243 @@
+/*****************
+******************
+**
+** Project: CSGOTeamFinder.com
+** Author : Michael Messerli
+** Version: 2
+**
+******************
+*****************/
+
+
+
+
+html,
+body {
+  height: 100%;
+  background-image: url('../img/bg/wg_dark_subtle_backgrounds_2.jpg');
+  background-attachment: fixed;
+}
+
+
+
+
+.alpha {
+	color: red;
+	font-variant: small-caps;
+	font-size: 13px; 
+	font-style: italic;
+}
+
+.good {
+  color: green;
+}
+
+.bad {
+  color: red;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+img.rank {
+  height: 40px;
+  margin: 0;
+}
+img.rank-sm {
+  height: 35px;
+  margin: 0 0 5px 10px;
+  padding: 5px 0;
+}
+
+.vote_thumbs {
+  margin: 0 10px;
+  position: relative;
+  bottom: 30px; 
+}
+
+
+
+.jumbotron h1 {
+  font-size: 45px;
+}
+.jumbotron p {
+  text-align: right;
+}
+
+.navbar-btn {
+  margin-right: 5px;
+}
+
+img.serviceLink {
+  height: 30px;
+}
+
+
+/****************************
+****** Profile 
+*****************************/
+
+.panel, .jumbotron {
+  background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
+  color: #ccc;
+  border: 1px solid #333;
+  color: #ccc;
+  -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+          box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+}
+
+.status_select {
+}
+
+
+/****************************
+****** Posts 
+*****************************/
+.well {
+  color: #ccc;
+  background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  -webkit-box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+          box-shadow: inset -1px 1px 3px rgba(200, 200, 255, 0.15);
+}
+
+.filter h2 {
+  margin: 5px;
+  margin-top: 0;
+}
+
+.post {
+  color: #ccc;
+}
+
+.post a {
+  text-decoration: none;
+}
+
+.btn-post{
+  margin-right: 5px;
+}
+
+.post h2 {
+  text-align: left;
+  margin: 0;
+  font-size: 30px;  
+  color: #fff;
+}
+
+.post .lookingfor {
+}
+
+.post .rating {
+  font-size: 20px;
+}
+
+.post .rank {
+  margin: 0px 0px;
+  margin-top: 10px; 
+  vertical-align: bottom;
+}
+
+.post img.rank {
+  width: 100px;
+}
+
+.post .playstyle {
+  margin: 2px 3px;
+}
+
+.post li {
+  font-size: 12px;
+}
+
+.comment:nth-child(odd) {
+}
+
+.post .roles {
+  float: right;
+  margin: 0 10px;
+}
+
+.post img.role-icons {
+  width: 40px;
+}
+
+.post img.avatar {
+  width: 85px;
+}
+.modal-header img.avatar {
+  width: 65px;
+}
+
+.comments {
+  background-color: #222;
+  margin-top: 30px;
+}
+
+.modal-content, .modal-body {
+  background-color: #1a1a1a;
+}
+
+.modal-header, .modal-footer {
+  background-image: url('../img/bg/wg_dark_subtle_backgrounds_8.jpg');
+  background-color: #111;
+}
+.modal-header {
+  padding-bottom: 2px;
+}
+.modal-header h4 {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+.modal-header p {
+  margin: 0;
+  padding: 0;
+}
+
+.pagination>.active>span {
+  background-color: #1a1a1a;
+  border-color: #111;
+}
+.pagination a {
+  color: #1a1a1a;
+}
+/****************************
+****** Footer 
+*****************************/
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -39px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 40px 0px;
+  background-color: #1a1a1a;
+  font-size: 12px;
+  color: #ccc;
+}
+
+.container {
+  width: auto;
+  max-width: 1200px;
+  padding: 0 15px;
+}
+.container .credit {
+  margin:11px auto;
+  font-variant: small-caps;
+}
