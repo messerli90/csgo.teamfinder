@@ -53,7 +53,7 @@
 <div class="col-md-9 col-md-offset-3" id="comments">
 	<h3>Comments</h3>
 	<div class="well">
-			@if($post->postcomments)
+			@if(count($post->postcomments) > 0)
 			<table class="table">
 					@foreach($post->postcomments as $postcomment)
 					<tr>

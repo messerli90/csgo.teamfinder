@@ -205,14 +205,14 @@ class PostController extends \BaseController {
 			$comment->comment 	= Input::get('comment');
 			$comment->save();
 
-			return Redirect::to(route('posts.index').'#'.$post->id.'id');
+			return Redirect::route('posts.show', [$id]);
 
 			// Store Inputs
 
 			// Return to post
 
 		} else {
-			return Redirect::to_route('login');
+			return Redirect::route('posts.show', [$id])->with('message', 'You have to be logged in');
 		}
 	}
 }

@@ -13,9 +13,9 @@
     @if(Auth::check())
       @if(Auth::user()->id == $post->user->id)
         {{ Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'DELETE']) }}
-          {{ Form::submit('Delete Post', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
+          {{ Form::submit('Delete Team', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
         {{ Form::close() }}
-        <a href="{{ action('PostController@edit', [$post->id]) }}" class="btn btn-sm btn-default btn-post pull-right">Edit Post</a>
+        <a href="{{ action('PostController@edit', [$post->id]) }}" class="btn btn-sm btn-default btn-post pull-right">Edit Team</a>
       @else
         <a href="#" class="btn btn-sm btn-default pull-right btn-post"><span class="glyphicon glyphicon-flag"></span> Report Post</a>
       @endif
@@ -36,9 +36,9 @@
 
     <h3 id="comments">Comments</h3>
     <div class="well">
-        @if($post->postcomments)
+        @if(count($post->teampostcomments) > 0)
         <table class="table">
-            @foreach($post->postcomments as $postcomment)
+            @foreach($post->teampostcomments as $postcomment)
             <tr>
               <td>
                 <a href="{{ action('UserController@show', [$postcomment->author_id])}}"> {{{ User::find($postcomment->author_id)->username }}}</a>
@@ -55,7 +55,7 @@
         <div class="col-md-12">
         <hr />
         @if(Auth::check())
-          {{ Form::open(['action' => ['PostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
+          {{ Form::open(['action' => ['TeampostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
             <div class="form-group col-md-12">
               {{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => "Hey, let's you and me get together some time ;)"]) }} 
             </div>
@@ -126,10 +126,6 @@
     </div>
   </div>
 
-
-</div>
-
-<div class="col-md-8">
 
 </div>
 

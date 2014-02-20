@@ -51,7 +51,7 @@
         </div><!-- ./top row -->
         <div class="bottom text-right">
         @if ($post->teampostcomments->count() != 0)
-          <a href="{{ action('PostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ $post->teampostcomments->count() }}} <span class="glyphicon glyphicon-comment"></span></small></a>
+          <a href="{{ action('TeampostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ $post->teampostcomments->count() }}} <span class="glyphicon glyphicon-comment"></span></small></a>
         @endif
         @if(Auth::check())
           @if(Auth::user()->id == $post->user->id)

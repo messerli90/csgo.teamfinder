@@ -199,4 +199,29 @@ class TeampostController extends \BaseController {
 		return Redirect::route('teamposts.index')->with('message', 'Successfully deleted post');
 	}
 
+	public function postComment($id)
+	{
+		// Check if user leaving comment is logged int
+		if(Auth::check()) {
+			// Get post
+			$post = Teampost::find($id);
+
+			// Get inputs and users
+
+			$comment = new TeampostComment;
+			$comment->teampost_id 	= $id;
+			$comment->author_id 		= Auth::user()->id;
+			$comment->comment 			= Input::get('comment');
+			$comment->save();
+
+			return Redirect::route('teamposts.show', [$id]);
+
+
+			// Return to post
+
+		} else {
+			return Redirect::route('teamposts.show', [$id])->with('message', 'You have to be logged in');
+		}
+	}
+
 }

@@ -52,7 +52,7 @@ extends Eloquent
   
   public function teampostcomments()
   {
-    return $this->hasMany('Teampostcomment');
+    return $this->hasMany('TeampostComment');
   }
 
   public function skill()
