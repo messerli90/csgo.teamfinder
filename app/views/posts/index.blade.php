@@ -42,13 +42,15 @@
 		<div class="post well clearfix">
 			<div class="row top">
 				<div class="col-md-2">
-					<a href="{{ action('PostController@show', [$post->id]) }}">
+					<a href="{{ action('PostController@show', [$post->id]) }}#post">
 						<img src="{{ $post->user->avatar }}" alt="{{ $post->user->username . "Avatar" }}" class="img-rounded" width="80" />
 					</a>
 				</div>
 				<div class="col-md-7">
-					<a href="{{ action('PostController@show', [$post->id]) }}"><h2>{{{ $post->user->username }}}</h2></a>
+					<a href="{{ action('PostController@show', [$post->id]) }}#post"><h2>{{{ $post->user->username }}}</h2></a>
+					@if ($post->user->region)
 					<small class="region">{{{ $post->user->region->name }}}</small>
+					@endif
 				</div>
 				<div class="col-md-3 text-right">
 				@if ($post->user->rank->id < 19)
