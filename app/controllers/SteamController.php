@@ -30,7 +30,7 @@ class SteamController extends \BaseController {
 		$steamCommunityId = str_replace( "http://steamcommunity.com/openid/id/", "", $hybridAuthUserProfile->identifier );
 
 		//See if they have a user yet
-		$user = DB::table('steamusers')->where('id', $steamCommunityId)->first();
+		$user = DB::table('users')->where('id', $steamCommunityId)->first();
 		//$user = Steamuser::find($steamCommunityId);
 
 		// Create SteamId Object
