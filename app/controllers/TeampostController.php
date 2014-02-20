@@ -17,8 +17,8 @@ class TeampostController extends \BaseController {
 	 */
 	public function index()
 	{
-		$teamposts = Teampost::with('user', 'region', 'playstyles', 'lookingfors', 'teampostcomments')->orderBy('id', 'DESC')->paginate(10);
-		return View::make('teamposts/index', compact('teamposts'));
+		$posts = Teampost::with('user', 'region', 'playstyles', 'lookingfors', 'teampostcomments')->orderBy('id', 'DESC')->paginate(10);
+		return View::make('teamposts/index', compact('posts'));
 	}
 
 	/**
@@ -103,7 +103,14 @@ class TeampostController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$post = Teampost::find($id);
+
+		// Get users
+		$user = $post->user;
+
+		// Get users ratings
+
+		return View::make('teamposts/show', compact('post','user'));
 	}
 
 	/**

@@ -66,7 +66,6 @@
 					</tr>
 					@endforeach
 			</table>
-				
 			@else
 				<p>This post has no Comments</p>
 			@endif

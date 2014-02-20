@@ -54,4 +54,9 @@ extends Eloquent
   {
     return $this->hasMany('Teampostcomment');
   }
+
+  public function skill()
+  {
+    return $this->belongsTo('Skill');
+  }
 }

@@ -159,6 +159,25 @@ img.serviceLink {
   color: #E8850C;
 
 }
+h5.roles-title {
+  font-size: 10px;
+  margin-top: 0;
+}
+.post .roles {
+  text-align: center;
+  float: right;
+  margin-left: 10px;
+  font-size: 10px;
+}
+
+.post .lookingfor {
+  width: 30px;
+}
+
+.roles .caption {
+  font-size: 9px;
+  text-align: center;
+}
 
 .btn-post {
   margin-right: 10px;
