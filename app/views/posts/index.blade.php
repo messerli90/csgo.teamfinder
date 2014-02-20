@@ -29,9 +29,6 @@
 			<h2>Filters</h2>
 		</div>
 		-->
-		<div class="well">
-			<p><strong>Looking for older posts?</strong> Check out the <a href="http://archive.csgoteamfinder.com">archive</a> to see posts from before the new update.</p>
-		</div>
 	</div>
 	<div class="col-md-7" id="container">
 	@if ($posts->isEmpty())

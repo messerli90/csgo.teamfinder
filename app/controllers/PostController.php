@@ -41,7 +41,7 @@ class PostController extends \BaseController {
 
 		} else {
 			// If not authenticated bring to register view
-			return Redirect::action('HomeController@showWelcome');
+			return Redirect::action('PostController@index')->with('message', 'You must be logged in to make a post');
 		}
 		
 	}
