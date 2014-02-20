@@ -16,7 +16,7 @@
       <a href="{{ action('TeampostController@create') }}" class="btn btn-primary">Add new Team</a>
     </div>
   </div>
-  <div class="col-md-7" id="container">
+  <div class="col-md-9" id="container">
   @if (false)
     <div class="well"><p>Sorry, no posts at this time</p></div>
   @else
@@ -29,7 +29,7 @@
               <img src="{{ $post->avatar }}" alt="{{ $post->name }} logo" class="img-rounded" width="80">
             </a>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-6">
             <a href="{{ action('TeampostController@show', [$post->id]) }}">
               <h2>{{{ $post->name }}}</h2>
             </a>
@@ -37,7 +37,7 @@
               <small class="region">{{{ $post->region->name }}}</small>
             @endif
           </div>
-          <div class="col-md-3 text-right">
+          <div class="col-md-4 text-right">
           <h5 class="small-caps roles-title">Looking for</h5>
           @foreach($post->playstyles as $playstyle)
             <div class="roles">
