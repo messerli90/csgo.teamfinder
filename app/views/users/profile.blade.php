@@ -16,10 +16,10 @@
     <h4>Quick Links</h4>
       <div class="well text-center">
         <p>
-          <a href="http://csgo-stats.com/76561198059359177" target="_blank"><img src="{{ asset('/img/ext_services/csgo-stats_logo.png' )}}" class="serviceLink"></a>
+          <a href="http://csgo-stats.com/{{{ $user->id }}}" target="_blank"><img src="{{ asset('/img/ext_services/csgo-stats_logo.png' )}}" class="serviceLink"></a>
         </p>
         <p>
-          <a href="http://steamcommunity.com/profiles/76561198059359177" target="_blank"><img src="{{ asset('/img/ext_services/steam_logo_150.png' )}}" class="serviceLink img-thumbnail"></a>
+          <a href="http://steamcommunity.com/profiles/{{{ $user->id }}}" target="_blank"><img src="{{ asset('/img/ext_services/steam_logo_150.png' )}}" class="serviceLink img-thumbnail"></a>
         </p>
         @if($user->esea || $user->leetway || $user->altpug)
           @if($user->esea)
