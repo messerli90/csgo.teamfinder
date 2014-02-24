@@ -17,6 +17,9 @@
 			<a href="{{ action('PostController@create') }}" class="btn btn-primary">Add new Post</a>
 		</div>
 		<div class="well">
+
+		</div>
+		<div class="well">
 			<img src="{{ asset('img/ads/mumble.png') }}" alt="mumble logo" class="col-md-4 pull-left" />
 			<h4>Free Mumble Server!</h4>
 				<small>Found someone to play with but don't want to use in game voice? Check out this free to use Mumble server with your new party!</small>
@@ -31,7 +34,7 @@
 		-->
 	</div>
 	<div class="col-md-7" id="container">
-	@if ($posts->isEmpty())
+	@if (count($posts) == 0)
 		<div class="well"><p>Sorry, no posts at this time</p></div>
 	@else
 	@foreach($posts as $post)
@@ -40,26 +43,26 @@
 			<div class="row top">
 				<div class="col-md-2">
 					<a href="{{ action('PostController@show', [$post->id]) }}#post">
-						<img src="{{ $post->user->avatar }}" alt="{{ $post->user->username . "Avatar" }}" class="img-rounded" width="80" />
+						<img src="{{ $post->avatar }}" alt="{{ $post->username . "Avatar" }}" class="img-rounded" width="80" />
 					</a>
 				</div>
 				<div class="col-md-7">
-					<a href="{{ action('PostController@show', [$post->id]) }}#post"><h2>{{{ $post->user->username }}}</h2></a>
-					@if ($post->user->region)
-					<small class="region">{{{ $post->user->region->name }}}</small>
+					<a href="{{ action('PostController@show', [$post->id]) }}#post"><h2>{{{ $post->username }}}</h2></a>
+					@if ($post->region)
+					<small class="region">{{{ $post->region }}}</small>
 					@endif
 				</div>
 				<div class="col-md-3 text-right">
-				@if ($post->user->rank->id < 19)
-					<img src="{{ $post->user->rank->img }}" alt="{{ $post->user->rank->name }}" width="100" />
+				@if ($post->rankID < 19)
+					<img src="{{ $post->rankImage }}" alt="{{ $post->rank }}" width="100" />
 				@else 
 					<p class="small-caps text-center">No Rank</p>
 				@endif
 				</div>
 			</div><!-- ./top row -->
 			<div class="bottom text-right">
-				@if ($post->postcomments->count() != 0)
-					<a href="{{ action('PostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ $post->postcomments->count() }}} <span class="glyphicon glyphicon-comment"></span></small></a>
+				@if (count($post->postcomments) != 0)
+					<a href="{{ action('PostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ count($post->postcomments) }}} <span class="glyphicon glyphicon-comment"></span></small></a>
 				@endif
 			</div>
 		</div>
