@@ -16,9 +16,31 @@
 		<div class="well">
 			<a href="{{ action('PostController@create') }}" class="btn btn-primary">Add new Post</a>
 		</div>
-		<div class="well">
 
+
+		<h4>Filter</h4>
+		<div class="well">
+			{{ Form::open(['action' => 'PostController@postFilter', 'class' => 'form-horizontal']) }}
+				<div class="form-group">
+					<div class="col-sm-11">
+						{{ Form::select('minrank', ['Min Rank', 'Ranks' => $rank_options], 'minrank', ['class' => 'form-control input-sm']) }}
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-11">
+						{{ Form::select('maxrank', ['Max Rank', 'Ranks' => $rank_options], 'maxrank', ['class' => 'form-control input-sm']) }}
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-11">
+						{{ Form::select('region', ['Region Select', 'Regions' => $region_options], 'region', ['class' => 'form-control input-sm']) }}
+					</div>
+				</div>
+				{{ Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+			{{ Form::close() }}
 		</div>
+		
+
 		<div class="well">
 			<img src="{{ asset('img/ads/mumble.png') }}" alt="mumble logo" class="col-md-4 pull-left" />
 			<h4>Free Mumble Server!</h4>
