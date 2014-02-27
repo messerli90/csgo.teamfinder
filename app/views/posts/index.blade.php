@@ -22,21 +22,36 @@
 		<div class="well">
 			{{ Form::open(['action' => 'PostController@postFilter', 'class' => 'form-horizontal']) }}
 				<div class="form-group">
-					<div class="col-sm-11">
-						{{ Form::select('minrank', ['Min Rank', 'Ranks' => $rank_options], 'minrank', ['class' => 'form-control input-sm']) }}
+				{{ Form::label('minrank', 'Minimum Rank', ['class' => 'col-sm-4 small']) }}
+					<div class="col-sm-8">
+						@if (isset($minrank))
+							{{ Form::select('minrank', ['Any', 'Ranks' => $rank_options], $minrank, ['class' => 'form-control input-sm']) }}
+						@else
+						{{ Form::select('minrank', ['Any', 'Ranks' => $rank_options], null, ['class' => 'form-control input-sm']) }}
+						@endif
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-11">
-						{{ Form::select('maxrank', ['Max Rank', 'Ranks' => $rank_options], 'maxrank', ['class' => 'form-control input-sm']) }}
+				{{ Form::label('maxrank', 'Maximum Rank', ['class' => 'col-sm-4 small']) }}
+					<div class="col-sm-8">
+					@if (isset($maxrank))
+						{{ Form::select('maxrank', ['Any', 'Ranks' => $rank_options], $maxrank, ['class' => 'form-control input-sm']) }}
+					@else
+						{{ Form::select('maxrank', ['Any', 'Ranks' => $rank_options], null, ['class' => 'form-control input-sm']) }}
+					@endif
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-11">
-						{{ Form::select('region', ['Region Select', 'Regions' => $region_options], 'region', ['class' => 'form-control input-sm']) }}
+				{{ Form::label('region', 'Region', ['class' => 'col-sm-4 small']) }}
+					<div class="col-sm-8">
+					@if (isset($region))
+						{{ Form::select('region', ['Any', 'Regions' => $region_options], $region, ['class' => 'form-control input-sm']) }}
+					@else 
+						{{ Form::select('region', ['Any', 'Regions' => $region_options], null, ['class' => 'form-control input-sm']) }}
+					@endif
 					</div>
 				</div>
-				{{ Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+				{{ Form::submit('Apply', ['class' => 'btn btn-primary'])}}
 			{{ Form::close() }}
 		</div>
 		

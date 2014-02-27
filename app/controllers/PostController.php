@@ -52,6 +52,9 @@ class PostController extends \BaseController {
 		// For filter
 			$region_options = Region::lists('name', 'id');
 			$rank_options = Rank::lists('name', 'id');
+			$minrank = Input::get('minrank');
+			$maxrank = Input::get('maxrank');
+			$region = Input::get('region');
 
 		// Joins
 		$posts = DB::table('posts')
