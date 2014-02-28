@@ -24,6 +24,10 @@ Route::get('/about', function(){
 Route::get('/about/changelog', function(){
 	return View::make('about/changelog');
 });
+Route::get('/faq', function(){
+  $playstyles = Playstyle::all();
+  return View::make('about/faq', compact('playstyles'));
+});
 
 
 Route::post('/posts/filter', 'PostController@postFilter');
