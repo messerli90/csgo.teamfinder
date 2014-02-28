@@ -15,6 +15,11 @@
     <div class="well">
       <a href="{{ action('TeampostController@create') }}" class="btn btn-primary">Add new Team</a>
     </div>
+    <div class="well">
+      <small>What do these Playstyle icons mean?</small>
+      <br>
+      <small><a href="/faq#playstyles">Check out the FAQ for descriptions</a></small>
+    </div>
   </div>
   <div class="col-md-7" id="container">
   @if (false)
