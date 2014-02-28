@@ -17,8 +17,87 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Post::with('user','lookingfors','playstyles', 'postcomments')->orderBy('id', 'DESC')->paginate(10);
-		return View::make('posts/index', compact('posts'));
+		// For filter
+			$region_options = Region::lists('name', 'id');
+			$rank_options = Rank::lists('name', 'id');
+
+		// Joins
+		$posts = DB::table('posts')
+      ->leftJoin('users', 'posts.user_id', '=', 'users.id')
+      ->leftJoin('ranks', 'users.rank_id', '=', 'ranks.id')
+      ->leftJoin('regions', 'users.region_id', '=', 'regions.id')
+      ->leftJoin('postcomments', 'posts.id', '=', 'postcomments.post_id')
+      ->select('users.username as username',
+      	'users.avatar as avatar',
+      	'posts.id as id',
+        'ranks.name as rank',
+        'ranks.id as rankID',
+        'ranks.img as rankImage',
+        'regions.id as regionid',
+        'regions.name as region',
+        'postcomments.comment as postcomments',
+        'postcomments.author_id as commentauthor'
+      )
+      ->orderBy('id', 'DESC')
+      ->paginate(10);
+
+		//$posts = Post::with('user','lookingfors','playstyles', 'postcomments')->orderBy('id', 'DESC')->paginate(10);
+		return View::make('posts/index', compact('posts', 'region_options', 'rank_options'));
+	}
+
+	public function postFilter()
+	{
+		// For filter
+			$region_options = Region::lists('name', 'id');
+			$rank_options = Rank::lists('name', 'id');
+
+			$minrank = Input::get('minrank');
+			$maxrank = Input::get('maxrank');
+			$region = Input::get('region');
+
+		// Joins
+		$posts = DB::table('posts')
+      ->leftJoin('users', 'posts.user_id', '=', 'users.id')
+      ->leftJoin('ranks', 'users.rank_id', '=', 'ranks.id')
+      ->leftJoin('regions', 'users.region_id', '=', 'regions.id')
+      ->leftJoin('postcomments', 'posts.id', '=', 'postcomments.post_id')
+      ->select('users.username as username',
+      	'users.avatar as avatar',
+      	'posts.id as id',
+        'ranks.name as rank',
+        'ranks.id as rankID',
+        'ranks.img as rankImage',
+        'regions.id as regionid',
+        'regions.name as region',
+        'postcomments.comment as postcomments',
+        'postcomments.author_id as commentauthor'
+      )
+      ->where(function($query)
+    	{
+        if(Input::get('region'))
+          $query->where('regions.id', '=', Input::get('region', null));
+	    })
+	    ->where(function($query)
+	    {
+	    	if(Input::get('minrank'))
+	    	{
+	    		if(Input::get('maxrank'))
+	    		{
+          	$query->whereBetween('ranks.id', array(Input::get('minrank'), Input::get('maxrank')));
+	    		} else
+	    		{
+	    			$query->where('ranks.id', '>=', Input::get('minrank'));
+	    		}
+	    	} 
+	    	elseif (Input::get('maxrank'))
+	    	{
+	    		$query->where('ranks.id', '<=', Input::get('maxrank'));
+	    	}
+	    })
+      ->orderBy('id', 'DESC')
+      ->paginate(10);
+
+		return View::make('posts/index', compact('posts', 'region_options', 'rank_options', 'lookingfor_options', 'minrank', 'maxrank', 'region'));
 	}
 
 	/**

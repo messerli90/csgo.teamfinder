@@ -26,6 +26,7 @@ Route::get('/about/changelog', function(){
 });
 
 
+Route::post('/posts/filter', 'PostController@postFilter');
 Route::resource('users', 'UserController');
 Route::resource('posts', 'PostController');
 Route::resource('teamposts', 'TeampostController');
