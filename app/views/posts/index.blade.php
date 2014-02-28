@@ -16,8 +16,6 @@
 		<div class="well">
 			<a href="{{ action('PostController@create') }}" class="btn btn-primary">Add new Post</a>
 		</div>
-
-
 		<h4>Filter</h4>
 		<div class="well">
 			{{ Form::open(['action' => 'PostController@postFilter', 'class' => 'form-horizontal']) }}
@@ -54,8 +52,6 @@
 				{{ Form::submit('Apply', ['class' => 'btn btn-primary'])}}
 			{{ Form::close() }}
 		</div>
-		
-
 		<div class="well">
 			<img src="{{ asset('img/ads/mumble.png') }}" alt="mumble logo" class="col-md-4 pull-left" />
 			<h4>Free Mumble Server!</h4>
@@ -63,12 +59,6 @@
 				<br><br><small><strong>IP: </strong>csgoreddit.mumble.com</small>
 				<br><small><strong>Port: </strong>5422</small>
 		</div>
-
-		<!-- 
-		<div class="well filter">
-			<h2>Filters</h2>
-		</div>
-		-->
 	</div>
 	<div class="col-md-7" id="container">
 	@if (count($posts) == 0)
@@ -91,7 +81,7 @@
 				</div>
 				<div class="col-md-3 text-right">
 				@if ($post->rankID < 19)
-					<img src="{{ $post->rankImage }}" alt="{{ $post->rank }}" width="100" />
+					<img src="{{ $post->rankImage }}" alt="{{ $post->rank }}" width="100" data-toggle="tooltip" data-placement="bottom" title="{{{ $post->rank }}}" />
 				@else 
 					<p class="small-caps text-center">No Rank</p>
 				@endif
@@ -104,12 +94,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
 	@endforeach
 	</div>
 	<div class="col-md-1 col-md-offset-1">
@@ -122,8 +106,7 @@
 	     data-ad-slot="3658565739"></ins>
 			<script>
 			(adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
-			
+			</script>		
 		</div>
 	</div>
 	<div class="col-md-6 col-md-offset-4 clearfix">
