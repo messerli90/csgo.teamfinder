@@ -37,9 +37,7 @@ class PostController extends \BaseController {
         'regions.name as region',
         'postcomments.comment as postcomments',
         'postcomments.author_id as commentauthor'
-        )
-      //->where('regions.id', '=', 6)
-      //->where('ranks.id', '=', 3)
+      )
       ->orderBy('id', 'DESC')
       ->paginate(10);
 
@@ -52,6 +50,7 @@ class PostController extends \BaseController {
 		// For filter
 			$region_options = Region::lists('name', 'id');
 			$rank_options = Rank::lists('name', 'id');
+
 			$minrank = Input::get('minrank');
 			$maxrank = Input::get('maxrank');
 			$region = Input::get('region');
@@ -72,9 +71,7 @@ class PostController extends \BaseController {
         'regions.name as region',
         'postcomments.comment as postcomments',
         'postcomments.author_id as commentauthor'
-        )
-      //->where('regions.id', '=', 6)
-      //->where('ranks.id', '=', 3)
+      )
       ->where(function($query)
     	{
         if(Input::get('region'))
@@ -100,17 +97,7 @@ class PostController extends \BaseController {
       ->orderBy('id', 'DESC')
       ->paginate(10);
 
-		//$posts = Post::with('user','lookingfors','playstyles', 'postcomments')->orderBy('id', 'DESC')->paginate(10);
-		return View::make('posts/index', compact('posts', 'region_options', 'rank_options', 'minrank', 'maxrank', 'region'));
-	}
-
-	/**
-	 * Show Filter results
-	 *
-	 */
-	public function results()
-	{
-
+		return View::make('posts/index', compact('posts', 'region_options', 'rank_options', 'lookingfor_options', 'minrank', 'maxrank', 'region'));
 	}
 
 	/**
