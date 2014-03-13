@@ -52,7 +52,7 @@ a {
 }
 
 a:hover{
-  color: #1A2B3C;
+  color: #CCC;
   text-decoration: none;
 }
 
@@ -182,6 +182,11 @@ h5.roles-title {
 .btn-post {
   margin-right: 10px;
 }
+
+#comments {
+
+}
+
 /****************************
 ****** Footer 
 *****************************/

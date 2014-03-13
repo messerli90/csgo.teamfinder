@@ -52,38 +52,51 @@
 </div>
 <div class="col-md-9 col-md-offset-3" id="comments">
 	<h3>Comments</h3>
-	<div class="well">
-			@if(count($post->postcomments) > 0)
-			<table class="table">
-					@foreach($post->postcomments as $postcomment)
-					<tr>
-						<td>
-							<a href="{{ action('UserController@show', [$postcomment->author_id])}}"> {{{ User::find($postcomment->author_id)->username }}}</a>
-						</td>
-						<td>
+		@if(count($post->postcomments) > 0)
+			@foreach($post->postcomments as $postcomment)
+				@if($postcomment->author_id == $post->user->id)
+					<div class="col-md-10">
+						<div class="well">
+							<p class="text-right">{{{ $postcomment->comment }}}</p>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >
+							<img src="{{ User::find($postcomment->author_id)->avatar }}" alt="User::find($postcomment->author_id)->username" class="col-md-8 col-md-offset-2">
+						</a>
+						<p class="text-center small-caps"><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >{{{ User::find($postcomment->author_id)->username }}}</a></p>
+					</div>
+				@else
+					<div class="col-md-2 text-center">
+						<a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >
+							<img src="{{ User::find($postcomment->author_id)->avatar }}" alt="User::find($postcomment->author_id)->username" class="col-md-8 col-md-offset-2">
+						</a>
+						<p class="text-center small-caps"><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >{{{ User::find($postcomment->author_id)->username }}}</a></p>
+					</div>
+					<div class="col-md-10">
+						<div class="well">
 							{{{ $postcomment->comment }}}
-						</td>
-					</tr>
-					@endforeach
-			</table>
-			@else
-				<p>This post has no Comments</p>
-			@endif
-			<div class="col-md-12">
-			<hr />
-			@if(Auth::check())
-				{{ Form::open(['action' => ['PostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
-					<div class="form-group col-md-12">
-						{{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => "Hey, let's you and me get together some time ;)"]) }}	
+						</div>
 					</div>
-					<div class="form-group col-md-12">
-						{{ Form::submit('Reply', ['class' => 'btn btn-primary']) }}
-					</div>
-				{{ Form::close() }}
-			@else
-				<a href="{{ route('login') }}">Login to leave a comment</a>
-			@endif
+				@endif
+			@endforeach
+		@else 
+			<p>No comments</p>
+		@endif
+	<div class="col-md-12">
+	<hr />
+	@if(Auth::check())
+		{{ Form::open(['action' => ['PostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
+			<div class="form-group col-md-12">
+				{{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => "Hey, let's you and me get together some time ;)"]) }}	
 			</div>
+			<div class="form-group col-md-12">
+				{{ Form::submit('Reply', ['class' => 'btn btn-primary']) }}
+			</div>
+		{{ Form::close() }}
+	@else
+		<a href="{{ route('login') }}">Login to leave a comment</a>
+	@endif
 	</div>
 </div>
 

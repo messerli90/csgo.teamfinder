@@ -76,7 +76,11 @@ class TeampostController extends \BaseController {
 
 			// Get inputs
 			$teampost->name 				= Input::get('teamname');
-			$teampost->avatar 			= Input::get('teamavatar');
+			if (Input::has('teamavatar')) {
+				$teampost->avatar 		= Input::get('teamavatar');
+			} else {
+				$teampost->avatar 		= "/img/teamposts/default.png";
+			}
 			$teampost->website			= Input::get('teamwebsite');
 			$teampost->steamgroup		= Input::get('steamgroup');
 			$teampost->region_id		= Input::get('region_id');
@@ -167,8 +171,11 @@ class TeampostController extends \BaseController {
 			
 			// Get inputs
 			$post->name 				= Input::get('teamname');
-			$post->avatar 			= Input::get('teamavatar');
-			$post->website			= Input::get('teamwebsite');
+			if (Input::has('teamavatar')) {
+				$teampost->avatar 		= Input::get('teamavatar');
+			} else {
+				$teampost->avatar 		= "/img/teamposts/default.png";
+			}			$post->website			= Input::get('teamwebsite');
 			$post->steamgroup		= Input::get('steamgroup');
 			$post->region_id		= Input::get('region_id');
 			$post->skill_id			= Input::get('skill_id');
