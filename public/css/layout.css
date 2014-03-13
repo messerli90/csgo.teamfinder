@@ -20,7 +20,7 @@ FFF10D - Yellow
 0C0C0C - Dark Gray
 
 **********************************************************/
-
+@import url(http://fonts.googleapis.com/css?family=Audiowide);
 
 /**********************************************************
 ***** Basics **********************************************
@@ -30,9 +30,13 @@ html,
 body {
   height: 100%;
   background-color: #1A2B3C;
+  background: linear-gradient(rgba(26,43,60,1), rgba(11,18,25,1));
+    background: -webkit-linear-gradient(rgba(26,43,60,1), rgba(11,18,25,1));
+    background: -o-linear-gradient(rgba(26,43,60,1), rgba(11,18,25,1));
+    background: -moz-linear-gradient(rgba(26,43,60,1), rgba(11,18,25,1));
   background-attachment: fixed;
   color: #ccc;
-
+  font-family: Arial;
 }
 
 
@@ -77,11 +81,20 @@ a:hover{
   margin-top: 0;
 }
 
+h1,h2,h3,h4 {
+  font-family: 'Audiowide', cursive;
+}
+
 /**********************************************************
 ***** Bootstrap Components ********************************
 **********************************************************/
 .well, .panel, .jumbotron {
   background-color: #353535;
+    background: linear-gradient(rgba(53,53,53,1), rgba(38,38,38,1));
+    background: -webkit-linear-gradient(rgba(53,53,53,1), rgba(38,38,38,1));
+    background: -o-linear-gradient(rgba(53,53,53,1), rgba(38,38,38,1));
+    background: -moz-linear-gradient(rgba(53,53,53,1), rgba(38,38,38,1));
+
   border: 0px solid #333;
   -webkit-box-shadow  : inset -1px -1px 1px rgba(24, 24, 24, .5);
           box-shadow  : inset -1px -1px 1px rgba(24, 24, 24, .5);
@@ -223,4 +236,21 @@ body {
 .container .credit {
   margin:11px auto;
   font-variant: small-caps;
+}
+
+
+
+
+.quicklist {
+  margin: 10px 0;
+  padding: 5px 10px;
+}
+
+.quicklist .region {
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.quicklist .rank {
+  margin: 10px 5px;
 }

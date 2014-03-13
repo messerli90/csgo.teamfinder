@@ -26,7 +26,11 @@
 
   <div class="col-md-8">
     <div class="well clearfix">
-      <img src="{{ $post->avatar }}" alt="{{ $post->name }} logo" class="img-rounded col-md-2">
+      @if ($post->avatar)
+        <img src="{{ $post->avatar }}" alt="{{ $post->name }} logo" class="img-rounded col-md-3">
+      @else 
+        <img src="{{ asset('/img/teamposts/default.png') }}" alt="{{ $post->name }} logo" class="img-rounded col-md-3">
+      @endif
       <h1>{{ $post->name }}</h1>  
       <small class="region">{{ $post->region->name }}</small>
     </div>

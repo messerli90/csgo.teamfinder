@@ -31,7 +31,11 @@
         <div class="row top">
           <div class="col-md-2">
             <a href="{{ action('TeampostController@show', [$post->id]) }}">
-              <img src="{{ $post->avatar }}" alt="{{ $post->name }} logo" class="img-rounded" width="80">
+              @if ($post->avatar)
+                <img src="{{ $post->avatar }}" alt="{{ $post->name }} logo" class="img-rounded" width="80">
+              @else 
+                <img src="{{ asset('/img/teamposts/default.png') }}" alt="{{ $post->name }} logo" class="img-rounded" width="80">
+              @endif
             </a>
           </div>
           <div class="col-md-6">

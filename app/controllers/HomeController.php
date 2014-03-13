@@ -18,7 +18,10 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
 		$count = User::count();
-		return View::make('index', compact('count'));
+
+		$posts = Post::with('user')->orderBy('id', 'DESC')->paginate(5);;
+		$teamposts = Teampost::with('playstyles')->orderBy('id', 'DESC')->paginate(5);;
+		return View::make('index', compact('count', 'posts', 'teamposts'));
 	}
 
 }

@@ -27,9 +27,15 @@ FFF10D - Yellow
 **********************************************************/
 .navbar-inverse {
   background-color: #353535;
+  background: linear-gradient(rgba(53,53,53,1), rgba(38,38,38,1));
+    background: -webkit-linear-gradient(rgba(53,53,53,1), rgba(38,38,38,1));
+    background: -o-linear-gradient(rgba(53,53,53,1), rgba(38,38,38,1));
+    background: -moz-linear-gradient(rgba(53,53,53,1), rgba(38,38,38,1));
   border-color: #303030;
+
 }
 .navbar-inverse .navbar-brand {
+  font-family: 'Audiowide', cursive;
   color: #fff;
 }
 .navbar-inverse .navbar-brand:hover,
