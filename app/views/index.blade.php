@@ -13,8 +13,10 @@
 			@foreach ($posts as $post)
 				<div class="well quicklist clearfix">
 					<img src="{{ $post->user->rank->img }}" alt="{{ $post->user->username }} avatar" class="pull-right rank" width="60px">
-					<small>{{ $post->user->username }}</small>
-					<p class="small-caps region">{{ $post->user->region->name }}</p>
+					<a href="{{ action('PostController@show', [$post->id]) }}"><small>{{ $post->user->username }}</small></a>
+          @if ($post->region)
+						<p class="small-caps region">{{ $post->user->region->name }}</p>
+					@endif
 				</div>
 			@endforeach
 		</div>
@@ -25,7 +27,7 @@
 					@foreach ($teampost->playstyles as $playstyle)
 					<img src="{{ $playstyle->img }}" alt="{{ $playstyle->name }} avatar" class="pull-right rank" width="20px">
 					@endforeach
-					<small>{{ $teampost->name }}</small>
+					<a href="{{ action('TeampostController@show', [$teampost->id]) }}"><small>{{ $teampost->name }}</small></a>
 					<p class="small-caps region">{{ $teampost->region->name }}</p>
 				</div>
 			@endforeach

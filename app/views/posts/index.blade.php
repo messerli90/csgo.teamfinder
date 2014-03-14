@@ -52,6 +52,7 @@
 				{{ Form::submit('Apply', ['class' => 'btn btn-primary'])}}
 			{{ Form::close() }}
 		</div>
+		<h4>Partner Links</h4>
 		<div class="well">
 			<img src="{{ asset('img/ads/mumble.png') }}" alt="mumble logo" class="col-md-4 pull-left" />
 			<h4>Free Mumble Server!</h4>
