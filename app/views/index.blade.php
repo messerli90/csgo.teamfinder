@@ -12,9 +12,13 @@
 			<h3>Newest Posts</h3>
 			@foreach ($posts as $post)
 				<div class="well quicklist clearfix">
-					<img src="{{ $post->user->rank->img }}" alt="{{ $post->user->username }} avatar" class="pull-right rank" width="60px">
+				@if ($post->rankID < 19)
+					<img src="{{ $post->user->rank->img }}" alt="{{ $post->user->rank->name }}" class="pull-right rank" width="60" data-toggle="tooltip" data-placement="bottom" title="{{{ $post->rank }}}" />
+				@else 
+					<p class="small-caps text-center">No Rank</p>
+				@endif
 					<a href="{{ action('PostController@show', [$post->id]) }}"><small>{{ $post->user->username }}</small></a>
-          @if ($post->region)
+          @if ($post->user->region)
 						<p class="small-caps region">{{ $post->user->region->name }}</p>
 					@endif
 				</div>
