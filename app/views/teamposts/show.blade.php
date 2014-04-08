@@ -83,7 +83,7 @@
   <div class="col-md-12">
   <hr />
   @if(Auth::check())
-    {{ Form::open(['action' => ['PostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
+    {{ Form::open(['action' => ['TeampostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
       <div class="form-group col-md-12">
         {{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => "Hey, let's you and me get together some time ;)"]) }} 
       </div>
