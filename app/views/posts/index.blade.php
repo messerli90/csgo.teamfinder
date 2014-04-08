@@ -92,6 +92,9 @@
 				@if (count($post->postcomments) != 0)
 					<a href="{{ action('PostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ count($post->postcomments) }}} <span class="glyphicon glyphicon-comment"></span></small></a>
 				@endif
+				{{ Form::open(['action' => ['ShortlistController@update', $post->userid]] ) }}
+					{{ Form::submit('Add') }}
+				{{ Form::close() }}
 			</div>
 		</div>
 	</div>

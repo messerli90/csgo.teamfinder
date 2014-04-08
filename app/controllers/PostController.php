@@ -28,6 +28,7 @@ class PostController extends \BaseController {
       ->leftJoin('regions', 'users.region_id', '=', 'regions.id')
       ->leftJoin('postcomments', 'posts.id', '=', 'postcomments.post_id')
       ->select('users.username as username',
+      	'users.id as userid',
       	'users.avatar as avatar',
       	'posts.id as id',
         'ranks.name as rank',
