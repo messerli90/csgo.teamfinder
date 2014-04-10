@@ -60,6 +60,20 @@
 				<br><br><small><strong>IP: </strong>csgoreddit.mumble.com</small>
 				<br><small><strong>Port: </strong>5422</small>
 		</div>
+		<h4>Consider Donating</h4>
+		<div class="well">
+		<h5>Help keep CSGOTF alive</h5>
+			<small>If this site has helped you or you just want to help support the development, please consider leaving a small donation.</small>
+			<div class="col-md-6 col-md-offset-3 clearfix donate">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="GDEBVYPPFHHLA">
+				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				</form>
+			</div>
+			<div class="clearfix"></div>
+		</div>
 	</div>
 	<div class="col-md-7" id="container">
 	@if (count($posts) == 0)
@@ -70,12 +84,12 @@
 		<div class="post well clearfix">
 			<div class="row top">
 				<div class="col-md-2">
-					<a href="{{ action('PostController@show', [$post->id]) }}#post">
+					<a href="{{ action('PostController@show', [$post->id]) }}">
 						<img src="{{ $post->avatar }}" alt="{{ $post->username . "Avatar" }}" class="img-rounded" width="80" />
 					</a>
 				</div>
 				<div class="col-md-7">
-					<a href="{{ action('PostController@show', [$post->id]) }}#post"><h2>{{{ $post->username }}}</h2></a>
+					<a href="{{ action('PostController@show', [$post->id]) }}"><h2>{{{ $post->username }}}</h2></a>
 					@if ($post->region)
 					<small class="region">{{{ $post->region }}}</small>
 					@endif
@@ -89,12 +103,20 @@
 				</div>
 			</div><!-- ./top row -->
 			<div class="bottom text-right">
-				@if (count($post->postcomments) != 0)
-					<a href="{{ action('PostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ count($post->postcomments) }}} <span class="glyphicon glyphicon-comment"></span></small></a>
+				@if (count(Post::find($post->id)->postcomments) != 0)
+					<a href="{{ action('PostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ count(Post::find($post->id)->postcomments) }}} <span class="glyphicon glyphicon-comment"></span></small></a>
 				@endif
+				@if (Post::find($post->id)->user->rating > 0)
+             <span class="good">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-up"></span></span>				
+        @elseif (Post::find($post->id)->user->rating < 0)
+             <small><span class="bad">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-down"></span></span></small>				
+        @endif
+
+				<!--
 				{{ Form::open(['action' => ['ShortlistController@update', $post->userid]] ) }}
 					{{ Form::submit('Add') }}
 				{{ Form::close() }}
+				-->
 			</div>
 		</div>
 	</div>
@@ -110,7 +132,7 @@
 	     data-ad-slot="3658565739"></ins>
 			<script>
 			(adsbygoogle = window.adsbygoogle || []).push({});
-			</script>		
+			</script>	
 		</div>
 	</div>
 	<div class="col-md-6 col-md-offset-4 clearfix">

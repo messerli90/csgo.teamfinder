@@ -26,7 +26,6 @@ class PostController extends \BaseController {
       ->leftJoin('users', 'posts.user_id', '=', 'users.id')
       ->leftJoin('ranks', 'users.rank_id', '=', 'ranks.id')
       ->leftJoin('regions', 'users.region_id', '=', 'regions.id')
-      ->leftJoin('postcomments', 'posts.id', '=', 'postcomments.post_id')
       ->select('users.username as username',
       	'users.id as userid',
       	'users.avatar as avatar',
@@ -35,9 +34,7 @@ class PostController extends \BaseController {
         'ranks.id as rankID',
         'ranks.img as rankImage',
         'regions.id as regionid',
-        'regions.name as region',
-        'postcomments.comment as postcomments',
-        'postcomments.author_id as commentauthor'
+        'regions.name as region'
       )
       ->orderBy('id', 'DESC')
       ->paginate(10);
@@ -61,7 +58,6 @@ class PostController extends \BaseController {
       ->leftJoin('users', 'posts.user_id', '=', 'users.id')
       ->leftJoin('ranks', 'users.rank_id', '=', 'ranks.id')
       ->leftJoin('regions', 'users.region_id', '=', 'regions.id')
-      ->leftJoin('postcomments', 'posts.id', '=', 'postcomments.post_id')
       ->select('users.username as username',
       	'users.avatar as avatar',
       	'posts.id as id',
@@ -69,9 +65,7 @@ class PostController extends \BaseController {
         'ranks.id as rankID',
         'ranks.img as rankImage',
         'regions.id as regionid',
-        'regions.name as region',
-        'postcomments.comment as postcomments',
-        'postcomments.author_id as commentauthor'
+        'regions.name as region'
       )
       ->where(function($query)
     	{
