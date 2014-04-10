@@ -112,12 +112,6 @@
         @elseif (Post::find($post->id)->user->rating < 0)
              <small><span class="bad">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-down"></span></span></small>				
         @endif
-
-				<!--
-				{{ Form::open(['action' => ['ShortlistController@update', $post->userid]] ) }}
-					{{ Form::submit('Add') }}
-				{{ Form::close() }}
-				-->
 			</div>
 		</div>
 	</div>
