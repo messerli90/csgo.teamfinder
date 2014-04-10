@@ -108,7 +108,7 @@
 					<a href="{{ action('PostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ count(Post::find($post->id)->postcomments) }}} <span class="glyphicon glyphicon-comment"></span></small></a>
 				@endif
 				@if (Post::find($post->id)->user->rating > 0)
-             <span class="good">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-up"></span></span>				
+             <small><span class="good">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-up"></span></span></small>
         @elseif (Post::find($post->id)->user->rating < 0)
              <small><span class="bad">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-down"></span></span></small>				
         @endif
