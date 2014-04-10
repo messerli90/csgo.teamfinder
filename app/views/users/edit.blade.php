@@ -41,13 +41,6 @@
 @endif
 
 <div class="form-group">
-	{{ Form::label('steam', 'steam', ['class' => 'col-sm-2 control-label']) }}
-	<div class="col-sm-10">
-		{{ Form::text('steam', null, ['class' => 'form-control', 'placeholder' => 'http://steamcommunity.com/id/1337xSc0pe']) }}
-	</div>
-</div>
-
-<div class="form-group">
 	{{ Form::label('rank', 'Rank', ['class' => 'col-sm-2 control-label']) }}
 	<div class="col-sm-10">
 		{{ Form::select('rank', $rank_options, $user->rank_id, ['class' => 'form-control']) }}
