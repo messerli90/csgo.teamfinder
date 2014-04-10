@@ -91,8 +91,9 @@
 				<div class="col-md-7">
 					<a href="{{ action('PostController@show', [$post->id]) }}"><h2>{{{ $post->username }}}</h2></a>
 					@if ($post->region)
-					<small class="region">{{{ $post->region }}}</small>
+					<small class="region">{{{ $post->region }}} - </small>
 					@endif
+					<small>{{{ date("M d", strtotime(Post::find($post->id)->created_at)) }}}</small>
 				</div>
 				<div class="col-md-3 text-right">
 				@if ($post->rankID < 19)
