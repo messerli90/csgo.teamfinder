@@ -101,11 +101,14 @@
             <div class="panel-body">
               <a href="{{ action('UserController@edit', [$user->id]) }}" class="btn btn-success">Edit Profile</a>
               <a href="{{ route('shortlist.index') }}" class="btn btn-default">View Shortlist</a>
-            {{ Form::open(['action' => ['UserController@postStatus', $user->id], 'method' => 'post', 'class' => 'form-inline pull-right']) }}
-              <div class="form-group">
-                {{ Form::select('status', $status_options, $user->status_id, ['class' => 'form-control ']) }}       
-              </div>
-              {{ Form::submit('Change Status', ['class' => 'btn btn-default btn-post']) }}
+              {{ Form::open(['action' => ['UserController@postResync', $user->id], 'method' => 'post', 'class' => 'form-inline pull-right']) }}
+                {{ Form::submit('Resync Profile with Steam', ['class' => 'btn btn-primary']) }}
+              {{ Form::close() }}
+              {{ Form::open(['action' => ['UserController@postStatus', $user->id], 'method' => 'post', 'class' => 'form-inline pull-right']) }}
+                <div class="form-group">
+                  {{ Form::select('status', $status_options, $user->status_id, ['class' => 'form-control ']) }}       
+                </div>
+                {{ Form::submit('Change Status', ['class' => 'btn btn-default btn-post']) }}
             {{ Form::close() }}
             </div>
           </div>

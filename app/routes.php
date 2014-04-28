@@ -27,9 +27,13 @@ Route::get('/about/changelog', function(){
 Route::get('/faq', function(){
   return View::make('about/faq', compact('playstyles'));
 });
+Route::get('/markdown', function(){
+  return View::make('about/markdown');
+});
 
 
 Route::resource('users', 'UserController');
+Route::post('/posts/filter', 'PostController@postFilter');
 Route::resource('posts', 'PostController');
 Route::resource('teamposts', 'TeampostController');
 Route::resource('shortlist', 'ShortlistController');
@@ -37,7 +41,7 @@ Route::get('/steamlogin/{action?}', array('as' => 'login', 'uses' => 'UserContro
 Route::get('/steamlogout', array('as' => 'logout', 'uses' => 'UserController@logout'));
 Route::get('/review/{id}', array('as' => 'review', 'uses' => 'UserController@getReview'));
 Route::post('review/{id}', 'UserController@postReview');
-Route::any('/posts/filter', 'PostController@postFilter');
 Route::post('/posts/{id}', 'PostController@postComment');
 Route::post('/teamposts/{id}', 'TeampostController@postComment');
 Route::post('/users/show/{id}', 'UserController@postStatus');
+Route::post('users/show/{id}', 'UserController@postResync');

@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 class UserController extends \BaseController {
 
@@ -8,7 +8,7 @@ class UserController extends \BaseController {
 	 */
 	public function __construct(Hybrid_Auth $hybridAuth)
     {
-        $this->hybridAuth = $hybridAuth;
+    $this->hybridAuth = $hybridAuth;
 		$this->beforeFilter('csrf', array('on'=>'post'));
 		$this->beforeFilter('guest', array('only'=>'getLogin'));
     }
@@ -251,6 +251,33 @@ class UserController extends \BaseController {
 
 		// Delete user from Database
 		$user->delete();
+	}
+
+	/**
+	 * User Resync
+	 *
+	 */
+
+	public function postResync($id)
+	{
+		try {
+			// Create SteamId Object
+			$steamIdObject = new SteamId( $id );
+
+			echo $steamIdObject->getNickname();
+			// Update Info
+			$user 						= User::find($id);
+			$user->username 	= $steamIdObject->getNickname();
+			$user->avatar 		= $steamIdObject->getFullAvatarUrl();
+			$user->save();
+
+			return Redirect::action('UserController@show', [$user->id])->with('message', 'Profile successfully resynced');
+		} catch (Exception $e) {
+			
+			$user	= User::find($id);
+
+			return Redirect::action('UserController@show', [$user->id])->with('message', 'Something went wrong, try again later');			
+		}
 	}
 
 	/**

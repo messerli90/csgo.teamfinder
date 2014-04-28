@@ -9,7 +9,8 @@
       <h3>Topics</h3>
       <ul class="list-unstyled">
         <li><a href="#newaccount">How do I make an account?</a></li>
-        <li><a href="#ranks">I don't know the name of my rank</a></li>
+        <li><a href="#updateaccount">I changed my name/avatar on Steam but it's not changing here.</a></li>
+        <li><a href="#ranks">I don't know the name of my rank.</a></li>
         <li><a href="#playstyles">What do the different Playstyles mean?</a></li>
         <li><a href="#skill">What do you mean by skill?</a></li>
       </ul>
@@ -21,6 +22,12 @@
           CSGOTeamFinder will save your session and keep you logged in, to manually log out just click on your name and choose 'log out'</small>
         </blockquote>
       <hr>
+      <h4 id="updateaccount">I changed my name/avatar on Steam but it's not changing here.</h4>
+      <blockquote>
+        <small>To update your Username and/or Avatar just logout and back in again.</small>
+        <br>
+        <small><i>This is a temporary fix as I'm in the proccess of making a quick easy update button.</i></small>
+      </blockquote>
       <h4 id="ranks">I don't know the name of my rank.</h4>
         <blockquote>
           Here are the ranks with their respective names:<br /><br />

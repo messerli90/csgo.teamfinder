@@ -36,11 +36,13 @@
 
 		<h4>Goal:</h4>
 		<div class="well">
-			<p>{{{ $post->goal }}}</p>
+			<p>
+				{{ $parsedown->text($post->goal) }}
+			</p>
 		</div>
 		<h4>Contact:</h4>
 		<div class="well">
-			<p>{{{ $post->contact }}}</p>
+			<p>{{ $parsedown->text($post->contact) }}</p>
 		</div>
 	</div>
 	<div class="col-md-6">
@@ -57,7 +59,7 @@
 				@if($postcomment->author_id == $post->user->id)
 					<div class="col-md-10">
 						<div class="well">
-							<p class="text-right">{{{ $postcomment->comment }}}</p>
+							<p class="text-right">{{ $parsedown->text($postcomment->comment) }}</p>
 						</div>
 					</div>
 					<div class="col-md-2">
@@ -75,7 +77,7 @@
 					</div>
 					<div class="col-md-10">
 						<div class="well">
-							{{{ $postcomment->comment }}}
+							{{ $parsedown->text($postcomment->comment) }}
 						</div>
 					</div>
 				@endif
@@ -89,6 +91,7 @@
 		{{ Form::open(['action' => ['PostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
 			<div class="form-group col-md-12">
 				{{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => "Hey, let's you and me get together some time ;)"]) }}	
+				<small><a href="#" onclick="return markdownHelp()">Formatting Help</a></small>
 			</div>
 			<div class="form-group col-md-12">
 				{{ Form::submit('Reply', ['class' => 'btn btn-primary']) }}
@@ -97,6 +100,19 @@
 	@else
 		<a href="{{ route('login') }}">Login to leave a comment</a>
 	@endif
+	</div>
+</div>
+<div class="col-md-8 col-md-offset-3">
+	<div class="well">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- ProfileAd -->
+		<ins class="adsbygoogle"
+		     style="display:inline-block;width:728px;height:90px"
+		     data-ad-client="ca-pub-0223519100876576"
+		     data-ad-slot="9081036934"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
 	</div>
 </div>
 
