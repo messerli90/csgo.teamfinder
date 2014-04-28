@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 class UserController extends \BaseController {
 
@@ -8,7 +8,7 @@ class UserController extends \BaseController {
 	 */
 	public function __construct(Hybrid_Auth $hybridAuth)
     {
-        $this->hybridAuth = $hybridAuth;
+    $this->hybridAuth = $hybridAuth;
 		$this->beforeFilter('csrf', array('on'=>'post'));
 		$this->beforeFilter('guest', array('only'=>'getLogin'));
     }

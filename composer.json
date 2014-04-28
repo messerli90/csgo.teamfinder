@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"hybridauth/hybridauth": "*",
-		"koraktor/steam-condenser": "*"
+		"koraktor/steam-condenser": "*",
+		"erusev/parsedown": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
