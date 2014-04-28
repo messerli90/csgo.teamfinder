@@ -44,7 +44,7 @@
       <small><a href="/faq#playstyles">Check out the FAQ for descriptions</a></small>
     </div>
   </div>
-  <div class="col-md-9" id="container">
+  <div class="col-md-7" id="container">
   @if (false)
     <div class="well"><p>Sorry, no posts at this time</p></div>
   @else
@@ -98,8 +98,20 @@
     </div>
     @endforeach
     </div>
+    <div class="col-md-2">
+      <div class="well">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Sidebar2 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:120px;height:600px"
+             data-ad-client="ca-pub-0223519100876576"
+             data-ad-slot="7604303736"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
   </div>
-
 
     <!-- Pagination -->
     <div class="col-md-6 col-md-offset-4 clearfix">

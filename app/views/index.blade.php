@@ -38,16 +38,16 @@
 		</div>
 	</div>
 	<div class="col-md-4">
-		<h3>What's New</h3>
+		<h3>Features</h3>
 		<div class="well">
-			<p>I try to keep up with all your demands and ideas as much as I can, and I believe the last couple updates have really turned out great! This site is built on the ideas of the community; Some of the things that have been implemented because of you in the last couple weeks are:</p>
+		<p>Just a few things we offer:</p>
 			<ul>
-				<li>Team Posts - For Teams advertising themselves and getting started</li>
+				<li>Player Posts - For single players looking for match making mates or teams</li>
+				<li>Team Posts - For teams looking for players</li>
 				<li>Filters for rank and region</li>
-				<li>Steam Login</li>
+				<li>Steam Login - No need to register</li>
 				<li>Steam Username and Avatar</li>
-				<li>More user-friendly post list</li>
-				<li>Shortlist - Add players to your shortlist to keep track of the ones you're interested in</li>
+				<!--<li>Shortlist - Add players to your shortlist to keep track of the ones you're interested in</li>-->
 				<li>Status - Let people know if you're still looking or have found a team</li>
 			</ul>
 		</div>

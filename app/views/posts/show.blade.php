@@ -102,5 +102,18 @@
 	@endif
 	</div>
 </div>
+<div class="col-md-8 col-md-offset-3">
+	<div class="well">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- ProfileAd -->
+		<ins class="adsbygoogle"
+		     style="display:inline-block;width:728px;height:90px"
+		     data-ad-client="ca-pub-0223519100876576"
+		     data-ad-slot="9081036934"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
+</div>
 
 @stop
