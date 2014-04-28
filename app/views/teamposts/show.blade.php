@@ -37,7 +37,7 @@
 
     <h4>Info</h4>
     <div class="well">
-      <p>{{{ $post->info }}}</p>
+      <p>{{ $parsedown->text($post->info) }}</p>
     </div>
 
     <h3 id="comments">Comments</h3>
@@ -48,7 +48,7 @@
           <div class="row">
             <div class="col-md-10">
               <div class="well">
-                <p class="text-right">{{{ $postcomment->comment }}}</p>
+                <p class="text-right">{{ $parsedown->text($postcomment->comment) }}</p>
               </div>
             </div>
             <div class="col-md-2">
@@ -68,7 +68,7 @@
           </div>
           <div class="col-md-10">
             <div class="well">
-              {{{ $postcomment->comment }}}
+              {{ $parsedown->text($postcomment->comment) }}
             </div>
           </div>
         </div>
@@ -86,6 +86,7 @@
     {{ Form::open(['action' => ['TeampostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
       <div class="form-group col-md-12">
         {{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => "Hey, let's you and me get together some time ;)"]) }} 
+        <small><a href="#" onclick="return markdownHelp()">Formatting Help</a></small>
       </div>
       <div class="form-group col-md-12">
         {{ Form::submit('Reply', ['class' => 'btn btn-primary']) }}

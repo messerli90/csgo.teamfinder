@@ -157,7 +157,7 @@ class PostController extends \BaseController {
 
 			$post->save();
 
-			return Redirect::route('posts.index');
+			return Redirect::action('UserController@show', [$post->user_id]);
 		}
 	}
 
@@ -170,6 +170,7 @@ class PostController extends \BaseController {
 	public function show($id)
 	{
 		$post = Post::find($id);
+		$parsedown = new Parsedown();
 
 		// Get users
 		$user = $post->user;
@@ -184,7 +185,7 @@ class PostController extends \BaseController {
 		// Get users ratings
 		$ratings = Rating::where('user_id', $id)->get();
 
-		return View::make('posts/show', compact('post','user', 'steam_avatar', 'steam_user', 'ratings', 'status_options'));
+		return View::make('posts/show', compact('post','user', 'steam_avatar', 'steam_user', 'ratings', 'status_options', 'parsedown'));
 	}
 
 	/**

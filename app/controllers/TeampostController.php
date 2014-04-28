@@ -108,13 +108,14 @@ class TeampostController extends \BaseController {
 	public function show($id)
 	{
 		$post = Teampost::find($id);
+		$parsedown = new Parsedown();
 
 		// Get users
 		$user = $post->user;
 
 		// Get users ratings
 
-		return View::make('teamposts/show', compact('post','user'));
+		return View::make('teamposts/show', compact('post','user', 'parsedown'));
 	}
 
 	/**

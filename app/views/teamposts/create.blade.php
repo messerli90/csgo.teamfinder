@@ -97,6 +97,7 @@
       {{ Form::label('info', 'Additional Info about your team *', ['class' => 'col-sm-2 control-label']) }}
       <div class="col-sm-8">
         {{ Form::textarea('info', null, ['class' => 'form-control', 'rows' => '6', 'placeholder' => "We play CAL... "]) }}
+        <small><a href="#" onclick="return markdownHelp()">Formatting Help</a></small>
       </div>
     </div>
     <div class="form-group">
