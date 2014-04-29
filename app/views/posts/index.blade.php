@@ -49,6 +49,16 @@
 					@endif
 					</div>
 				</div>
+				<div class="form-group">
+				{{ Form::label('lookingfor', 'Looking for', ['class' => 'col-sm-4 small']) }}
+					<div class="col-sm-8">
+					@if (isset($lookingfor))
+						{{ Form::select('lookingfor', ['Any', 'Game Type' => $lookingfor_options], $lookingfor, ['class' => 'form-control input-sm']) }}
+					@else 
+						{{ Form::select('lookingfor', ['Any', 'Game Type' => $lookingfor_options], null, ['class' => 'form-control input-sm']) }}
+					@endif
+					</div>
+				</div>
 				{{ Form::submit('Apply', ['class' => 'btn btn-primary'])}}
 			{{ Form::close() }}
 		</div>
@@ -108,7 +118,7 @@
 					<a href="{{ action('PostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ count(Post::find($post->id)->postcomments) }}} <span class="glyphicon glyphicon-comment"></span></small></a>
 				@endif
 				@if (Post::find($post->id)->user->rating > 0)
-             <span class="good">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-up"></span></span>				
+             <small><span class="good">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-up"></span></span></small>
         @elseif (Post::find($post->id)->user->rating < 0)
              <small><span class="bad">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-down"></span></span></small>				
         @endif
