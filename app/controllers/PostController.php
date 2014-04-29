@@ -56,12 +56,14 @@ class PostController extends \BaseController {
       $region       = Input::get('region');
       $lookingfor   = Input::get('lookingfor');
 
-    // Joins
+    // Start Query for Filter
     $query = DB::table('posts')
+      // Initial Joins
       ->leftJoin('users', 'posts.user_id', '=', 'users.id')
       ->leftJoin('ranks', 'users.rank_id', '=', 'ranks.id')
       ->leftJoin('regions', 'users.region_id', '=', 'regions.id')
 
+      // Add aliases
       ->select('users.username as username',
         'users.avatar as avatar',
         'posts.id as id',
@@ -71,12 +73,14 @@ class PostController extends \BaseController {
         'regions.id as regionid',
         'regions.name as region'
       )
+
       // Region filter
       ->where(function($query)
       {
         if(Input::get('region'))
           $query->where('regions.id', '=', Input::get('region', null));
       })
+
       // Rank filter
       ->where(function($query)
       {
@@ -96,8 +100,10 @@ class PostController extends \BaseController {
         }
       });
 
+    // IF lookingfor is set add Lookingfor filter
     if (Input::get('lookingfor')) {
       $query->leftJoin('lookingfor_post','posts.id', '=', 'lookingfor_post.post_id')
+      
       // Lookingfor filter
       ->where(function($query)
       {
@@ -108,8 +114,10 @@ class PostController extends \BaseController {
       });
     }
 
+    // Collect Query
     $posts = $query->orderBy('id', 'DESC')->paginate(10);
 
+    //Return results
     return View::make('posts/index', compact('posts', 'region_options', 'rank_options', 'lookingfor_options', 'minrank', 'maxrank', 'region', 'lookingfor'));
   }
 
