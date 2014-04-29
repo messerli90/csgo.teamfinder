@@ -17,8 +17,119 @@ class TeampostController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Teampost::with('user', 'region', 'playstyles', 'lookingfors', 'teampostcomments')->orderBy('id', 'DESC')->paginate(10);
-		return View::make('teamposts/index', compact('posts'));
+		// Option for Filter
+		$region_options 		= Region::lists('name', 'id');
+		$skill_options 			= Skill::lists('name', 'id');
+		$playstyle_options	= Playstyle::lists('name', 'id');
+
+		// Start Query for Filter
+		$teamposts = DB::table('teamposts')
+			// Initial joins
+			->leftJoin('regions', 'teamposts.region_id', '=', 'regions.id')
+			->leftJoin('skills', 'teamposts.skill_id', '=', 'skills.id')
+
+			// Add aliases
+			->select(
+				'teamposts.id as id',
+				'teamposts.name as teamname',
+				'teamposts.avatar as avatar',
+				'regions.id as regionId',
+				'regions.name as region',
+				'skills.id as skillId',
+				'skills.name as skill'
+				)
+			->orderBy('id', 'DESC')
+			->paginate(10);
+
+		// Return results
+		return View::make('teamposts/index', 
+			compact('teamposts', 
+				'region_options', 
+				'skill_options', 
+				'playstyle_options'
+			));
+	}
+
+	public function postFilter()
+	{
+		// Option for Filter
+		$region_options 		= Region::lists('name', 'id');
+		$skill_options 			= Skill::lists('name', 'id');
+		$playstyle_options	= Playstyle::lists('name', 'id');
+
+		// Grab Input
+		$region 			= Input::get('region');
+		$minskill			= Input::get('minskill');
+		$maxskill			= Input::get('maxskill');
+		$playstyle 		= Input::get('playstyle');
+
+		// Start Query for Filter
+		$query = DB::table('teamposts')
+			// Initial joins
+			->leftJoin('regions', 'teamposts.region_id', '=', 'regions.id')
+			->leftJoin('skills', 'teamposts.skill_id', '=', 'skills.id')
+
+			// Add aliases
+			->select(
+				'teamposts.id as id',
+				'teamposts.name as teamname',
+				'teamposts.avatar as avatar',
+				'regions.id as regionId',
+				'regions.name as region',
+				'skills.id as skillId',
+				'skills.name as skill'
+				)
+
+			// Region filter
+      ->where(function($query)
+      {
+        if(Input::get('region'))
+          $query->where('regions.id', '=', Input::get('region', null));
+      })
+
+      // Skill filter
+      ->where(function($query)
+      {
+        if(Input::get('minskill'))
+        {
+          if(Input::get('maxskill'))
+          {
+            $query->whereBetween('skills.id', array(Input::get('minskill'), Input::get('maxskill')));
+          } else
+          {
+            $query->where('skills.id', '>=', Input::get('minskill'));
+          }
+        } 
+        elseif (Input::get('maxskill'))
+        {
+          $query->where('skills.id', '<=', Input::get('maxskill'));
+        }
+      });
+
+      // IF playstyle is set add Playstyle filter
+      if (Input::get('playstyle')) {
+      	// Join playstyle_teampost
+      	$query->leftJoin('playstyle_teampost', 'teamposts.id', '=', 'playstyle_teampost.teampost_id')
+
+      	// Playstyle filter
+      	->where('playstyle_teampost.playstyle_id', '=', Input::get('playstyle'));
+      }
+
+      // Collect Query
+      $teamposts = $query->orderBy('id', 'DESC')->paginate(10);
+
+      // Return results
+   		return View::make('teamposts/index', 
+   			compact('teamposts', 
+   				'region_options', 
+   				'skill_options', 
+   				'playstyle_options', 
+   				'region', 
+   				'minskill', 
+   				'maxskill', 
+   				'playstyle'
+   			));
+
 	}
 
 	/**

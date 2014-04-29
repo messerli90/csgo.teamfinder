@@ -49,6 +49,16 @@
 					@endif
 					</div>
 				</div>
+				<div class="form-group">
+				{{ Form::label('lookingfor', 'Looking for', ['class' => 'col-sm-4 small']) }}
+					<div class="col-sm-8">
+					@if (isset($lookingfor))
+						{{ Form::select('lookingfor', ['Any', 'Game Type' => $lookingfor_options], $lookingfor, ['class' => 'form-control input-sm']) }}
+					@else 
+						{{ Form::select('lookingfor', ['Any', 'Game Type' => $lookingfor_options], null, ['class' => 'form-control input-sm']) }}
+					@endif
+					</div>
+				</div>
 				{{ Form::submit('Apply', ['class' => 'btn btn-primary'])}}
 			{{ Form::close() }}
 		</div>

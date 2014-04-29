@@ -15,6 +15,53 @@
     <div class="well">
       <a href="{{ action('TeampostController@create') }}" class="btn btn-primary">Add new Team</a>
     </div>
+    <h4>Filter</h4>
+    <div class="well">
+      {{ Form::open(['action' => 'TeampostController@postFilter', 'class' => 'form-horizontal']) }}
+        <div class="form-group">
+        {{ Form::label('region', 'Region', ['class' => 'col-sm-4 small']) }}
+          <div class="col-sm-8">
+          @if (isset($region))
+            {{ Form::select('region', ['Any', 'Regions' => $region_options], $region, ['class' => 'form-control input-sm']) }}
+          @else 
+            {{ Form::select('region', ['Any', 'Regions' => $region_options], null, ['class' => 'form-control input-sm']) }}
+          @endif
+          </div>
+        </div>
+        <div class="form-group">
+        {{ Form::label('minskill', 'Minimum Skill', ['class' => 'col-sm-4 small']) }}
+          <div class="col-sm-8">
+            @if (isset($minskill))
+              {{ Form::select('minskill', ['Any', 'Skill Levels' => $skill_options], $minskill, ['class' => 'form-control input-sm']) }}
+            @else
+            {{ Form::select('minskill', ['Any', 'Skill Levels' => $skill_options], null, ['class' => 'form-control input-sm']) }}
+            @endif
+          </div>
+        </div>
+        <div class="form-group">
+        {{ Form::label('maxskill', 'Maximum Rank', ['class' => 'col-sm-4 small']) }}
+          <div class="col-sm-8">
+          @if (isset($maxskill))
+            {{ Form::select('maxskill', ['Any', 'Skill Levels' => $skill_options], $maxskill, ['class' => 'form-control input-sm']) }}
+          @else
+            {{ Form::select('maxskill', ['Any', 'Skill Levels' => $skill_options], null, ['class' => 'form-control input-sm']) }}
+          @endif
+          </div>
+        </div>
+        <div class="form-group">
+        {{ Form::label('playstyle', 'Playstyle', ['class' => 'col-sm-4 small']) }}
+          <div class="col-sm-8">
+          @if (isset($playstyle))
+            {{ Form::select('playstyle', ['Any', 'Game Type' => $playstyle_options], $playstyle, ['class' => 'form-control input-sm']) }}
+          @else 
+            {{ Form::select('playstyle', ['Any', 'Game Type' => $playstyle_options], null, ['class' => 'form-control input-sm']) }}
+          @endif
+          </div>
+        </div>
+        {{ Form::submit('Apply', ['class' => 'btn btn-primary'])}}
+      {{ Form::close() }}
+    </div>
+
     <h4>Partner Links</h4>
     <div class="well">
       <img src="{{ asset('img/ads/mumble.png') }}" alt="mumble logo" class="col-md-4 pull-left" />
@@ -48,30 +95,30 @@
   @if (false)
     <div class="well"><p>Sorry, no posts at this time</p></div>
   @else
-  @foreach($posts as $post)
+  @foreach($teamposts as $post)
     <div class="col-md-12">
       <div class="post well clearfix">
         <div class="row top">
           <div class="col-md-2">
             <a href="{{ action('TeampostController@show', [$post->id]) }}">
               @if ($post->avatar)
-                <img src="{{ $post->avatar }}" alt="{{ $post->name }} logo" class="img-rounded" width="80">
+                <img src="{{ $post->avatar }}" alt="{{ $post->teamname }} logo" class="img-rounded" width="80">
               @else 
-                <img src="{{ asset('/img/teamposts/default.png') }}" alt="{{ $post->name }} logo" class="img-rounded" width="80">
+                <img src="{{ asset('/img/teamposts/default.png') }}" alt="{{ $post->teamname }} logo" class="img-rounded" width="80">
               @endif
             </a>
           </div>
           <div class="col-md-6">
             <a href="{{ action('TeampostController@show', [$post->id]) }}">
-              <h2>{{{ $post->name }}}</h2>
+              <h2>{{{ $post->teamname }}}</h2>
             </a>
             @if ($post->region)
-              <small class="region">{{{ $post->region->name }}}</small>
+              <small class="region">{{{ $post->region }}}</small>
             @endif
           </div>
           <div class="col-md-4 text-right">
           <h5 class="small-caps roles-title">Looking for</h5>
-          @foreach($post->playstyles as $playstyle)
+          @foreach(Teampost::find($post->id)->playstyles as $playstyle)
             <div class="roles">
             <img src="{{ asset($playstyle->img) }}"  class="lookingfor" alt="{{{ $playstyle->name }}}">
               <div class="caption">
@@ -82,11 +129,11 @@
           </div>
         </div><!-- ./top row -->
         <div class="bottom text-right">
-        @if ($post->teampostcomments->count() != 0)
-          <a href="{{ action('TeampostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ $post->teampostcomments->count() }}} <span class="glyphicon glyphicon-comment"></span></small></a>
+        @if (Teampost::find($post->id)->teampostcomments->count() != 0)
+          <a href="{{ action('TeampostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ Teampost::find($post->id)->teampostcomments->count() }}} <span class="glyphicon glyphicon-comment"></span></small></a>
         @endif
         @if(Auth::check())
-          @if(Auth::user()->id == $post->user->id)
+          @if(Auth::user()->id == Teampost::find($post->id)->user->id)
             {{ Form::open(['action' => ['TeampostController@destroy', $post->id], 'method' => 'DELETE']) }}
             {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm btn-post pull-right']) }}
             {{ Form::close() }}
@@ -115,7 +162,7 @@
 
     <!-- Pagination -->
     <div class="col-md-6 col-md-offset-4 clearfix">
-      {{ $posts->links() }}     
+      {{ $teamposts->links() }}     
     </div>
     @endif
   </div>
