@@ -15,7 +15,7 @@
         {{ Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'DELETE']) }}
           {{ Form::submit('Delete Team', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
         {{ Form::close() }}
-        <a href="{{ action('PostController@edit', [$post->id]) }}" class="btn btn-sm btn-default btn-post pull-right">Edit Team</a>
+        <a href="{{ action('TeampostController@edit', [$post->id]) }}" class="btn btn-sm btn-default btn-post pull-right">Edit Team</a>
       @else
         <!--
         <a href="#" class="btn btn-sm btn-default pull-right btn-post"><span class="glyphicon glyphicon-flag"></span> Report Post</a>
