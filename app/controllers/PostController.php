@@ -40,8 +40,12 @@ class PostController extends \BaseController {
       ->orderBy('id', 'DESC')
       ->paginate(10);
 
-    //$posts = Post::with('user','lookingfors','playstyles', 'postcomments')->orderBy('id', 'DESC')->paginate(10);
-    return View::make('posts/index', compact('posts', 'region_options', 'rank_options', 'lookingfor_options'));
+    return View::make('posts/index', 
+      compact('posts', 
+        'region_options', 
+        'rank_options', 
+        'lookingfor_options'
+      ));
   }
 
   public function postFilter()
@@ -105,20 +109,23 @@ class PostController extends \BaseController {
       $query->leftJoin('lookingfor_post','posts.id', '=', 'lookingfor_post.post_id')
       
       // Lookingfor filter
-      ->where(function($query)
-      {
-        if(Input::get('lookingfor'))
-        {
-          $query->where('lookingfor_post.lookingfor_id', '=', Input::get('lookingfor'));
-        }
-      });
+      ->where('lookingfor_post.lookingfor_id', '=', Input::get('lookingfor'));
     }
 
     // Collect Query
     $posts = $query->orderBy('id', 'DESC')->paginate(10);
 
     //Return results
-    return View::make('posts/index', compact('posts', 'region_options', 'rank_options', 'lookingfor_options', 'minrank', 'maxrank', 'region', 'lookingfor'));
+    return View::make('posts/index', 
+      compact('posts', 
+        'region_options', 
+        'rank_options', 
+        'lookingfor_options', 
+        'minrank', 
+        'maxrank', 
+        'region', 
+        'lookingfor'
+      ));
   }
 
   /**

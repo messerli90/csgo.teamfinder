@@ -34,6 +34,7 @@ Route::get('/markdown', function(){
 
 Route::resource('users', 'UserController');
 Route::any('/posts/filter', 'PostController@postFilter');
+Route::any('/teamposts/filter', 'TeampostController@postFilter');
 Route::resource('posts', 'PostController');
 Route::resource('teamposts', 'TeampostController');
 Route::resource('shortlist', 'ShortlistController');
