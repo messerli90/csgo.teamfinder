@@ -61,28 +61,29 @@
         {{ Form::submit('Apply', ['class' => 'btn btn-primary'])}}
       {{ Form::close() }}
     </div>
-
-    <h4>Partner Links</h4>
-    <div class="well">
-      <img src="{{ asset('img/ads/mumble.png') }}" alt="mumble logo" class="col-md-4 pull-left" />
-      <h4>Free Mumble Server!</h4>
-        <small>Found someone to play with but don't want to use in game voice? Check out this free to use Mumble server with your new party!</small>
-        <br><br><small><strong>IP: </strong>csgoreddit.mumble.com</small>
-        <br><small><strong>Port: </strong>5422</small>
-    </div>
-    <h4>Consider Donating</h4>
-    <div class="well">
-    <h5>Help keep CSGOTF alive</h5>
-      <small>If this site has helped you or you just want to help support the development, please consider leaving a small donation.</small>
-      <div class="col-md-6 col-md-offset-3 clearfix donate">
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="GDEBVYPPFHHLA">
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-        </form>
+    <div class="hidden-xs">
+      <h4>Partner Links</h4>
+      <div class="well">
+        <img src="{{ asset('img/ads/mumble.png') }}" alt="mumble logo" class="col-md-4 pull-left" />
+        <h4>Free Mumble Server!</h4>
+          <small>Found someone to play with but don't want to use in game voice? Check out this free to use Mumble server with your new party!</small>
+          <br><br><small><strong>IP: </strong>csgoreddit.mumble.com</small>
+          <br><small><strong>Port: </strong>5422</small>
       </div>
-      <div class="clearfix"></div>
+      <h4>Consider Donating</h4>
+      <div class="well">
+      <h5>Help keep CSGOTF alive</h5>
+        <small>If this site has helped you or you just want to help support the development, please consider leaving a small donation.</small>
+        <div class="col-md-6 col-md-offset-3 clearfix donate">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="GDEBVYPPFHHLA">
+          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+          <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+          </form>
+        </div>
+        <div class="clearfix"></div>
+      </div>
     </div>
 
     <div class="well">
@@ -99,7 +100,7 @@
     <div class="col-md-12">
       <div class="post well clearfix">
         <div class="row top">
-          <div class="col-md-2">
+          <div class="col-md-2 hidden-xs">
             <a href="{{ action('TeampostController@show', [$post->id]) }}">
               @if ($post->avatar)
                 <img src="{{ $post->avatar }}" alt="{{ $post->teamname }} logo" class="img-rounded" width="80">
@@ -108,7 +109,7 @@
               @endif
             </a>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 col-xs-12">
             <a href="{{ action('TeampostController@show', [$post->id]) }}">
               <h2>{{{ $post->teamname }}}</h2>
             </a>
@@ -116,7 +117,7 @@
               <small class="region">{{{ $post->region }}}</small>
             @endif
           </div>
-          <div class="col-md-4 text-right">
+          <div class="col-md-4 col-xs-12 text-right">
           <h5 class="small-caps roles-title">Looking for</h5>
           @foreach(Teampost::find($post->id)->playstyles as $playstyle)
             <div class="roles">
@@ -145,7 +146,7 @@
     </div>
     @endforeach
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 hidden-xs">
       <div class="well">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- Sidebar2 -->
@@ -161,7 +162,7 @@
   </div>
 
     <!-- Pagination -->
-    <div class="col-md-6 col-md-offset-4 clearfix">
+    <div class="col-md-6 col-md-offset-4 col-xs-12 clearfix">
       {{ $teamposts->links() }}     
     </div>
     @endif

@@ -24,15 +24,15 @@
     @endif
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-8 col-xs-12">
     <div class="well clearfix">
       @if ($post->avatar)
-        <img src="{{ $post->avatar }}" alt="{{ $post->name }} logo" class="img-rounded col-md-3">
+        <img src="{{ $post->avatar }}" alt="{{ $post->name }} logo" class="img-rounded col-md-3 col-xs-12">
       @else 
-        <img src="{{ asset('/img/teamposts/default.png') }}" alt="{{ $post->name }} logo" class="img-rounded col-md-3">
+        <img src="{{ asset('/img/teamposts/default.png') }}" alt="{{ $post->name }} logo" class="img-rounded col-md-3 col-xs-12">
       @endif
-      <h1>{{ $post->name }}</h1>  
-      <small class="region">{{ $post->region->name }}</small>
+      <h1 class="text-center">{{ $post->name }}</h1>  
+      <p class="text-center"><small>{{ $post->region->name }}</small></p>
     </div>
 
     <h4>Info</h4>
@@ -45,30 +45,30 @@
     @if(count($post->teampostcomments) > 0)
       @foreach($post->teampostcomments as $postcomment)
         @if($postcomment->author_id == $post->user->id)
-          <div class="row">
-            <div class="col-md-10">
+          <div class="row clearfix">
+            <div class="col-md-10 col-xs-8">
               <div class="well">
-                <p class="text-right">{{ $parsedown->text($postcomment->comment) }}</p>
+                <p>{{ $parsedown->text($postcomment->comment) }}</p>
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 col-xs-3">
               <a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >
-                <img src="{{ User::find($postcomment->author_id)->avatar }}" alt="User::find($postcomment->author_id)->username" class="col-md-8 col-md-offset-2">
+                <img src="{{ User::find($postcomment->author_id)->avatar }}" alt="User::find($postcomment->author_id)->username" class="col-md-8 col-xs-12 col-md-offset-2 col-xs-offset-0">
               </a>
               <p class="text-center small-caps"><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" > {{{ User::find($postcomment->author_id)->username }}}</a></p>
             </div>
           </div>
         @else
-        <div class="row">
-          <div class="col-md-2 ">
+        <div class="row clearfix">
+          <div class="col-md-2 col-xs-3">
             <a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >
-              <img src="{{ User::find($postcomment->author_id)->avatar }}" alt="User::find($postcomment->author_id)->username" class="col-md-8 col-md-offset-2">
+              <img src="{{ User::find($postcomment->author_id)->avatar }}" alt="User::find($postcomment->author_id)->username" class="col-md-8 col-xs-12 col-md-offset-2 col-xs-offset-0">
             </a>
             <p class="text-center small-caps"><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" > {{{ User::find($postcomment->author_id)->username }}}</a></p>
           </div>
-          <div class="col-md-10">
+          <div class="col-md-10 col-xs-8">
             <div class="well">
-              {{ $parsedown->text($postcomment->comment) }}
+              <p>{{ $parsedown->text($postcomment->comment) }}</p>
             </div>
           </div>
         </div>

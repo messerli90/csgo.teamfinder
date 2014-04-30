@@ -62,27 +62,29 @@
 				{{ Form::submit('Apply', ['class' => 'btn btn-primary'])}}
 			{{ Form::close() }}
 		</div>
-		<h4>Partner Links</h4>
-		<div class="well">
-			<img src="{{ asset('img/ads/mumble.png') }}" alt="mumble logo" class="col-md-4 pull-left" />
-			<h4>Free Mumble Server!</h4>
-				<small>Found someone to play with but don't want to use in game voice? Check out this free to use Mumble server with your new party!</small>
-				<br><br><small><strong>IP: </strong>csgoreddit.mumble.com</small>
-				<br><small><strong>Port: </strong>5422</small>
-		</div>
-		<h4>Consider Donating</h4>
-		<div class="well">
-		<h5>Help keep CSGOTF alive</h5>
-			<small>If this site has helped you or you just want to help support the development, please consider leaving a small donation.</small>
-			<div class="col-md-6 col-md-offset-3 clearfix donate">
-				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-				<input type="hidden" name="cmd" value="_s-xclick">
-				<input type="hidden" name="hosted_button_id" value="GDEBVYPPFHHLA">
-				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-				</form>
+		<div class="hidden-xs">
+			<h4>Partner Links</h4>
+			<div class="well">
+				<img src="{{ asset('img/ads/mumble.png') }}" alt="mumble logo" class="col-md-4 pull-left" />
+				<h4>Free Mumble Server!</h4>
+					<small>Found someone to play with but don't want to use in game voice? Check out this free to use Mumble server with your new party!</small>
+					<br><br><small><strong>IP: </strong>csgoreddit.mumble.com</small>
+					<br><small><strong>Port: </strong>5422</small>
 			</div>
-			<div class="clearfix"></div>
+			<h4>Consider Donating</h4>
+			<div class="well">
+			<h5>Help keep CSGOTF alive</h5>
+				<small>If this site has helped you or you just want to help support the development, please consider leaving a small donation.</small>
+				<div class="col-md-6 col-md-offset-3 clearfix donate">
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="GDEBVYPPFHHLA">
+					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+					</form>
+				</div>
+				<div class="clearfix"></div>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-7" id="container">
@@ -93,19 +95,19 @@
 	<div class="col-md-12">
 		<div class="post well clearfix">
 			<div class="row top">
-				<div class="col-md-2">
+				<div class="col-md-3 hidden-xs">
 					<a href="{{ action('PostController@show', [$post->id]) }}">
-						<img src="{{ $post->avatar }}" alt="{{ $post->username . "Avatar" }}" class="img-rounded" width="80" />
+						<img src="{{ $post->avatar }}" alt="{{ $post->username . "Avatar" }}" class="img-rounded col-md-12 col-xs-12" />
 					</a>
 				</div>
-				<div class="col-md-7">
+				<div class="col-md-6 col-xs-7">
 					<a href="{{ action('PostController@show', [$post->id]) }}"><h2>{{{ $post->username }}}</h2></a>
 					@if ($post->region)
 					<small class="region">{{{ $post->region }}} - </small>
 					@endif
 					<small>{{{ date("M d", strtotime(Post::find($post->id)->created_at)) }}}</small>
 				</div>
-				<div class="col-md-3 text-right">
+				<div class="col-md-3 text-right clearfix">
 				@if ($post->rankID < 19)
 					<img src="{{ $post->rankImage }}" alt="{{ $post->rank }}" width="100" data-toggle="tooltip" data-placement="bottom" title="{{{ $post->rank }}}" />
 				@else 
@@ -127,7 +129,7 @@
 	</div>
 	@endforeach
 	</div>
-	<div class="col-md-1 col-md-offset-1">
+	<div class="col-md-1 col-md-offset-1 hidden-xs">
 		<div class="well  pull-right">
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- Sidebar -->
@@ -140,7 +142,7 @@
 			</script>	
 		</div>
 	</div>
-	<div class="col-md-6 col-md-offset-4 clearfix">
+	<div class="col-md-6 col-md-offset-4 col-xs-12 clearfix">
 		{{ $posts->links() }}			
 	</div>
 	@endif
