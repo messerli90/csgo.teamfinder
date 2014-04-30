@@ -15,7 +15,7 @@
 			</blockquote>
 
 			<h2>CS:GO Team Finder</h2>
-			<p>We created this site to make it as easy as possible to find good teammates, some of the considerations to make this possible are:</p>
+			<p>I created this site to make it as easy as possible to find good teammates, some of the considerations to make this possible are:</p>
 			<ul>
 				<li><strong>A rating/review system</strong> to leave feedback on players you know, or have played with in the past</li>
 				<li>Full-rounded <strong>profile page</strong> with links to Third-party Pug Services</li>
@@ -23,28 +23,27 @@
 				<li>Find players by <strong>Playstyle</strong> to get exactly what you need in your team</li>
 				<li><strong>Have fun</strong> playing with like-minded people, CS:GO is a great game!</li>
 			</ul>
-			<p><a href="{{ action('UserController@create') }}">Sign up now</a> if you haven't already to start playing with the right people.</p>
 		</div>
 	</div>
 	<div class="col-md-4">
 		<div class="well">
 			<h4>Things we're working on:</h4>
 			<ul>
-				<li>Filter - Filter through posts by region, playstyle, etc.</li>
-				<li>Team Posts - Represent a team looking for players</li>
-				<li><span class="done">Post Comments - Leave a comment on a post</span> - done</li>
+				<li>Filter Optimization &amp; AJAX</li>
+				<li>Coaches &amp; Trainers page</li>
 			</ul>
-			<a href="{{ url('about/changelog') }}">Changelog</a>
+			<!--<a href="{{ url('about/changelog') }}">Changelog</a>-->
 		</div>
 		<div class="well">
 			<h4>Contact</h4>
-			<p>We look forward to any and all concerns you may have, here's how to get in touch with me for now:</p>
-			<p><a href="http://steamcommunity.com/groups/csgoteamfinder">Steam</a></p>
+			<p>I look forward to handling any and all concerns you may have, here's how to get in touch with me:</p>
+			<p><a href="http://steamcommunity.com/groups/csgoteamfinder">CSGOTF Steamgroup</a></p>
+			<p><a href="http://steamcommunity.com/id/knifely">My personal Steam</a></p>
 			<p><a href="mailto:knifelych@gmail.com">Email</a></p>
 			<p><a href="https://twitter.com/kniFelyCH">Twitter</a></p>
 		</div>
 		<div class="well">
-			<h4>Help with development</h4>
+			<h4>Help with development!</h4>
 			<p>Get involved and make your opinion matter through our GitHub repo <a href="https://github.com/messerli90/csgo.teamfinder">messerli90/csgo.teamfinder</a></p>
 		</div>
 	</div>

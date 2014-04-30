@@ -24,9 +24,8 @@
       <hr>
       <h4 id="updateaccount">I changed my name/avatar on Steam but it's not changing here.</h4>
       <blockquote>
-        <small>To update your Username and/or Avatar just logout and back in again.</small>
-        <br>
-        <small><i>This is a temporary fix as I'm in the proccess of making a quick easy update button.</i></small>
+        <small>To update your Username and/or Avatar press the 'Resynch Profile with Steam' button on the top panel of your profile page.</small>
+
       </blockquote>
       <h4 id="ranks">I don't know the name of my rank.</h4>
         <blockquote>
