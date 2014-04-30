@@ -17,6 +17,32 @@ Event::listen('illuminate.query', function($sql)
 });
 */
 
+// Sitemap
+Route::get('sitemap', function(){
+  // Initialize sitemap
+  $sitemap = App::make("sitemap");
+
+  // Add static pages
+  $sitemap->add(URL::to('/'), '2014-04-29T16:00:00+01:00', '1.0', 'daily');
+  $sitemap->add(URL::to('about'), '2014-04-29T16:00:00+01:00', '0.7', 'monthly');
+  $sitemap->add(URL::to('posts'), '2014-04-29T16:00:00+01:00', '0.7', 'monthly');
+
+  // Add dynamic pages
+  $posts = Post::all();
+  $teamposts = Teampost::all();
+
+  foreach ($posts as $post) {
+    $sitemap->add(URL::to("posts/$post->id"), $post->created_at, '0.9', 'weekly');
+  }
+
+  foreach ($teamposts as $post) {
+    $sitemap->add(URL::to("posts/$post->id"), $post->created_at, '0.9', 'weekly');
+  }
+  
+  // Output sitemap
+  return $sitemap->render('xml');
+});
+
 Route::get('/', 'HomeController@showWelcome');
 Route::get('/about', function(){
 	return View::make('about/index');

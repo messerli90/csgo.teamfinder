@@ -7,7 +7,8 @@
 		"laravel/framework": "4.1.*",
 		"hybridauth/hybridauth": "*",
 		"koraktor/steam-condenser": "*",
-		"erusev/parsedown": "dev-master"
+		"erusev/parsedown": "dev-master",
+		"roumen/sitemap": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

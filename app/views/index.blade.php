@@ -57,8 +57,9 @@
 			</div>
 		<h4>Stats</h4>
 		<div class="well">
-			<p>Active Posts: {{ Post::all()->count() }}</p>
-			<p>Registered Users: {{ User::all()->count() }}</p>
+			<small>Registered Users: {{ User::all()->count() }}</small><br>
+			<small>Players searching: {{ Post::all()->count() }}</small><br>
+			<small>Teams searching: {{ Teampost::all()->count() }}</small><br>
 		</div>
 	</div>
 </div>

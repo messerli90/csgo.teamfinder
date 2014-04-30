@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="form-group">
-        {{ Form::label('maxskill', 'Maximum Rank', ['class' => 'col-sm-4 small']) }}
+        {{ Form::label('maxskill', 'Maximum Skill', ['class' => 'col-sm-4 small']) }}
           <div class="col-sm-8">
           @if (isset($maxskill))
             {{ Form::select('maxskill', ['Any', 'Skill Levels' => $skill_options], $maxskill, ['class' => 'form-control input-sm']) }}
