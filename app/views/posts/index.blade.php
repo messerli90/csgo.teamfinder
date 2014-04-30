@@ -88,46 +88,49 @@
 		</div>
 	</div>
 	<div class="col-md-7" id="container">
-	@if (count($posts) == 0)
-		<div class="well"><p>Sorry, no posts at this time</p></div>
-	@else
-	@foreach($posts as $post)
-	<div class="col-md-12">
-		<div class="post well clearfix">
-			<div class="row top">
-				<div class="col-md-3 hidden-xs">
-					<a href="{{ action('PostController@show', [$post->id]) }}">
-						<img src="{{ $post->avatar }}" alt="{{ $post->username . "Avatar" }}" class="img-rounded col-md-12 col-xs-12" />
-					</a>
+		@if (count($posts) == 0)
+			<div class="well"><p>Sorry, no posts at this time</p></div>
+		@else
+		@foreach($posts as $post)
+			<div class="col-md-12">
+				<div class="post well clearfix">
+					<div class="row top">
+						<!-- Avatar -->
+						<div class="col-md-3 hidden-xs">
+							<a href="{{ action('PostController@show', [$post->id]) }}">
+								<img src="{{ $post->avatar }}" alt="{{ $post->username . "Avatar" }}" class="img-rounded col-md-12 col-xs-12" />
+							</a>
+						</div>
+						<!-- Username -->
+						<div class="col-md-6 col-xs-8">
+							<a href="{{ action('PostController@show', [$post->id]) }}"><h2>{{{ $post->username }}}</h2></a>
+							@if ($post->region)
+								<small class="region">{{{ $post->region }}} - </small>
+							@endif
+							<small>{{{ date("M d", strtotime(Post::find($post->id)->created_at)) }}}</small>
+						</div>
+						<div class="col-md-3 col-xs-4 text-right">
+						@if ($post->rankID < 19)
+							<img src="{{ $post->rankImage }}" alt="{{ $post->rank }}" width="100" data-toggle="tooltip" data-placement="bottom" title="{{{ $post->rank }}}" />
+						@else 
+							<p class="small-caps text-center">No Rank</p>
+						@endif
+						</div>
+					</div><!-- ./top row -->
+
+					<div class="bottom text-right">
+						@if (count(Post::find($post->id)->postcomments) != 0)
+							<a href="{{ action('PostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ count(Post::find($post->id)->postcomments) }}} <span class="glyphicon glyphicon-comment"></span></small></a>
+						@endif
+						@if (Post::find($post->id)->user->rating > 0)
+		             <small><span class="good">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-up"></span></span></small>
+		        @elseif (Post::find($post->id)->user->rating < 0)
+		             <small><span class="bad">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-down"></span></span></small>				
+		        @endif
+					</div>
 				</div>
-				<div class="col-md-6 col-xs-7">
-					<a href="{{ action('PostController@show', [$post->id]) }}"><h2>{{{ $post->username }}}</h2></a>
-					@if ($post->region)
-					<small class="region">{{{ $post->region }}} - </small>
-					@endif
-					<small>{{{ date("M d", strtotime(Post::find($post->id)->created_at)) }}}</small>
-				</div>
-				<div class="col-md-3 text-right clearfix">
-				@if ($post->rankID < 19)
-					<img src="{{ $post->rankImage }}" alt="{{ $post->rank }}" width="100" data-toggle="tooltip" data-placement="bottom" title="{{{ $post->rank }}}" />
-				@else 
-					<p class="small-caps text-center">No Rank</p>
-				@endif
-				</div>
-			</div><!-- ./top row -->
-			<div class="bottom text-right">
-				@if (count(Post::find($post->id)->postcomments) != 0)
-					<a href="{{ action('PostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ count(Post::find($post->id)->postcomments) }}} <span class="glyphicon glyphicon-comment"></span></small></a>
-				@endif
-				@if (Post::find($post->id)->user->rating > 0)
-             <small><span class="good">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-up"></span></span></small>
-        @elseif (Post::find($post->id)->user->rating < 0)
-             <small><span class="bad">{{ Post::find($post->id)->user->rating }} <span class="glyphicon glyphicon-thumbs-down"></span></span></small>				
-        @endif
 			</div>
-		</div>
-	</div>
-	@endforeach
+		@endforeach
 	</div>
 	<div class="col-md-1 col-md-offset-1 hidden-xs">
 		<div class="well  pull-right">

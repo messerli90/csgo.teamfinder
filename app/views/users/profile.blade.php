@@ -11,9 +11,17 @@
   @endif
 
 
-  <div class="row">
-    <div class="col-md-3">
-    <h4>Quick Links</h4>
+  <div class="col-md-12">
+    <div class="visible-xs col-xs-12">
+      <div class="well">
+        <img src="{{ $user->avatar }}" class="img-rounded col-xs-12">  
+        <h1 class="text-center">{{{ $user->username }}}</h1>
+        <hr>
+        <p class="text-center">{{ $user->bio }}</p>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <h4>Quick Links</h4>
       <div class="well text-center">
         <p>
           <a href="http://csgo-stats.com/{{{ $user->id }}}" target="_blank"><img src="{{ asset('/img/ext_services/csgo-stats_logo.png' )}}" class="serviceLink"></a>
@@ -41,56 +49,56 @@
       </div>
       <h4>Info</h4>
       <div class="well">
-      <table class="table">
-        <tr>
-          <td>Status</td>
-          <td>{{{ $user->status->name }}}</td>
-        </tr>
-        <tr>
-          <td>Rating</td>
-          <td>
-            @if($user->rating >= 0)
-              <span class="good">{{ $user->rating }} <span class="glyphicon glyphicon-thumbs-up"></span></span>
-            @else
-              <span class="bad">{{ $user->rating }} <span class="glyphicon glyphicon-thumbs-down"></span></span>
-            @endif
-          </td>
-        </tr>
-        @if($user->birthday)
-        <tr>
-          <td>Age</td>
-          <td>{{ date("Y-m-d")-date($user->birthday) }}</td>
-        </tr>
-        @endif
-        @if($user->region)
-        <tr>
-          <td>Region</td>
-          <td>{{ $user->region->name }}</td>
-        </tr>
-        @endif
-        @if($user->skill)
-        <tr>
-          <td>Skill</td>
-          <td>{{ $user->skill->name }}</td>
-        </tr>
-        @endif
-        @if($user->rank)
-        <tr>
-          <td>Matchmaking Rank</td>
-          <td><img src="{{ $user->rank->img }}" alt="{{ $user->rank->name }}" class="serviceLink"> </td>
-        </tr>
-        @endif
-        @if($user->voips)
-        <tr>
-          <td>VoIP Services</td>
-          <td>
-          @foreach ($user->voips as $voip)
-            <p>{{ $voip->name }}</p>
-          @endforeach
-          </td>
-        </tr>
-        @endif
-      </table>
+        <table class="table">
+          <tr>
+            <td>Status</td>
+            <td>{{{ $user->status->name }}}</td>
+          </tr>
+          <tr>
+            <td>Rating</td>
+            <td>
+              @if($user->rating >= 0)
+                <span class="good">{{ $user->rating }} <span class="glyphicon glyphicon-thumbs-up"></span></span>
+              @else
+                <span class="bad">{{ $user->rating }} <span class="glyphicon glyphicon-thumbs-down"></span></span>
+              @endif
+            </td>
+          </tr>
+          @if($user->birthday)
+          <tr>
+            <td>Age</td>
+            <td>{{ date("Y-m-d")-date($user->birthday) }}</td>
+          </tr>
+          @endif
+          @if($user->region)
+          <tr>
+            <td>Region</td>
+            <td>{{ $user->region->name }}</td>
+          </tr>
+          @endif
+          @if($user->skill)
+          <tr>
+            <td>Skill</td>
+            <td>{{ $user->skill->name }}</td>
+          </tr>
+          @endif
+          @if($user->rank)
+          <tr>
+            <td>Matchmaking Rank</td>
+            <td><img src="{{ $user->rank->img }}" alt="{{ $user->rank->name }}" class="serviceLink"> </td>
+          </tr>
+          @endif
+          @if($user->voips)
+          <tr>
+            <td>VoIP Services</td>
+            <td>
+              @foreach ($user->voips as $voip)
+              <p>{{ $voip->name }}</p>
+              @endforeach
+            </td>
+          </tr>
+          @endif
+        </table>
       </div>
     </div>
 
@@ -115,7 +123,7 @@
         @endif
       @endif
 
-      <div class="well clearfix">
+      <div class="well clearfix hidden-xs">
         <img src="{{ $user->avatar }}" class="img-rounded col-md-3">  
         <h1>{{{ $user->username }}}</h1>
         <p>{{ $user->bio }}</p>

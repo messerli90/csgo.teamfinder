@@ -40,62 +40,6 @@
       <p>{{ $parsedown->text($post->info) }}</p>
     </div>
 
-    <h3 id="comments">Comments</h3>
-
-    @if(count($post->teampostcomments) > 0)
-      @foreach($post->teampostcomments as $postcomment)
-        @if($postcomment->author_id == $post->user->id)
-          <div class="row clearfix">
-            <div class="col-md-10 col-xs-8">
-              <div class="well">
-                <p>{{ $parsedown->text($postcomment->comment) }}</p>
-              </div>
-            </div>
-            <div class="col-md-2 col-xs-3">
-              <a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >
-                <img src="{{ User::find($postcomment->author_id)->avatar }}" alt="User::find($postcomment->author_id)->username" class="col-md-8 col-xs-12 col-md-offset-2 col-xs-offset-0">
-              </a>
-              <p class="text-center small-caps"><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" > {{{ User::find($postcomment->author_id)->username }}}</a></p>
-            </div>
-          </div>
-        @else
-        <div class="row clearfix">
-          <div class="col-md-2 col-xs-3">
-            <a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >
-              <img src="{{ User::find($postcomment->author_id)->avatar }}" alt="User::find($postcomment->author_id)->username" class="col-md-8 col-xs-12 col-md-offset-2 col-xs-offset-0">
-            </a>
-            <p class="text-center small-caps"><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" > {{{ User::find($postcomment->author_id)->username }}}</a></p>
-          </div>
-          <div class="col-md-10 col-xs-8">
-            <div class="well">
-              <p>{{ $parsedown->text($postcomment->comment) }}</p>
-            </div>
-          </div>
-        </div>
-
-        @endif
-      @endforeach
-    @else 
-      <p>No comments</p>
-    @endif
-
-
-  <div class="col-md-12">
-    <hr />
-    @if(Auth::check())
-      {{ Form::open(['action' => ['TeampostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
-        <div class="form-group col-md-12">
-          {{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => "Hey, let's you and me get together some time ;)"]) }} 
-          <small><a href="#" onclick="return markdownHelp()">Formatting Help</a></small>
-        </div>
-        <div class="form-group col-md-12">
-          {{ Form::submit('Reply', ['class' => 'btn btn-primary']) }}
-        </div>
-      {{ Form::close() }}
-    @else
-      <a href="{{ route('login') }}">Login to leave a comment</a>
-    @endif
-  </div>
 
   </div>
   <div class="col-md-4">
@@ -154,9 +98,76 @@
       </ul>
     </div>
   </div>
+  <div class="col-md-10 col-xs-12 col-md-offset-1">
+    <div class="col-md-12 col-xs-12">
+      <h3 id="comments">Comments</h3>
 
+      @if(count($post->teampostcomments) > 0)
+        @foreach($post->teampostcomments as $postcomment)
+          @if($postcomment->author_id == $post->user->id)
+            <div class="row clearfix">
+              <div class="col-md-10 col-xs-8">
+                <div class="well well-sm">
+                  <p>{{ $parsedown->text($postcomment->comment) }}</p>
+                </div>
+              </div>
+              <div class="col-md-2 col-xs-3">
+                <div class="col-md-12">
+                  <a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >
+                    <img src="{{ User::find($postcomment->author_id)->avatar }}" alt="{{ User::find($postcomment->author_id)->username }}" class="col-md-8 col-xs-12 col-md-offset-2 col-xs-offset-0">
+                  </a>
+                </div>
+                <div class="col-md-12">
+                  <p class="text-center small-caps"><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" > {{{ User::find($postcomment->author_id)->username }}}</a></p>
+                </div>
+              </div>
+            </div>
+          @else
+          <div class="row clearfix">
+            <div class="col-md-2 col-xs-3">
+              <div class="col-md-12">
+                <a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >
+                  <img src="{{ User::find($postcomment->author_id)->avatar }}" alt="{{ User::find($postcomment->author_id)->username }}" class="col-md-8 col-xs-12 col-md-offset-2 col-xs-offset-0">
+                </a>
+              </div>
+              <div class="col-md-12">
+                <p class="text-center small-caps"><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" > {{{ User::find($postcomment->author_id)->username }}}</a></p>
+              </div>
+            </div>
+            <div class="col-md-10 col-xs-8">
+              <div class="well well-sm">
+                <p>{{ $parsedown->text($postcomment->comment) }}</p>
+              </div>
+            </div>
+          </div>
 
-<div class="col-md-8">
+          @endif
+        @endforeach
+      @else 
+        <p>No comments</p>
+      @endif
+    </div>
+    <div class="col-md-12">
+      <hr />
+      @if(Auth::check())
+        {{ Form::open(['action' => ['TeampostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
+          <div class="form-group col-md-12">
+            {{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => "Hey, let's you and me get together some time ;)"]) }} 
+            <small><a href="#" onclick="return markdownHelp()">Formatting Help</a></small>
+          </div>
+          <div class="form-group col-md-12">
+            {{ Form::submit('Reply', ['class' => 'btn btn-primary']) }}
+          </div>
+        {{ Form::close() }}
+      @else
+        <a href="{{ route('login') }}">Login to leave a comment</a>
+      @endif
+    </div>
+  </div>
+</div>
+<div class="col-md-8 col-md-offset-1 hidden-xs">
+  <hr>
+  Advertising
   <div class="well">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- ProfileAd -->
