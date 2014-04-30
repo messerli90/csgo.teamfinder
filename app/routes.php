@@ -27,6 +27,7 @@ Route::get('sitemap', function(){
   $sitemap->add(URL::to('about'), '2014-04-29T16:00:00+01:00', '0.7', 'monthly');
   $sitemap->add(URL::to('posts'), '2014-04-29T16:00:00+01:00', '0.7', 'monthly');
 
+  // Add dynamic pages
   $posts = Post::all();
   $teamposts = Teampost::all();
 
@@ -38,6 +39,7 @@ Route::get('sitemap', function(){
     $sitemap->add(URL::to("posts/$post->id"), $post->created_at, '0.9', 'weekly');
   }
   
+  // Output sitemap
   return $sitemap->render('xml');
 });
 
