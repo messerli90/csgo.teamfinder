@@ -190,7 +190,7 @@ class TeampostController extends \BaseController {
 			if (Input::has('teamavatar')) {
 				$teampost->avatar 		= Input::get('teamavatar');
 			} else {
-				$teampost->avatar 		= "/img/teamposts/default.png";
+				$teampost->avatar 		= "http://csgoteamfinder.com/img/teamposts/default.png";
 			}
 			$teampost->website			= Input::get('teamwebsite');
 			$teampost->steamgroup		= Input::get('steamgroup');
@@ -206,7 +206,7 @@ class TeampostController extends \BaseController {
 
 			$teampost->save();
 
-			return Redirect::route('teamposts.index')->with('message', 'Post added');
+			return Redirect::route('teamposts.show', [$teampost->id])->with('message', 'Post added');
 		}
 	}
 
@@ -247,7 +247,6 @@ class TeampostController extends \BaseController {
 		$region_options = Region::lists('name', 'id');
 		$skill_options = Skill::lists('name', 'id');
 
-
 		if (Auth::user()) {
 			if ($user->id == $post->user->id) {
 				return View::make('teamposts/edit', compact('user', 'post', 'lookingfors', 'playstyles', 'region_options', 'skill_options'));
@@ -283,11 +282,14 @@ class TeampostController extends \BaseController {
 			
 			// Get inputs
 			$post->name 				= Input::get('teamname');
+			
 			if (Input::has('teamavatar')) {
-				$teampost->avatar 		= Input::get('teamavatar');
+				$post->avatar 		= Input::get('teamavatar');
 			} else {
-				$teampost->avatar 		= "/img/teamposts/default.png";
-			}			$post->website			= Input::get('teamwebsite');
+				$post->avatar 		= "http://csgoteamfinder.com/img/teamposts/default.png";
+			}
+
+			$post->website			= Input::get('teamwebsite');
 			$post->steamgroup		= Input::get('steamgroup');
 			$post->region_id		= Input::get('region_id');
 			$post->skill_id			= Input::get('skill_id');
@@ -333,7 +335,7 @@ class TeampostController extends \BaseController {
 			$comment->comment 			= Input::get('comment');
 			$comment->save();
 
-			return Redirect::route('teamposts.show', [$id]);
+			return Redirect::to(route('teamposts.show', [$id]).'#comments');
 
 
 			// Return to post
@@ -341,6 +343,14 @@ class TeampostController extends \BaseController {
 		} else {
 			return Redirect::route('teamposts.show', [$id])->with('message', 'You have to be logged in');
 		}
+	}
+
+	public function deleteComment($id)
+	{
+		$post = TeampostComment::find($id)->teampost_id;
+		TeampostComment::destroy($id);
+
+		return Redirect::to(route('teamposts.show', [$post]).'#comments')->with('message', 'Successfully deleted comment');
 	}
 
 }

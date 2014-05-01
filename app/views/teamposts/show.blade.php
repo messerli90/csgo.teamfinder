@@ -2,7 +2,7 @@
 @section('content')
 <div class="row" id="post">
   @if (Session::has('message'))
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-8">
       <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {{ Session::get('message') }}
@@ -12,7 +12,7 @@
   <div class="pullright">
     @if(Auth::check())
       @if(Auth::user()->id == $post->user->id)
-        {{ Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'DELETE']) }}
+        {{ Form::open(['action' => ['TeampostController@destroy', $post->id], 'method' => 'DELETE']) }}
           {{ Form::submit('Delete Team', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
         {{ Form::close() }}
         <a href="{{ action('TeampostController@edit', [$post->id]) }}" class="btn btn-sm btn-default btn-post pull-right">Edit Team</a>
@@ -107,8 +107,13 @@
           @if($postcomment->author_id == $post->user->id)
             <div class="row clearfix">
               <div class="col-md-10 col-xs-8">
-                <div class="well well-sm">
+                <div class="well well-sm clearfix">
                   <p>{{ $parsedown->text($postcomment->comment) }}</p>
+                  @if($postcomment->author_id == Auth::user()->id || $post->user->id == Auth::user()->id)
+                    {{ Form::open(['action' => ['TeampostController@deleteComment', $postcomment->id], 'method' => 'DELETE']) }}
+                      {{ Form::submit('Delete Comment', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
+                    {{ Form::close() }}
+                  @endif
                 </div>
               </div>
               <div class="col-md-2 col-xs-3">
@@ -135,8 +140,15 @@
               </div>
             </div>
             <div class="col-md-10 col-xs-8">
-              <div class="well well-sm">
+              <div class="well well-sm clearfix">
                 <p>{{ $parsedown->text($postcomment->comment) }}</p>
+                <p class="text-right">
+                @if($postcomment->author_id == Auth::user()->id || $post->user->id == Auth::user()->id)
+                  {{ Form::open(['action' => ['TeampostController@deleteComment', $postcomment->id], 'method' => 'DELETE']) }}
+                    {{ Form::submit('Delete Comment', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
+                  {{ Form::close() }}
+                @endif
+                </p>
               </div>
             </div>
           </div>

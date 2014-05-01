@@ -60,6 +60,7 @@ Route::get('/markdown', function(){
 
 Route::resource('users', 'UserController');
 Route::any('/posts/filter', 'PostController@postFilter');
+Route::delete('teamposts/comment/{id}', 'TeampostController@deleteComment');
 Route::any('/teamposts/filter', 'TeampostController@postFilter');
 Route::resource('posts', 'PostController');
 Route::resource('teamposts', 'TeampostController');
@@ -71,4 +72,4 @@ Route::post('review/{id}', 'UserController@postReview');
 Route::post('/posts/{id}', 'PostController@postComment');
 Route::post('/teamposts/{id}', 'TeampostController@postComment');
 Route::post('/users/show/{id}', 'UserController@postStatus');
-Route::post('users/show/{id}', 'UserController@postResync');
+Route::post('/users/show/{id}', 'UserController@postResync');
