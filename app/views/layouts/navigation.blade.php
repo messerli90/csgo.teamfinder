@@ -14,7 +14,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
       <li {{(Request::is('/') ? 'class="active"' : '')}}><a href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-      <li {{(Request::is('posts', 'posts/*', 'users/*') ? 'class="active"' : '')}}><a href="{{ action('PostController@index') }}">Browse Players</a></li>
+      <li {{(Request::is('posts', 'posts/*', 'users/*') ? 'class="active"' : '')}}><a href="{{ action('PostController@index') }}">Find Players</a></li>
       <li {{(Request::is('teamposts', 'teamposts/*') ? 'class="active"' : '')}}><a href="{{ action('TeampostController@index') }}">Find Team</a></li>
       <li {{(Request::is('faq') ? 'class="active"' : '')}}><a href="{{ url('/faq/') }}">FAQ</a></li>
       <li {{(Request::is('about') ? 'class="active"' : '')}}><a href="{{ url('/about/') }}">About</a></li>

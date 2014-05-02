@@ -31,7 +31,7 @@
       @else 
         <img src="{{ asset('/img/teamposts/default.png') }}" alt="{{ $post->name }} logo" class="img-rounded col-md-3 col-xs-12">
       @endif
-      <h1 class="text-center">{{ $post->name }}</h1>  
+      <h2 class="text-center">{{ $post->name }}</h2>
       <p class="text-center"><small>{{ $post->region->name }}</small></p>
     </div>
 

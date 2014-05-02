@@ -15,7 +15,7 @@
     <div class="visible-xs col-xs-12">
       <div class="well">
         <img src="{{ $user->avatar }}" class="img-rounded col-xs-12">  
-        <h1 class="text-center">{{{ $user->username }}}</h1>
+        <h2 class="text-center">{{{ $user->username }}}</h2>
         <hr>
         <p class="text-center">{{ $user->bio }}</p>
       </div>
@@ -46,6 +46,10 @@
             </p>
           @endif
         @endif
+        <hr>
+        {{ Form::open(['action' => ['ShortlistController@update', $user->id], 'method' => 'put']) }}
+          {{ Form::submit('Add to Shortlist', ['class' => 'btn btn-primary']) }}
+        {{ Form::close() }}
       </div>
       <h4>Info</h4>
       <div class="well">

@@ -45,10 +45,11 @@
 									@endif
 								</td>
 								<td>
+									<a href="{{ action('UserController@show', [User::find($user->user_id)->id]) }}" class="btn btn-sm btn-post btn-info pull-left" >Profile</a>
 									@if(Auth::check())
 										@if(Auth::user()->id == $author->id)
-											{{ Form::open(['action' => ['ShortlistController@destroy', $user->id], 'method' => 'DELETE']) }}
-											{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm btn-post']) }}
+											{{ Form::open(['action' => ['ShortlistController@destroy', $user->id], 'method' => 'DELETE', 'class' => 'pull-left']) }}
+												{{ Form::submit('Remove', ['class' => 'btn btn-danger btn-sm btn-post']) }}
 											{{ Form::close() }}
 										@endif
 									@endif
