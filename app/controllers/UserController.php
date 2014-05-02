@@ -135,6 +135,9 @@ class UserController extends \BaseController {
 		// Pick out the user
 		$user = User::find($id);
 
+		// Initiate Parsedown
+    $parsedown = new Parsedown();
+
 		// Get all user's ratings
 		$ratings = Rating::where('user_id', $id)->get();
 
@@ -146,7 +149,7 @@ class UserController extends \BaseController {
 		$steam_avatar = $user->avatar;
 
 		// Return Profile Page of user
-		return View::make('users/profile', compact('user', 'ratings', 'steam_user', 'steam_avatar', 'status_options'));
+		return View::make('users/profile', compact('user', 'ratings', 'steam_user', 'steam_avatar', 'status_options', 'parsedown'));
 
 	}
 

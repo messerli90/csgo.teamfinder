@@ -130,7 +130,7 @@
       </div>
         <h3>Experience</h3>
       <div class="well">
-        <p>{{{ $user->experience }}}</p>
+        <p>{{ $parsedown->text($user->experience) }}</p>
       </div>
         <h3>Reviews <a href="{{ action('UserController@getReview', [$user->id]) }}" class="btn btn-primary pull-right">Leave a Review</a></h3>
       <div class="well">
