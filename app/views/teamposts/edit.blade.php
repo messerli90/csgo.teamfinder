@@ -60,7 +60,7 @@
         <div class="form-group">
           {{ Form::label('league', 'League', ['class' => 'col-sm-2 control-label']) }}
           <div class="col-sm-3">
-            {{ Form::text('league', $post->league, ['class' => 'form-control', 'placeholder' => 'English']) }}
+            {{ Form::text('league', $post->league, ['class' => 'form-control', 'placeholder' => 'CEVO, ESEA']) }}
           </div>
         </div>
         <div class="row">

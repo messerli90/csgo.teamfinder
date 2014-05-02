@@ -55,6 +55,10 @@
           <td>Language</td>
           <td>{{{ $post->language }}}</td>
         </tr>
+        <tr>
+          <td>League</td>
+          <td>{{{ $post->league }}}</td>
+        </tr>
         @if ($post->skill)
         <tr>
           <td>Skill</td>
@@ -84,7 +88,7 @@
     <div class="well">
       <ul>
       @foreach($post->lookingfors as $lookingfor)
-        <li>{{$lookingfor->name}}</li>
+        <li class="list-unstyled">{{$lookingfor->name}}</li>
       @endforeach
       </ul>
     </div>
@@ -93,7 +97,7 @@
     <div class="well">
       <ul>
       @foreach($post->playstyles as $playstyle)
-        <li>{{$playstyle->name}}</li>
+        <li class="list-unstyled"><img src="{{ $playstyle->img }}" alt="{{ $playstyle->name }}" class="tp-lookingfor"> {{$playstyle->name}}</li>
       @endforeach
       </ul>
     </div>
