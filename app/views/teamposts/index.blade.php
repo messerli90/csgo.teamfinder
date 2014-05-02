@@ -113,6 +113,7 @@
             <a href="{{ action('TeampostController@show', [$post->id]) }}">
               <h2>{{{ $post->teamname }}}</h2>
             </a>
+              <small class="region">{{{ date("M d", strtotime(Teampost::find($post->id)->created_at)) }}}</small>
             @if ($post->region)
               <small class="region">{{{ $post->region }}}</small>
             @endif

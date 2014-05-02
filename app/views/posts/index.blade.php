@@ -104,10 +104,10 @@
             <!-- Username -->
             <div class="col-md-6 col-xs-8">
               <a href="{{ action('PostController@show', [$post->id]) }}"><h2>{{{ $post->username }}}</h2></a>
+              <small class="region">{{{ date("M d", strtotime(Post::find($post->id)->created_at)) }}}</small>
               @if ($post->region)
-                <small class="region">{{{ $post->region }}} - </small>
+                <small class="region">{{{ $post->region }}}</small>
               @endif
-              <small>{{{ date("M d", strtotime(Post::find($post->id)->created_at)) }}}</small>
             </div>
             <div class="col-md-3 col-xs-4 text-right">
             @if ($post->rankID < 19)
