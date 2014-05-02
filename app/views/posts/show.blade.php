@@ -19,7 +19,7 @@
 		<div class="well">
 			<ul>
 			@foreach($post->lookingfors as $lookingfor)
-				<li>{{$lookingfor->name}}</li>
+				<li class="list-unstyled">{{$lookingfor->name}}</li>
 			@endforeach
 			</ul>
 		</div>
@@ -27,7 +27,7 @@
 		<div class="well">
 			<ul>
 			@foreach($post->playstyles as $playstyle)
-				<li>{{$playstyle->name}}</li>
+				<p><img src="{{ $playstyle->img }}" alt="{{ $playstyle->name }}" width="45px"> {{$playstyle->name}}</p>
 			@endforeach
 			</ul>
 		</div>
@@ -52,32 +52,24 @@
 
 	</div>
 	<div class="row">
-		<div class="col-md-12 col-xs-12" id="comments">
+		<div class="col-md-9 col-md-offset-3 col-xs-12" id="comments">
       <div class="col-md-12 col-xs-12">
         <h3 id="comments">Comments</h3>
 
-        @if(count($post->postcomments) > 0)
-          @foreach($post->postcomments as $postcomment)
-            @if($postcomment->author_id == $post->user->id)
-              <div class="row clearfix">
-                <div class="col-md-10 col-xs-8">
-                  <div class="well well-sm">
-                    <p>{{ $parsedown->text($postcomment->comment) }}</p>
-                  </div>
-                </div>
-                <div class="col-md-2 col-xs-3">
-                  <div class="col-md-12">
-                    <a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >
-                    <img src="{{ User::find($postcomment->author_id)->avatar }}" alt="{{ User::find($postcomment->author_id)->username }}" class="col-md-8 col-xs-12 col-md-offset-2 col-xs-offset-0">
-                    </a>
-                  </div>
-                  <div class="col-md-12">
-                    <p class="text-center small-caps"><small><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" > {{{ User::find($postcomment->author_id)->username }}}</a></small></p>
-                  </div>
+      @if(count($post->postcomments) > 0)
+        @foreach($post->postcomments as $postcomment)
+          @if($postcomment->author_id == $post->user->id)
+            <div class="row clearfix">
+              <div class="col-md-10 col-xs-8">
+                <div class="well well-sm clearfix">
+                  <p>{{ $parsedown->text($postcomment->comment) }}</p>
+                  @if($postcomment->author_id == Auth::user()->id || $post->user->id == Auth::user()->id)
+                    {{ Form::open(['action' => ['PostController@deleteComment', $postcomment->id], 'method' => 'DELETE']) }}
+                      {{ Form::submit('Delete Comment', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
+                    {{ Form::close() }}
+                  @endif
                 </div>
               </div>
-            @else
-            <div class="row clearfix">
               <div class="col-md-2 col-xs-3">
                 <div class="col-md-12">
                   <a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >
@@ -85,21 +77,41 @@
                   </a>
                 </div>
                 <div class="col-md-12">
-                  <p class="text-center small-caps"><small><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" > {{{ User::find($postcomment->author_id)->username }}}</a></small></p>
-                </div>
-              </div>
-              <div class="col-md-10 col-xs-8">
-                <div class="well well-sm">
-                  <p>{{ $parsedown->text($postcomment->comment) }}</p>
+                  <p class="text-center small-caps"><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" > {{{ User::find($postcomment->author_id)->username }}}</a></p>
                 </div>
               </div>
             </div>
+          @else
+          <div class="row clearfix">
+            <div class="col-md-2 col-xs-3">
+              <div class="col-md-12">
+                <a href="{{ action('UserController@show', [$postcomment->author_id]) }}" >
+                  <img src="{{ User::find($postcomment->author_id)->avatar }}" alt="{{ User::find($postcomment->author_id)->username }}" class="col-md-8 col-xs-12 col-md-offset-2 col-xs-offset-0">
+                </a>
+              </div>
+              <div class="col-md-12">
+                <p class="text-center small-caps"><a href="{{ action('UserController@show', [$postcomment->author_id]) }}" > {{{ User::find($postcomment->author_id)->username }}}</a></p>
+              </div>
+            </div>
+            <div class="col-md-10 col-xs-8">
+              <div class="well well-sm clearfix">
+                <p>{{ $parsedown->text($postcomment->comment) }}</p>
+                <p class="text-right">
+                @if($postcomment->author_id == Auth::user()->id || $post->user->id == Auth::user()->id)
+                  {{ Form::open(['action' => ['PostController@deleteComment', $postcomment->id], 'method' => 'DELETE']) }}
+                    {{ Form::submit('Delete Comment', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
+                  {{ Form::close() }}
+                @endif
+                </p>
+              </div>
+            </div>
+          </div>
 
-            @endif
-          @endforeach
-        @else 
-          <p>No comments</p>
-        @endif
+          @endif
+        @endforeach
+      @else 
+        <p>No comments</p>
+      @endif
       </div>
       <div class="col-md-12">
         <hr />

@@ -61,6 +61,7 @@ Route::get('/markdown', function(){
 Route::resource('users', 'UserController');
 Route::any('/posts/filter', 'PostController@postFilter');
 Route::delete('teamposts/comment/{id}', 'TeampostController@deleteComment');
+Route::delete('posts/comment/{id}', 'PostController@deleteComment');
 Route::any('/teamposts/filter', 'TeampostController@postFilter');
 Route::resource('posts', 'PostController');
 Route::resource('teamposts', 'TeampostController');

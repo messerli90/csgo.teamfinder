@@ -52,6 +52,10 @@
     <div class="well">
       <table class="table">
         <tr>
+          <td>Date Posted</td>
+          <td>{{{ date("M d", strtotime($post->created_at)) }}}</td>
+        </tr>
+        <tr>
           <td>Language</td>
           <td>{{{ $post->language }}}</td>
         </tr>

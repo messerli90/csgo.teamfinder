@@ -320,7 +320,16 @@ class PostController extends \BaseController {
       // Return to post
 
     } else {
-      return Redirect::route('posts.show', [$id])->with('message', 'You have to be logged in');
+      return Redirect::to(route('posts.show', [$id]).'#comments')->with('message', 'You have to be logged in');
     }
   }
+
+  public function deleteComment($id)
+  {
+    $post = PostComment::find($id)->post_id;
+    PostComment::destroy($id);
+
+    return Redirect::to(route('posts.show', [$post]).'#comments')->with('message', 'Successfully deleted comment');
+  }
+
 }
