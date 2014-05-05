@@ -52,8 +52,19 @@
 			</ul>
 		</div>
 		<h4>Help with development</h4>
-			<div class="well">
+			<div class="well clearfix">
 				<p>Get involved and make your opinion matter through our GitHub repo <a href="https://github.com/messerli90/csgo.teamfinder">messerli90/csgo.teamfinder</a></p>
+				<hr>
+				<h5>Help keep CSGOTF alive</h5>
+        <p>If this site has helped you or you just want to help support the development, please consider leaving a small donation.</p>
+        <div class="">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="GDEBVYPPFHHLA">
+          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+          <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+          </form>
+        </div>
 			</div>
 		<h4>Stats</h4>
 		<div class="well">
