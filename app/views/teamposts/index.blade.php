@@ -134,14 +134,6 @@
         @if (Teampost::find($post->id)->teampostcomments->count() != 0)
           <a href="{{ action('TeampostController@show', [$post->id]) }}#comments" class="comments"><small>{{{ Teampost::find($post->id)->teampostcomments->count() }}} <span class="glyphicon glyphicon-comment"></span></small></a>
         @endif
-        @if(Auth::check())
-          @if(Auth::user()->id == Teampost::find($post->id)->user->id)
-            {{ Form::open(['action' => ['TeampostController@destroy', $post->id], 'method' => 'DELETE']) }}
-            {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm btn-post pull-right']) }}
-            {{ Form::close() }}
-            <a type="button" href="{{ action('TeampostController@edit', [$post->id]) }}" class="btn btn-sm btn-default btn-post pull-right">Edit</a>
-          @endif
-        @endif
         </div>
       </div>
     </div>

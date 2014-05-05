@@ -138,16 +138,20 @@ class PostController extends \BaseController {
   public function create()
   {
     // Check if user is authenticated
-    if (Auth::user())
-    {
-      // Get user, Lookingfors, playstyles
-      $user = Auth::user();
-      $lookingfors = Lookingfor::all();
-      $playstyles = Playstyle::all();
+    $user = Auth::user();
+    
+    if (Auth::check()) {
+      if (count($user->posts) >= 1) {
+        return Redirect::action('UserController@getPosts', [$user->id])->with('message', 'You already have an active post. Either <b>Bump</b>, <b>Edit</b> or <b>Remove</b> your existing post');
+      } else {
+        // Get user, Lookingfors, playstyles
+        $user = Auth::user();
+        $lookingfors = Lookingfor::all();
+        $playstyles = Playstyle::all();
 
-      // Bring to posts/create View with user details
-      return View::make('posts/create', compact('user', 'lookingfors', 'playstyles'));
-
+        // Bring to posts/create View with user details
+        return View::make('posts/create', compact('user', 'lookingfors', 'playstyles'));
+      }
     } else {
       // If not authenticated bring to register view
       return Redirect::action('PostController@index')->with('message', 'You must be logged in to make a post');
@@ -307,6 +311,7 @@ class PostController extends \BaseController {
   {
     // Get the post
     $post = Post::find($id);
+    $user = Auth::user();
 
     // Get times
     $now = Carbon::now();
@@ -316,7 +321,7 @@ class PostController extends \BaseController {
     // Check if the last bump was more that two days ago
     if($now->diffInDays($created_at) < 2 || $now->diffInDays($last_bumped) < 2)
     {
-      return Redirect::to(route('posts.show', [$id]))->with('message', 'You can only only bump your post once every two days');
+      return Redirect::action('UserController@getPosts', [$user->id])->with('message', 'You can only only bump your post once every two days');
     } else {
 
       // Use todays datetime to bump

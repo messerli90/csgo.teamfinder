@@ -363,7 +363,7 @@ class UserController extends \BaseController {
 	}
 
 	/**
-	 *
+	 * Get MyPosts
 	 *
 	 */
 	public function getPosts($id)
@@ -377,7 +377,10 @@ class UserController extends \BaseController {
 		// Find Teamposts by this user
 		$teamposts = Teampost::where('user_id', '=', $user->id)->get();
 
+		// Initialize Parsedown
+		$parsedown = new Parsedown();
+
 		//Output results to MyPosts page
-		return View::make('users/myposts', compact('user', 'posts', 'teamposts'));
+		return View::make('users/myposts', compact('user', 'posts', 'teamposts', 'parsedown'));
 	}
 }

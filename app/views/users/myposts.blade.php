@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 
-<div class="row">
+<div class="col-md-12">
   @if (Session::has('message'))
     <div class="col-md-10 col-md-offset-1">
       <div class="alert alert-success alert-dismissable">
@@ -16,39 +16,45 @@
       <div class="well">
         <h3>Posts</h3>
         @if($user->posts || $user->teamposts)
-          <table class="table">
+          <table class="table table-condensed">
             <thead>
               <tr>
-                <td class="col-md-1"><strong>Date Posted</strong></td>
-                <td class="col-md-3"><strong>Goal</strong></td>
-                <td class="col-md-2"><strong>Looking For</strong></td>
-                <td class="col-md-3"><strong>Action</strong></td>
+                <td class="col-md-1"><strong>Last Bumped</strong></td>
+                <td class="col-md-1"><strong>Type</strong></td>
+                <td class="col-md-6"><strong>Comments</strong></td>
+                <td class="col-md-4"><strong>Action</strong></td>
               </tr>
             </thead>
             <tbody>
               @foreach ($posts as $post)
               <tr>
                 <td>
-                  {{{ date("M d Y", strtotime($post->created_at)) }}}
+                  {{{ date("M d Y", strtotime($post->bumped_at)) }}}
                 </td>
                 <td>
-                  {{{ $user->username }}}
+                  <p>Player Post</p>
                 </td>
                 <td>
-                  @foreach ($post->lookingfors as $lookingfor)
-                    <p>{{ $lookingfor->name }}</p>
-                  @endforeach
+                  @if (count($post->postcomments))
+                    @foreach ($post->postcomments as $comment)
+                      <blockquote class="myposts-comments">{{ $parsedown->text($comment->comment) }}
+                        <footer><a href="{{ action('UserController@show', [$comment->author_id]) }}">{{ User::find($comment->author_id)->username }}</a></footer>
+                      </blockquote>
+                    @endforeach
+                  @else
+                    <p>No Comments</p>
+                  @endif
                 </td>
                 <td>
-                  <a href="{{ action('PostController@show', [$post->id])."#post" }}" class="btn btn-sm btn-post btn-info pull-left" >View Post</a>
+                  <a href="{{ action('PostController@show', [$post->id])."#post" }}" class="btn btn-sm btn-post btn-info pull-left action-buttons" >View Post</a>
                   @if(Auth::check())
                     @if(Auth::user()->id == $user->id)
-                      <a href="{{ action('PostController@edit', [$post->id]) }}" class="btn btn-sm btn-post btn-success pull-left" >Edit Post</a>
+                      <a href="{{ action('PostController@edit', [$post->id]) }}" class="btn btn-sm btn-post btn-success pull-left action-buttons" >Edit Post</a>
                       {{ Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'DELETE', 'class' => 'pull-left']) }}
-                        {{ Form::submit('Remove', ['class' => 'btn btn-danger btn-sm btn-post']) }}
+                        {{ Form::submit('Remove', ['class' => 'btn btn-danger btn-sm btn-post action-buttons']) }}
                       {{ Form::close() }}
                       {{ Form::open(['action' => ['PostController@bump', $post->id], 'method' => 'PUT']) }}
-                        {{ Form::submit('Bump Post', ['class' => 'btn btn-success btn-sm pull-right btn-post']) }}
+                        {{ Form::submit('Bump Post', ['class' => 'btn btn-primary btn-sm btn-post action-buttons']) }}
                       {{ Form::close() }}
 
                     @endif
@@ -62,23 +68,29 @@
                   {{{ date("M d Y", strtotime($teampost->created_at) ) }}}
                 </td>
                 <td>
-                  {{{ $teampost->name }}}
+                  <p>Teampost</p>
                 </td>
                 <td>
-                  @foreach($teampost->playstyles as $lookingfor)
-                  <p><img src="{{ $lookingfor->img }}" alt="{{ $lookingfor->name }}" width="50"></p>
-                  @endforeach
+                  @if (count($teampost->teampostcomments))
+                    @foreach ($teampost->teampostcomments as $comment)
+                      <blockquote class="myposts-comments">{{ $parsedown->text($comment->comment) }}
+                        <footer><a href="{{ action('UserController@show', [$comment->author_id]) }}">{{ User::find($comment->author_id)->username }}</a></footer>
+                      </blockquote>
+                    @endforeach
+                  @else
+                    <p>No Comments</p>
+                  @endif
                 </td>
                 <td>
-                  <a href="{{ action('TeampostController@show', [$teampost->id]) }}" class="btn btn-sm btn-post btn-info pull-left" >View Post</a>
+                  <a href="{{ action('TeampostController@show', [$teampost->id]) }}" class="btn btn-sm btn-post btn-info pull-left action-buttons" >View Post</a>
                   @if(Auth::check())
                     @if(Auth::user()->id == $user->id)
-                      <a href="{{ action('TeampostController@edit', [$teampost->id]) }}" class="btn btn-sm btn-post btn-success pull-left" >Edit Post</a>
+                      <a href="{{ action('TeampostController@edit', [$teampost->id]) }}" class="btn btn-sm btn-post btn-success pull-left action-buttons" >Edit Post</a>
                       {{ Form::open(['action' => ['TeampostController@destroy', $teampost->id], 'method' => 'DELETE', 'class' => 'pull-left']) }}
-                        {{ Form::submit('Remove', ['class' => 'btn btn-danger btn-sm btn-post']) }}
+                        {{ Form::submit('Remove', ['class' => 'btn btn-danger btn-sm btn-post action-buttons']) }}
                       {{ Form::close() }}
                       {{ Form::open(['action' => ['TeampostController@bump', $teampost->id], 'method' => 'PUT']) }}
-                        {{ Form::submit('Bump Post', ['class' => 'btn btn-success btn-sm pull-right btn-post']) }}
+                        {{ Form::submit('Bump Post', ['class' => 'btn btn-primary btn-sm  btn-post action-buttons']) }}
                       {{ Form::close() }}
                     @endif
                   @endif

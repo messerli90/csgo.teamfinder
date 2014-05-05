@@ -140,20 +140,24 @@ class TeampostController extends \BaseController {
    * @return Response
    */
   public function create()
-  {   
-    // Check if user is authenticated
-    if (Auth::user())
-    {
-      // Get info
-      $user = Auth::user();
-      $lookingfors = Lookingfor::all();
-      $playstyles = Playstyle::all();
-      $region_options = Region::lists('name', 'id');
-      $skill_options = Skill::lists('name', 'id');
-      
-      // Bring to posts/create View with user details
-      return View::make('teamposts/create', compact('user', 'lookingfors', 'playstyles', 'region_options', 'skill_options'));
+  {
+    $user = Auth::user();
 
+    // Check if user is authenticated
+    if (Auth::user()) {
+      if (count($user->teamposts) >= 1) {
+        return Redirect::action('UserController@getPosts', [$user->id])->with('message', 'You already have an active post. Either <b>Bump</b>, <b>Edit</b> or <b>Remove</b> your existing post');
+      } else {
+        // Get info
+        $user = Auth::user();
+        $lookingfors = Lookingfor::all();
+        $playstyles = Playstyle::all();
+        $region_options = Region::lists('name', 'id');
+        $skill_options = Skill::lists('name', 'id');
+        
+        // Bring to posts/create View with user details
+        return View::make('teamposts/create', compact('user', 'lookingfors', 'playstyles', 'region_options', 'skill_options'));
+      }
     } else {
       // If not authenticated bring to register view
       return Redirect::action('TeampostController@index')->with('message', 'You must be logged in to make a post');
@@ -205,6 +209,8 @@ class TeampostController extends \BaseController {
         $teampost->playstyles()->sync($playstyles);
       $lookingfors            = Input::get('lookingfors');
         $teampost->lookingfors()->sync($lookingfors);
+
+      $teampost->bumped_at = $teampost->created_at;
 
       $teampost->save();
 
@@ -326,6 +332,7 @@ class TeampostController extends \BaseController {
   {
     // Get the post
     $post = Teampost::find($id);
+    $user = Auth::user();
 
     // Get times
     $now = Carbon::now();
@@ -335,7 +342,7 @@ class TeampostController extends \BaseController {
     // Check if the last bump was more that two days ago
     if($now->diffInDays($created_at) < 2 || $now->diffInDays($last_bumped) < 2)
     {
-      return Redirect::to(route('teamposts.show', [$id]))->with('message', 'You can only only bump your post once every two days');
+      return Redirect::action('UserController@getPosts', [$user->id])->with('message', 'You can only only bump your post once every two days');
     } else {
 
       // Use todays datetime to bump
