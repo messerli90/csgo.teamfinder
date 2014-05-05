@@ -14,19 +14,25 @@
         <li><a href="#playstyles">What do the different Playstyles mean?</a></li>
         <li><a href="#skill">What do you mean by skill?</a></li>
       </ul>
+      
       <hr>
+
       <h4 id="newaccount">How do I make an account?</h4>
         <blockquote>
           <small>To make an account just click on the 'Sign on with STEAM' link at the top. This will take you to Steam's secure authentication page where you log in using your Steam credentials. This will bring you back here to your new profile page. Be sure to update your personal info so people can see where you are from, your rank, age, etc.
           <br>
           CSGOTeamFinder will save your session and keep you logged in, to manually log out just click on your name and choose 'log out'</small>
         </blockquote>
+      
       <hr>
+      
       <h4 id="updateaccount">I changed my name/avatar on Steam but it's not changing here.</h4>
       <blockquote>
         <small>To update your Username and/or Avatar press the 'Resynch Profile with Steam' button on the top panel of your profile page.</small>
-
       </blockquote>
+
+      <hr>
+
       <h4 id="ranks">I don't know the name of my rank.</h4>
         <blockquote>
           Here are the ranks with their respective names:<br /><br />
@@ -37,7 +43,9 @@
             </div>
             @endforeach
         </blockquote>
+
       <hr>
+
       <h4 id="playstyles">What do the different Playstyles mean?</h4>
         <blockquote>
           <h5><img src="{{ Playstyle::find(1)->img }}" alt="{{ Playstyle::find(1)->name }}" width="50">  {{ Playstyle::find(1)->name }}</h5>
@@ -54,12 +62,16 @@
                 Have a better explanation? Let me know and I will edit these.
             </small>
         </blockquote>
+
       <hr>
+
       <h4 id="skill">What do you mean by skill?</h4>
         <blockquote>
           <small>If you were looking for an opponent (i.e. on IRC) what skill-level would you be looking for? Be honest with yourself and think in relation to the whole CS Community, not within your rank.</small>
         </blockquote>
+      
       <hr>
+      
       <h5>For any other questions you may have, feel free to drop me a line at <a href="mailto:knifelych@gmail.com">knifelych@gmail.com</a></h5>
     </div>
   </div>

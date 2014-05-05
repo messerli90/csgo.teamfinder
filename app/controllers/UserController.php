@@ -58,30 +58,42 @@ class UserController extends \BaseController {
 
 		// Check DB 
 		if($user != null) {
-			// Update Info
-			$user 						= User::find($steamCommunityId);
-			$user->username 	= $steamIdObject->getNickname();
-			$user->avatar 		= $steamIdObject->getFullAvatarUrl();
-			$user->save();
+			while (!Auth::check()) {
+				try {
+					// Update Info
+					$user 						= User::find($steamCommunityId);
+					$user->username 	= $steamIdObject->getNickname();
+					$user->avatar 		= $steamIdObject->getFullAvatarUrl();
+					$user->save();
 
-			Auth::login($user, true);
+					Auth::login($user, true);
+				} catch (Exception $e) {
+					//
+				}
+			}
 
 			// If the user exists in the DB sign in and return to profile
 			return Redirect::action('UserController@show', [$steamCommunityId])->with('message', "You have successfully logged in. Be sure to complete your Profile");
 
 		} else {
-			// Create a new user
-			$user 						= new User;
-			$user->id 				= $steamCommunityId;
-			$user->username 	= $steamIdObject->getNickname();
-			$user->avatar 		= $steamIdObject->getFullAvatarUrl();
-			$user->save();
+			while (!Auth::check()) {
+				try {
+					// Create a new user
+					$user 						= new User;
+					$user->id 				= $steamCommunityId;
+					$user->username 	= $steamIdObject->getNickname();
+					$user->avatar 		= $steamIdObject->getFullAvatarUrl();
+					$user->save();
 
-			Auth::login($user, true);
+					Auth::login($user, true);
+				} catch (Exception $e) {
+					//
+				}
+			}
 
 			// Log user in manually and redirect to Edit page
 			// Loop back to login 
-			return Redirect::action('UserController@login')->with('message', 'Thank you for registering. <strong>Be sure to complete your profile</strong>.');
+			return Redirect::action('UserController@show', [$steamCommunityId])->with('message', 'Thank you for registering. <strong>Be sure to complete your profile</strong>.');
 
 		}
 	}
