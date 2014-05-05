@@ -1,5 +1,7 @@
 /bootstrap/compiled.php
 /app/config/database.php
+/app/config/app.php
+/app/start/global.php
 /vendor/
 composer.phar
 composer.lock
