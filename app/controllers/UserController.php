@@ -362,4 +362,22 @@ class UserController extends \BaseController {
 		return Redirect::action('UserController@show', [$user->id]);
 	}
 
+	/**
+	 *
+	 *
+	 */
+	public function getPosts($id)
+	{
+		// Get User
+		$user = User::find($id);
+
+		// Find Posts by this user
+		$posts = Post::where('user_id', '=', $user->id)->get();
+
+		// Find Teamposts by this user
+		$teamposts = Teampost::where('user_id', '=', $user->id)->get();
+
+		//Output results to MyPosts page
+		return View::make('users/myposts', compact('user', 'posts', 'teamposts'));
+	}
 }

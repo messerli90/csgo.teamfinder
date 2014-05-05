@@ -33,6 +33,9 @@
               <a href="{{ action('UserController@edit', [Auth::user()->id]) }}">Edit Profile</a>
             </li>
             <li>
+              <a href="{{ action('UserController@getPosts', [Auth::user()->id]) }}">My Posts</a>
+            </li>
+            <li>
               <a href="{{ action('ShortlistController@index') }}">Shortlist</a>
             </li>
             <li class="divider"></li>

@@ -9,20 +9,6 @@
       </div>
     </div>
   @endif
-  <div class="pullright">
-    @if(Auth::check())
-      @if(Auth::user()->id == $post->user->id)
-        {{ Form::open(['action' => ['TeampostController@destroy', $post->id], 'method' => 'DELETE']) }}
-          {{ Form::submit('Delete Team', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
-        {{ Form::close() }}
-        <a href="{{ action('TeampostController@edit', [$post->id]) }}" class="btn btn-sm btn-default btn-post pull-right">Edit Team</a>
-      @else
-        <!--
-        <a href="#" class="btn btn-sm btn-default pull-right btn-post"><span class="glyphicon glyphicon-flag"></span> Report Post</a>
-        -->
-      @endif
-    @endif
-  </div>
 
   <div class="col-md-8 col-xs-12">
     <div class="well clearfix">
@@ -39,8 +25,26 @@
     <div class="well">
       <p>{{ $parsedown->text($post->info) }}</p>
     </div>
+  </div>
+  <div class="col-md-4">
+    <div class="well clearfix">
+    @if(Auth::check())
+      @if(Auth::user()->id == $post->user->id)
+        {{ Form::open(['action' => ['TeampostController@destroy', $post->id], 'method' => 'DELETE']) }}
+          {{ Form::submit('Delete Team', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
+        {{ Form::close() }}
+        {{ Form::open(['action' => ['TeampostController@bump', $post->id], 'method' => 'PUT']) }}
+          {{ Form::submit('Bump Post', ['class' => 'btn btn-success btn-sm pull-right btn-post']) }}
+        {{ Form::close() }}
 
-
+        <a href="{{ action('TeampostController@edit', [$post->id]) }}" class="btn btn-sm btn-default btn-post pull-right">Edit Team</a>
+      @else
+        <!--
+        <a href="#" class="btn btn-sm btn-default pull-right btn-post"><span class="glyphicon glyphicon-flag"></span> Report Post</a>
+        -->
+      @endif
+    @endif
+    </div>
   </div>
   <div class="col-md-4">
     <h4>Contact Person</h4>

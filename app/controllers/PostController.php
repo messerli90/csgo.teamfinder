@@ -35,9 +35,10 @@ class PostController extends \BaseController {
         'ranks.id as rankID',
         'ranks.img as rankImage',
         'regions.id as regionid',
-        'regions.name as region'
+        'regions.name as region',
+        'posts.bumped_at as bumped'
       )
-      ->orderBy('id', 'DESC')
+      ->orderBy('bumped', 'DESC')
       ->paginate(10);
 
     return View::make('posts/index', 
@@ -75,7 +76,8 @@ class PostController extends \BaseController {
         'ranks.id as rankID',
         'ranks.img as rankImage',
         'regions.id as regionid',
-        'regions.name as region'
+        'regions.name as region',
+        'posts.bumped_at as bumped'        
       )
 
       // Region filter
@@ -113,7 +115,7 @@ class PostController extends \BaseController {
     }
 
     // Collect Query
-    $posts = $query->orderBy('id', 'DESC')->paginate(10);
+    $posts = $query->orderBy('bumped', 'DESC')->paginate(10);
 
     //Return results
     return View::make('posts/index', 
@@ -188,7 +190,10 @@ class PostController extends \BaseController {
       $playstyles = Input::get('playstyles');
         $post->playstyles()->sync($playstyles);
 
+      $post->bumped_at = $post->created_at;
+
       $post->save();
+
 
       return Redirect::action('UserController@show', [$post->user_id]);
     }
@@ -296,6 +301,30 @@ class PostController extends \BaseController {
     Post::destroy($id);
 
     return Redirect::action('PostController@index');
+  }
+
+  public function bump($id)
+  {
+    // Get the post
+    $post = Post::find($id);
+
+    // Get times
+    $now = Carbon::now();
+    $created_at = $post->created_at;
+    $last_bumped = Carbon::createFromFormat('Y-m-d H:i:s', $post->bumped_at);
+
+    // Check if the last bump was more that two days ago
+    if($now->diffInDays($created_at) < 2 || $now->diffInDays($last_bumped) < 2)
+    {
+      return Redirect::to(route('posts.show', [$id]))->with('message', 'You can only only bump your post once every two days');
+    } else {
+
+      // Use todays datetime to bump
+      $post->bumped_at = Carbon::now();
+      $post->save();
+
+      return Redirect::to(route('posts.index').'#'.$id);
+    }
   }
 
   public function postComment($id)

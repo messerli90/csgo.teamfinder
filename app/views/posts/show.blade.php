@@ -8,6 +8,9 @@
 				{{ Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'DELETE']) }}
 					{{ Form::submit('Delete Post', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
 				{{ Form::close() }}
+        {{ Form::open(['action' => ['PostController@bump', $post->id], 'method' => 'PUT']) }}
+          {{ Form::submit('Bump Post', ['class' => 'btn btn-success btn-sm pull-right btn-post']) }}
+        {{ Form::close() }}
 				<a href="{{ action('PostController@edit', [$post->id]) }}" class="btn btn-sm btn-default btn-post pull-right">Edit Post</a>
 			@else
 				<a href="#" class="btn btn-sm btn-default pull-right btn-post"><span class="glyphicon glyphicon-flag"></span> Report Post</a>

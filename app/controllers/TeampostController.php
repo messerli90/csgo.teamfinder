@@ -36,9 +36,10 @@ class TeampostController extends \BaseController {
         'regions.id as regionId',
         'regions.name as region',
         'skills.id as skillId',
-        'skills.name as skill'
+        'skills.name as skill',
+        'teamposts.bumped_at as bumped_at'
         )
-      ->orderBy('id', 'DESC')
+      ->orderBy('bumped_at', 'DESC')
       ->paginate(10);
 
     // Return results
@@ -77,7 +78,8 @@ class TeampostController extends \BaseController {
         'regions.id as regionId',
         'regions.name as region',
         'skills.id as skillId',
-        'skills.name as skill'
+        'skills.name as skill',
+        'teamposts.bumped_at as bumped_at'
         )
 
       // Region filter
@@ -116,7 +118,7 @@ class TeampostController extends \BaseController {
       }
 
       // Collect Query
-      $teamposts = $query->orderBy('id', 'DESC')->paginate(10);
+      $teamposts = $query->orderBy('bumped_at', 'DESC')->paginate(10);
 
       // Return results
       return View::make('teamposts/index', 
@@ -319,6 +321,31 @@ class TeampostController extends \BaseController {
 
     return Redirect::route('teamposts.index')->with('message', 'Successfully deleted post');
   }
+
+  public function bump($id)
+  {
+    // Get the post
+    $post = Teampost::find($id);
+
+    // Get times
+    $now = Carbon::now();
+    $created_at = $post->created_at;
+    $last_bumped = Carbon::createFromFormat('Y-m-d H:i:s', $post->bumped_at);
+
+    // Check if the last bump was more that two days ago
+    if($now->diffInDays($created_at) < 2 || $now->diffInDays($last_bumped) < 2)
+    {
+      return Redirect::to(route('teamposts.show', [$id]))->with('message', 'You can only only bump your post once every two days');
+    } else {
+
+      // Use todays datetime to bump
+      $post->bumped_at = Carbon::now();
+      $post->save();
+
+      return Redirect::to(route('teamposts.index').'#'.$id);
+    }
+  }
+
 
   public function postComment($id)
   {
