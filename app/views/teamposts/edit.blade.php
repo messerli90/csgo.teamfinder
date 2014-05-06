@@ -14,35 +14,35 @@
       </div>
       @endif
 
-      {{ Form::model($post, ['action' => ['TeampostController@update', $post->id], 'method' => 'put', 'class' => 'form-horizontal']) }}
+      {{ Form::model($post, ['action' => ['TeampostController@update', $post->id], 'method' => 'put', 'class' => 'form-horizontal', 'id' => 'editForm']) }}
         <div class="form-group">
           {{ Form::label('teamname', 'Team Name *', ['class' => 'col-sm-2 control-label']) }}
           <div class="col-sm-3">
-            {{Form::text('teamname', $post->name, ['class' => 'form-control']) }}
+            {{ Form::text('teamname', $post->name, ['class' => 'form-control', 'required', 'minlength' => '2', 'type' => 'text']) }}
           </div>
         </div>
         <div class="form-group">
           {{ Form::label('teamavatar', 'Avatar URL', ['class' => 'col-sm-2 control-label']) }}
           <div class="col-sm-3">
-            {{ Form::text('teamavatar', $post->avatar, ['class' => 'form-control', 'placeholder' => '']) }}
+            {{ Form::url('teamavatar', $post->avatar, ['class' => 'form-control', 'placeholder' => 'http://imgur.com/', 'type' => 'url' ]) }}
           </div>
         </div>
         <div class="form-group">
           {{ Form::label('teamwebsite', 'Website URL', ['class' => 'col-sm-2 control-label']) }}
           <div class="col-sm-3">
-            {{ Form::text('teamwebsite', $post->website, ['class' => 'form-control', 'placeholder' => '']) }}
+            {{ Form::url('teamwebsite', $post->website, ['class' => 'form-control', 'placeholder' => '']) }}
           </div>
         </div>
         <div class="form-group">
           {{ Form::label('steamgroup', 'Steam Group URL', ['class' => 'col-sm-2 control-label']) }}
           <div class="col-sm-3">
-            {{ Form::text('steamgroup', $post->steamgroup, ['class' => 'form-control', 'placeholder' => '']) }}
+            {{ Form::url('steamgroup', $post->steamgroup, ['class' => 'form-control', 'placeholder' => '']) }}
           </div>
         </div>
         <div class="form-group">
           {{ Form::label('region_id', 'Region *', ['class' => 'col-sm-2 control-label']) }}
           <div class="col-sm-3">
-            {{ Form::select('region_id', $region_options, $post->region_id, ['class' => 'form-control']) }}
+            {{ Form::select('region_id', $region_options, $post->region_id, ['class' => 'form-control', 'required']) }}
           </div>
         </div>
         <div class="form-group">
@@ -54,7 +54,7 @@
         <div class="form-group">
           {{ Form::label('language', 'Language', ['class' => 'col-sm-2 control-label']) }}
           <div class="col-sm-3">
-            {{ Form::text('language', $post->language, ['class' => 'form-control', 'placeholder' => 'English']) }}
+            {{ Form::text('language', $post->language, ['class' => 'form-control', 'placeholder' => 'English', 'required']) }}
           </div>
         </div>
         <div class="form-group">
@@ -98,18 +98,38 @@
         <div class="form-group">
           {{ Form::label('info', 'Additional Info about your team *', ['class' => 'col-sm-2 control-label']) }}
           <div class="col-sm-8">
-            {{ Form::textarea('info', $post->info, ['class' => 'form-control', 'rows' => '6', 'placeholder' => "We play CAL... "]) }}
+            {{ Form::textarea('info', $post->info, ['class' => 'form-control', 'rows' => '6', 'placeholder' => "We play CAL... ", 'required']) }}
           <small><a href="#" onclick="return markdownHelp()">Formatting Help</a></small>
           </div>
         </div>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            {{ Form::submit('Edit', ['class' => 'btn btn-primary']) }}
+            {{ Form::submit('Edit', ['class' => 'btn btn-primary submit']) }}
           </div>
         </div>
       {{ Form::close() }}
     </div>
   </div>
 </div>
-
+<script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('dist/js/jquery.validate.js') }}"></script>
+<script>
+  $('#editForm').validate({
+    highlight: function(element) {
+      $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+      $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+      if (element.parent('.form-group').length) {
+        error.insertAfter(element.parent());
+      } else {
+        error.insertAfter(element);
+      };
+    }
+  });
+</script>
 @stop

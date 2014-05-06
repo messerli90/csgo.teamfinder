@@ -12,11 +12,11 @@
 	</div>
 	@endif
 
-	{{ Form::open(['action' => 'PostController@store', 'class' => 'form-horizontal']) }}
+	{{ Form::open(['action' => 'PostController@store', 'class' => 'form-horizontal', 'id' => 'editForm']) }}
 		<div class="form-group">
 			{{ Form::label('goal', 'Goal', ['class' => 'col-sm-2 control-label']) }}
 			<div class="col-sm-10">
-				{{ Form::textarea('goal', null, ['class' => 'form-control', 'placeholder' => "I'm looking for a team to join a league with... I just want some friendly people to play MM with..."]) }}
+				{{ Form::textarea('goal', null, ['class' => 'form-control', 'placeholder' => "I'm looking for a team to join a league with... I just want some friendly people to play MM with...", 'required']) }}
 				<small><a href="#" onclick="return markdownHelp()">Formatting Help</a></small>
 			</div>
 		</div>
@@ -24,7 +24,7 @@
 		<div class="form-group">
 			{{ Form::label('contact', 'Contact', ['class' => 'col-sm-2 control-label']) }}
 			<div class="col-sm-10">
-				{{ Form::textarea('contact', null, ['class' => 'form-control', 'placeholder' => "You should get a hold of me through steam... Call me on skype at xxx... I'm usually home from 5-9PM...."]) }}
+				{{ Form::textarea('contact', null, ['class' => 'form-control', 'placeholder' => "You should get a hold of me through steam... Call me on skype at xxx... I'm usually home from 5-9PM....", 'required']) }}
 				<small><a href="#" onclick="return markdownHelp()">Formatting Help</a></small>
 			</div>
 		</div>
@@ -69,4 +69,25 @@
 		</div>
 	{{ Form::close() }}
 </div>
+<script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('dist/js/jquery.validate.js') }}"></script>
+<script>
+  $('#editForm').validate({
+    highlight: function(element) {
+      $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+      $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+      if (element.parent('.form-group').length) {
+        error.insertAfter(element.parent());
+      } else {
+        error.insertAfter(element);
+      };
+    }
+  });
+</script>
 @stop
