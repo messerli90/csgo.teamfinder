@@ -48,7 +48,7 @@
         @endif
         <hr>
         {{ Form::open(['action' => ['ShortlistController@update', $user->id], 'method' => 'put']) }}
-          {{ Form::submit('Add to Shortlist', ['class' => 'btn btn-primary']) }}
+          {{ Form::submit('Add to Shortlist', ['class' => 'btn btn-primary  btn-block']) }}
         {{ Form::close() }}
       </div>
       <h4>Info</h4>
@@ -107,6 +107,7 @@
     </div>
 
     <div class="col-md-9">
+    <h4>Control Panel</h4>
       @if (Auth::check())
         @if (Auth::user()->id == $user->id)
           <div class="panel">
@@ -132,14 +133,16 @@
         <h1>{{{ $user->username }}}</h1>
         <p>{{ $user->bio }}</p>
       </div>
-        <h3>Experience</h3>
-      <div class="well">
-        <p>{{ $parsedown->text($user->experience) }}</p>
-      </div>
-        <h3>Reviews <a href="{{ action('UserController@getReview', [$user->id]) }}" class="btn btn-primary pull-right">Leave a Review</a></h3>
+      @if ($user->experience)
+      <h3>Experience</h3>
+        <div class="well">
+          <p>{{ $parsedown->text($user->experience) }}</p>
+        </div>
+      @endif
+      <h3>Reviews <a href="{{ action('UserController@getReview', [$user->id]) }}" class="btn btn-primary pull-right">Leave a Review</a></h3>
       <div class="well">
         <table class="table">
-        @if ( true )
+        @if ( count($user->ratings) > 0 )
           <thead>
             <tr>
               <td>Author</td>
@@ -163,7 +166,7 @@
             @endforeach          
           </tbody>
           @else 
-          <p>This user has no reviews</p>
+          <p>This user has no reviews yet</p>
           @endif
         </table>
       </div>
@@ -171,6 +174,4 @@
   </div> <!-- ./ row -->
   @yield('post')
 </div>
-
-
 @stop

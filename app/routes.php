@@ -59,6 +59,7 @@ Route::get('/markdown', function(){
 
 
 Route::get('/users/myposts/{id}', 'UserController@getPosts');
+Route::post('/review/{id}', 'UserController@postReview');
 Route::resource('users', 'UserController');
 Route::any('/posts/filter', 'PostController@postFilter');
 Route::delete('teamposts/comment/{id}', 'TeampostController@deleteComment');
@@ -70,7 +71,6 @@ Route::resource('shortlist', 'ShortlistController');
 Route::get('/steamlogin/{action?}', array('as' => 'login', 'uses' => 'UserController@login'));
 Route::get('/steamlogout', array('as' => 'logout', 'uses' => 'UserController@logout'));
 Route::get('/review/{id}', array('as' => 'review', 'uses' => 'UserController@getReview'));
-Route::post('review/{id}', 'UserController@postReview');
 Route::post('/posts/{id}', 'PostController@postComment');
 Route::put('/posts/{id}/bump', 'PostController@bump');
 Route::put('/teamposts/{id}/bump', 'TeampostController@bump');

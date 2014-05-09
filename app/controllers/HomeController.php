@@ -19,8 +19,8 @@ class HomeController extends BaseController {
 	{
 		$count = User::count();
 
-		$posts = Post::with('user')->orderBy('id', 'DESC')->paginate(5);;
-		$teamposts = Teampost::with('playstyles')->orderBy('id', 'DESC')->paginate(5);;
+		$posts = Post::with('user')->orderBy('bumped_at', 'DESC')->paginate(5);;
+		$teamposts = Teampost::with('playstyles')->orderBy('bumped_at', 'DESC')->paginate(5);;
 		return View::make('index', compact('count', 'posts', 'teamposts'));
 	}
 

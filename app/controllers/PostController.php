@@ -199,7 +199,7 @@ class PostController extends \BaseController {
       $post->save();
 
 
-      return Redirect::action('UserController@show', [$post->user_id]);
+      return Redirect::action('PostController@show', [$post->id]);
     }
   }
 
@@ -290,7 +290,7 @@ class PostController extends \BaseController {
 
       $post->save();
 
-      return Redirect::to(route('posts.index').'#'.$post->id.'id');
+      return Redirect::action('PostController@show', [$post->id]);
     }
   }
 
@@ -347,14 +347,14 @@ class PostController extends \BaseController {
       $comment->comment   = Input::get('comment');
       $comment->save();
 
-      return Redirect::route('posts.show', [$id]);
+      return Redirect::to(route('posts.show', [$id]).'#comments');
 
       // Store Inputs
 
       // Return to post
 
     } else {
-      return Redirect::to(route('posts.show', [$id]).'#comments')->with('message', 'You have to be logged in');
+      return Redirect::route('posts.show', [$id])->with('message', 'You have to be logged in');
     }
   }
 

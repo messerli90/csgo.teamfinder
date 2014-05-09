@@ -14,7 +14,7 @@
 <div class="row">
   <div class="col-md-3">
     <div class="well">
-      <a href="{{ action('PostController@create') }}" class="btn btn-primary">Add new Post</a>
+      <a href="{{ action('PostController@create') }}" class="btn btn-primary btn-block">Add new Post</a>
     </div>
     <h4>Filter</h4>
     <div class="well">
@@ -59,7 +59,7 @@
           @endif
           </div>
         </div>
-        {{ Form::submit('Apply', ['class' => 'btn btn-primary'])}}
+        {{ Form::submit('Apply', ['class' => 'btn btn-primary btn-block'])}}
       {{ Form::close() }}
     </div>
     <div class="hidden-xs">
