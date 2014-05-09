@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="col-md-4">
-    <div class="well clearfix">
+    <div class="clearfix">
     @if(Auth::check())
       @if(Auth::user()->id == $post->user->id)
         {{ Form::open(['action' => ['TeampostController@destroy', $post->id], 'method' => 'DELETE']) }}
@@ -176,7 +176,7 @@
       @if(Auth::check())
         {{ Form::open(['action' => ['TeampostController@postComment', $post->id], 'class' => 'form-horizontal']) }}
           <div class="form-group col-md-12">
-            {{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => "Hey, let's you and me get together some time ;)"]) }} 
+            {{ Form::textarea('comment', null, ['class' => 'form-control', 'required', 'rows' => '3', 'placeholder' => "Hey, let's you and me get together some time ;)"]) }} 
             <small><a href="#" onclick="return markdownHelp()">Formatting Help</a></small>
           </div>
           <div class="form-group col-md-12">
