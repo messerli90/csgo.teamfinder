@@ -121,10 +121,12 @@
               <div class="col-md-10 col-xs-8">
                 <div class="well well-sm clearfix">
                   <p>{{ $parsedown->text($postcomment->comment) }}</p>
-                  @if($postcomment->author_id == Auth::user()->id || $post->user->id == Auth::user()->id)
-                    {{ Form::open(['action' => ['TeampostController@deleteComment', $postcomment->id], 'method' => 'DELETE']) }}
-                      {{ Form::submit('Delete Comment', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
-                    {{ Form::close() }}
+                  @if(Auth::check())
+                    @if($postcomment->author_id == Auth::user()->id || $post->user->id == Auth::user()->id)
+                      {{ Form::open(['action' => ['TeampostController@deleteComment', $postcomment->id], 'method' => 'DELETE']) }}
+                        {{ Form::submit('Delete Comment', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
+                      {{ Form::close() }}
+                    @endif
                   @endif
                 </div>
               </div>
@@ -155,10 +157,12 @@
               <div class="well well-sm clearfix">
                 <p>{{ $parsedown->text($postcomment->comment) }}</p>
                 <p class="text-right">
-                @if($postcomment->author_id == Auth::user()->id || $post->user->id == Auth::user()->id)
-                  {{ Form::open(['action' => ['TeampostController@deleteComment', $postcomment->id], 'method' => 'DELETE']) }}
-                    {{ Form::submit('Delete Comment', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
-                  {{ Form::close() }}
+                @if(Auth::check())
+                  @if($postcomment->author_id == Auth::user()->id || $post->user->id == Auth::user()->id)
+                    {{ Form::open(['action' => ['TeampostController@deleteComment', $postcomment->id], 'method' => 'DELETE']) }}
+                      {{ Form::submit('Delete Comment', ['class' => 'btn btn-danger btn-sm pull-right btn-post']) }}
+                    {{ Form::close() }}
+                  @endif
                 @endif
                 </p>
               </div>
