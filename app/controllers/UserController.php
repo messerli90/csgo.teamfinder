@@ -58,6 +58,7 @@ class UserController extends \BaseController {
 
 		// Check DB 
 		if($user != null) {
+			/*
 			while (!Auth::check()) {
 				try {
 					// Update Info
@@ -65,12 +66,14 @@ class UserController extends \BaseController {
 					$user->username 	= $steamIdObject->getNickname();
 					$user->avatar 		= $steamIdObject->getFullAvatarUrl();
 					$user->save();
-
+			*/
 					Auth::login($user, true);
+			/*
 				} catch (Exception $e) {
 					//
 				}
 			}
+			*/
 
 			// If the user exists in the DB sign in and return to profile
 			return Redirect::action('UserController@show', [$steamCommunityId])->with('message', "You have successfully logged in. Be sure to complete your Profile");
