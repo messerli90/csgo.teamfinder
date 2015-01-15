@@ -1,5 +1,11 @@
 # CS:GO Team Finder
 
+----
+
+This repo is outdated, I have moved v2 of CSGOTF to a private repo
+
+----
+
 ## Mission Statement
 Our goal is to make it easier for casual and competitive players and teams to find each other. Whether it's a temporary replacement because a teammate is MIA or a permanent addition to your team, we'll have you covered.
 
